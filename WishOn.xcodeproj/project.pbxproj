@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA5E25782D42797600B3ED34 /* gitignore.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA5E25772D42797600B3ED34 /* gitignore.txt */; };
 		EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = EAD48B452CF7929900C0A29D /* swiftgen.yml */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA5E25772D42797600B3ED34 /* gitignore.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gitignore.txt; sourceTree = "<group>"; };
 		EAD48AF12CF59C5100C0A29D /* WishOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +82,7 @@
 		EAD48AE82CF59C5000C0A29D = {
 			isa = PBXGroup;
 			children = (
+				EA5E25772D42797600B3ED34 /* gitignore.txt */,
 				EAD48B452CF7929900C0A29D /* swiftgen.yml */,
 				EAD48AF32CF59C5100C0A29D /* WishOn */,
 				EAD48B092CF59C5300C0A29D /* WishOnTests */,
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */,
+				EA5E25782D42797600B3ED34 /* gitignore.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
