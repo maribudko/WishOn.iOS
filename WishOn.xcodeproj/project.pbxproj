@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = EAD48B452CF7929900C0A29D /* swiftgen.yml */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		EAD48B072CF59C5300C0A29D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		EAD48AF12CF59C5100C0A29D /* WishOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAD48B452CF7929900C0A29D /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		EAD48AE82CF59C5000C0A29D = {
 			isa = PBXGroup;
 			children = (
+				EAD48B452CF7929900C0A29D /* swiftgen.yml */,
 				EAD48AF32CF59C5100C0A29D /* WishOn */,
 				EAD48B092CF59C5300C0A29D /* WishOnTests */,
 				EAD48B132CF59C5300C0A29D /* WishOnUITests */,
@@ -195,6 +201,8 @@
 			);
 			mainGroup = EAD48AE82CF59C5000C0A29D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EAD48AF22CF59C5100C0A29D /* Products */;
 			projectDirPath = "";
@@ -212,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +337,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +394,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

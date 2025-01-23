@@ -40,4 +40,29 @@ final class WishOnUITests: XCTestCase {
             }
         }
     }
+    
+    func testAddNewWishlistButton() throws {
+        // start the app
+        let app = XCUIApplication()
+        app.launch()
+                        
+        // Finding "Add New Wishlist" button and press it
+        let addNewWishlistButton = app.buttons["Add New Wishlist"]
+        //Checking if button exists
+        XCTAssertTrue(
+            addNewWishlistButton.exists
+        )
+        //simulating pressing
+        addNewWishlistButton.tap()
+                
+        // Checking that NewWishList View is opened
+        let addWishlistView = app.staticTexts["Create new wishlist"]
+        XCTAssertTrue(
+            addWishlistView.exists
+        )  // Проверяем, что текст на новом экране отображается
+
+        // Также можно проверить наличие других элементов на экране
+        let textField = app.textFields["Wishlists name"]
+        XCTAssertTrue(textField.exists)
+    }
 }

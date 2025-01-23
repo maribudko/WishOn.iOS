@@ -1,0 +1,86 @@
+//
+//  NewItemView.swift
+//  WishOn
+//
+//  Created by Mari Budko on 01.12.2024.
+//
+
+import SwiftUI
+
+struct AddNewItemView: View {
+    @Binding var isShown: Bool
+    @State private var name = ""
+    @State private var link = ""
+    @State private var price = ""
+    @State private var currency = "UAH"
+    private let currencies = ["USD", "EUR", "UAH"]
+    var body: some View {
+        ZStack{
+            Color.black.opacity(0.4)
+                .ignoresSafeArea()
+            VStack {
+                HStack{
+                    Button{
+                        isShown = false 
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .foregroundColor(Color(Asset.primaryColor.color))
+                    }
+                    .frame(width: 24, height: 24)
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                Image("filofax")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 140, height: 140)
+                    .clipShape(.circle)
+                TextField("Name", text: $name)
+                    .textFieldStyle(.roundedBorder)
+                TextField("Link", text: $link)
+                    .textFieldStyle(.roundedBorder)
+                
+                HStack{
+                    TextField("Price", text: $price)
+                        .keyboardType(.numberPad)
+                        .frame(maxWidth: .infinity)
+                    Picker("", selection: $currency){
+                        ForEach(currencies, id: \.self) {
+                            Text($0)
+                        }
+                    }.accentColor(Color(Asset.primaryColor.color))
+                }
+                .padding(8)
+                .background(Color(.systemGray6))
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color(.systemGray5), lineWidth: 1)
+                )
+                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                
+                Button {
+                    isShown = false
+                } label: {
+                    Text("Create")
+                        .padding(.horizontal, 16)
+                        .foregroundStyle(Color(Asset.greenButtonTextColor.color))
+                }
+                .padding()
+                .background(Color(Asset.primaryColor.color))
+                .cornerRadius(30)
+                .padding(.top, 20)
+                
+            }
+            .padding(20)
+            .cornerRadius(8)
+            .background(Color(Asset.backgroundColor.color))
+            .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)
+            .padding(.horizontal, 16)
+        }
+    }
+}
+
+#Preview {
+    AddNewItemView(isShown: .constant(true))
+}
