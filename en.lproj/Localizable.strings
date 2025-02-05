@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  WishOn
+
+  Created by Mari Budko on 23.01.2025.
+  
+*/
+
+"new_wishlist_lbl" = "New wishlist";
+"name_hint" = "Name";
+"description_hint" = "Description";
+"date_hint" = "Date";
+"wishes_count_label" = "Your wishes (%d)";
+"no_wishes_label" = "No wishes yet. Tap the button below to add one!";

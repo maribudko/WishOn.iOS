@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA5E25782D42797600B3ED34 /* gitignore.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA5E25772D42797600B3ED34 /* gitignore.txt */; };
+		EA5E257E2D4298D700B3ED34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA5E25792D428EB900B3ED34 /* Localizable.strings */; };
 		EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = EAD48B452CF7929900C0A29D /* swiftgen.yml */; };
 /* End PBXBuildFile section */
 
@@ -30,15 +31,63 @@
 
 /* Begin PBXFileReference section */
 		EA5E25772D42797600B3ED34 /* gitignore.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = gitignore.txt; sourceTree = "<group>"; };
+		EA5E257A2D428EB900B3ED34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EAD48AF12CF59C5100C0A29D /* WishOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B452CF7929900C0A29D /* swiftgen.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		EA5E257F2D4298F400B3ED34 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"/Localized: Resources/Localizable.strings",
+			);
+			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
+		};
+		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				_Domain/Models/Wish.swift,
+				_Domain/Models/WishList.swift,
+				_Domain/Protocols/WishListRepositoryProtocol.swift,
+				_Presentation/ViewModels/WishListViewModel.swift,
+				_Presentation/Views/AddNewItemView.swift,
+				_Presentation/Views/DatePickerView.swift,
+				_Presentation/Views/MainView.swift,
+				_Presentation/Views/NewWishListView.swift,
+				_Presentation/Views/ToGiveCardDetails.swift,
+				_Presentation/Views/ToGiveCardView.swift,
+				_Presentation/Views/ToGiveView.swift,
+				_Presentation/Views/WishListCardView.swift,
+				_Presentation/Views/WishListDetailsView.swift,
+				App/DIRepositoriesContainer.swift,
+				Sources/Generated/Colors.swift,
+				Sources/Generated/Strings.swift,
+				Utilitites/AccessibilityIdentifiers.swift,
+				Utilitites/LocalizedStrings.swift,
+			);
+			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;
+		};
+		EAF559972D52677A009E4AEC /* Exceptions for "WishOnUITests" folder in "WishOn" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Mock/MockWishListEmptyRepository.swift,
+				Mock/MockWishListRepository.swift,
+				UnitTestsCaseConstants.swift,
+			);
+			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EAD48AF32CF59C5100C0A29D /* WishOn */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EA5E257F2D4298F400B3ED34 /* Exceptions for "WishOn" folder in "WishOn" target */,
+				EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */,
+			);
 			path = WishOn;
 			sourceTree = "<group>";
 		};
@@ -49,6 +98,9 @@
 		};
 		EAD48B132CF59C5300C0A29D /* WishOnUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EAF559972D52677A009E4AEC /* Exceptions for "WishOnUITests" folder in "WishOn" target */,
+			);
 			path = WishOnUITests;
 			sourceTree = "<group>";
 		};
@@ -82,11 +134,11 @@
 		EAD48AE82CF59C5000C0A29D = {
 			isa = PBXGroup;
 			children = (
+				EAD48AF32CF59C5100C0A29D /* WishOn */,
+				EAF559672D50F49C009E4AEC /* WishOnTests */,
+				EA5E25792D428EB900B3ED34 /* Localizable.strings */,
 				EA5E25772D42797600B3ED34 /* gitignore.txt */,
 				EAD48B452CF7929900C0A29D /* swiftgen.yml */,
-				EAD48AF32CF59C5100C0A29D /* WishOn */,
-				EAD48B092CF59C5300C0A29D /* WishOnTests */,
-				EAD48B132CF59C5300C0A29D /* WishOnUITests */,
 				EAD48AF22CF59C5100C0A29D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +151,15 @@
 				EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EAF559672D50F49C009E4AEC /* WishOnTests */ = {
+			isa = PBXGroup;
+			children = (
+				EAD48B092CF59C5300C0A29D /* WishOnTests */,
+				EAD48B132CF59C5300C0A29D /* WishOnUITests */,
+			);
+			path = WishOnTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -224,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */,
+				EA5E257E2D4298D700B3ED34 /* Localizable.strings in Resources */,
 				EA5E25782D42797600B3ED34 /* gitignore.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +342,17 @@
 			targetProxy = EAD48B112CF59C5300C0A29D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EA5E25792D428EB900B3ED34 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA5E257A2D428EB900B3ED34 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EAD48B182CF59C5300C0A29D /* Debug */ = {

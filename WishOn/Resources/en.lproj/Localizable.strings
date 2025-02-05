@@ -9,6 +9,10 @@
 "Add New Wishlist" = "Add New Wishlist";
 "appName" = "WishOn";
 "Filter" = "Filter";
+"toGive" = "To Give";
+"wishListEmptyView" = "Start your first WishList!\nAnd make your dreams come true!";
+"helloWisher" = "Hello, Wisher!";
+"aboutWisherPromt" = "Here you can provide some information about yourself, if you'd like to!";
 "My Christmas List" = "My Christmas List";
 "New wishlist" = "New wishlist";
 "Wishlists name" = "Wishlists name";

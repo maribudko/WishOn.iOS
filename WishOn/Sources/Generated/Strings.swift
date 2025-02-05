@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// Here you can provide some information about yourself, if you'd like to!
+  internal static let aboutWisherPromt = L10n.tr("Localizable", "aboutWisherPromt", fallback: "Here you can provide some information about yourself, if you'd like to!")
   /// Localizable.strings
   ///   WishOn
   /// 
@@ -19,10 +21,17 @@ internal enum L10n {
   internal static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
   /// Filter
   internal static let filter = L10n.tr("Localizable", "Filter", fallback: "Filter")
+  /// Hello, Wisher!
+  internal static let helloWisher = L10n.tr("Localizable", "helloWisher", fallback: "Hello, Wisher!")
   /// My Christmas List
   internal static let myChristmasList = L10n.tr("Localizable", "My Christmas List", fallback: "My Christmas List")
   /// New wishlist
   internal static let newWishlist = L10n.tr("Localizable", "New wishlist", fallback: "New wishlist")
+  /// To Give
+  internal static let toGive = L10n.tr("Localizable", "toGive", fallback: "To Give")
+  /// Start your first WishList!
+  /// And make your dreams come true!
+  internal static let wishListEmptyView = L10n.tr("Localizable", "wishListEmptyView", fallback: "Start your first WishList!\nAnd make your dreams come true!")
   /// Wishlists name
   internal static let wishlistsName = L10n.tr("Localizable", "Wishlists name", fallback: "Wishlists name")
   /// WishOn

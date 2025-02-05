@@ -10,9 +10,12 @@ import SwiftUI
 struct AddNewItemView: View {
     @Binding var isShown: Bool
     @State private var name = ""
-    @State private var link = ""
+    @State private var wishLink = ""
+    @State private var imageLink = ""
     @State private var price = ""
     @State private var currency = "UAH"
+    @Binding var wishes: [Wish]
+    
     private let currencies = ["USD", "EUR", "UAH"]
     var body: some View {
         ZStack{
@@ -21,7 +24,7 @@ struct AddNewItemView: View {
             VStack {
                 HStack{
                     Button{
-                        isShown = false 
+                        isShown = false
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
@@ -37,7 +40,7 @@ struct AddNewItemView: View {
                     .clipShape(.circle)
                 TextField("Name", text: $name)
                     .textFieldStyle(.roundedBorder)
-                TextField("Link", text: $link)
+                TextField("Link", text: $wishLink)
                     .textFieldStyle(.roundedBorder)
                 
                 HStack{
@@ -60,6 +63,8 @@ struct AddNewItemView: View {
                 .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
                 
                 Button {
+                    let wish = Wish(name: name, image: imageLink, currency: currency, link: wishLink)
+                    wishes.append(wish)
                     isShown = false
                 } label: {
                     Text("Create")
@@ -82,5 +87,5 @@ struct AddNewItemView: View {
 }
 
 #Preview {
-    AddNewItemView(isShown: .constant(true))
+    AddNewItemView(isShown: .constant(true), wishes: .constant([]))
 }

@@ -12,9 +12,15 @@ struct WishList: Identifiable, Codable {
     var name: String
     var imageUrl: String?
     var eventDate: Date
-    var gifts: [Gift]
+    var wishes: [Wish]
     var isSelected: Bool = false
     var description: String?
     var createdAt: Date = Date()
+    #if DEBUG
+    var color: String = "#FF5733"
+    #else
     var color: String = Asset.alertColor.name
+    #endif
+    
+    
 }

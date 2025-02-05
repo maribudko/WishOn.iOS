@@ -1,10 +1,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var wishListVM: WishListViewModel
     @State private var isAuthorized = false
-    
-    var wishLists: [WishList] = []
-//    [WishList(name: "HP2Me", eventDate: Date(), gifts: []), WishList(name: "Christmas", eventDate: Date(), gifts: []), WishList(name: "General wishes", eventDate: Date(), gifts: [])]
     
     let columns: [GridItem] = {
         let width = UIScreen.main.bounds.width - 32
@@ -26,6 +24,7 @@ struct MainView: View {
                                 Color(Asset.primaryTextColor.color)
                             )
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.showCalendarButton)
                     
                     Text(L10n.wishOn)
                         .font(.largeTitle)
@@ -53,6 +52,7 @@ struct MainView: View {
                             }
                         }
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.showProfileButton)
                 }
                 
                 HStack(alignment: .top){
@@ -68,16 +68,14 @@ struct MainView: View {
                         .clipShape(.circle)
                     
                     VStack(alignment: .leading){
-                        Text("Hello, Wisher!")
+                        Text(L10n.helloWisher)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title)
                             .foregroundColor(
                                 Color(Asset.primaryTitleColor.color)
                             )
                         
-                        Text(
-                            "Here you can provide some information about yourself, if you'd like to!"
-                        )
+                        Text(L10n.aboutWisherPromt)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top, 0)
                         .foregroundColor(Color(Asset.primaryTextColor.color))
@@ -98,12 +96,14 @@ struct MainView: View {
                             .frame(maxWidth: .infinity)
                             .background(Capsule().fill(Color(Asset.primaryColor.color)))
                             .foregroundColor(.white)
+                            .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
                     }
+                    
                     
                     NavigationLink {
                         ToGiveView()
                     } label: {
-                        Text("To Give")
+                        Text(L10n.toGive)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(
@@ -114,11 +114,12 @@ struct MainView: View {
                     }
                 }
                 .padding(.top)
+                .accessibilityIdentifier(AccessibilityIdentifiers.showToGiveViewButton)
                 
-                if !wishLists.isEmpty {
+                if !wishListVM.wishLists.isEmpty {
                     ScrollView{
                         LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(wishLists) {wishlist in
+                            ForEach(wishListVM.wishLists) {wishlist in
                                 NavigationLink(destination: WishListDetailsView()) {
                                     WishListCardView(wishList: wishlist)
                                 }
@@ -133,11 +134,12 @@ struct MainView: View {
                             .scaledToFit()
                             .frame(width: 100)
                             .foregroundColor(Color(Asset.eucalyptus.color))
-                        Text("Start your first WishList!\nAnd make your dreams come true!")
+                        Text(L10n.wishListEmptyView)
                         .padding(.top, 10)
                         .font(.headline)
                         .multilineTextAlignment(.center)
                         .foregroundColor(Color(Asset.primaryColor.color))
+                        .accessibilityIdentifier(AccessibilityIdentifiers.emptyWishList)
                     }
                     .frame(maxHeight: .infinity)
                 }
@@ -147,6 +149,14 @@ struct MainView: View {
             .padding(.horizontal, 16)
             .background(Color(Asset.backgroundColor.color).gradient)
             .navigationBarHidden(true)
+            .onAppear{
+                Task{
+                    await wishListVM.loadWishLists()
+                }
+            }
+            .onReceive(wishListVM.$wishLists) { wishLists in
+                print("WishList count: \(wishLists.count)")
+            }
         }
     }
 }
@@ -154,5 +164,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(WishListViewModel())
     }
 }

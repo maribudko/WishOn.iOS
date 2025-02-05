@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct Wish: Identifiable {
-    let id = UUID()
+struct Wish: Codable, Identifiable {
+    var id = UUID()
     var name: String
     var image: String
-    var price: Double
+    var price: Double?
     var currency: String
     var link: String
     var isSelected: Bool = false

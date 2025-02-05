@@ -57,5 +57,5 @@ extension DateFormatter {
 }
 
 #Preview {
-    WishListCardView(wishList: WishList(name: "Some", eventDate: Date(), gifts: []))
+    WishListCardView(wishList: WishList(name: "Some", eventDate: Date(), wishes: []))
 }
