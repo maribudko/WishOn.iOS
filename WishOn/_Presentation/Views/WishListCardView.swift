@@ -38,13 +38,14 @@ struct WishListCardView: View {
                     .foregroundColor(.white)
                     .lineLimit(1)
                         
-                Text("\(wishList.eventDate, formatter: DateFormatter.shortDate)")
+                Text("\(wishList.eventDate ?? .now, formatter: DateFormatter.shortDate)")
                     .font(.footnote)
                     .foregroundColor(.white)
             }
             .padding(10)
         }
-        .frame(width: 100, height: 140)
+        .frame(width: Constants.wishListCardWidth, height: Constants.wishListCardHeight)
+        
     }
 }
 

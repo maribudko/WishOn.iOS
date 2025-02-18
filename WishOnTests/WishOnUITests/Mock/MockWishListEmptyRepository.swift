@@ -6,11 +6,26 @@
 //
 
 import Foundation
+import Combine
 
 class MockWishListEmptyRepository: WishListRepositoryProtocol {
-    func fetchWishList() async throws -> [WishList] {
-        return []
+    func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
+    
+    public var list: [WishList] = []
+    func fetchWishLists() -> AnyPublisher<[WishList], any Error> {
+        Just(list)
+            .setFailureType(to: Error.self) // Converting to error type
+            .eraseToAnyPublisher()
+    }
+    
+    func addWishList(_ wishList: WishList) -> AnyPublisher<Void, any Error> {
+        // Finishing publishing without errors
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+    
+    
     
     
 }

@@ -1,14 +1,21 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject var wishListVM: WishListViewModel
+    //@EnvironmentObject var wishListVM: WishListViewModel
+    //@ObservedObject var repository: WishListRepository = WishListRepository()
     @State private var isAuthorized = false
+    @StateObject var viewModel = WishListViewModel()
+   // @State private var wishLists:[WishList] = []
     
-    let columns: [GridItem] = {
-        let width = UIScreen.main.bounds.width - 32
-        let itemsPerRow = Int(width / 100)
-        return Array(repeating: GridItem(.flexible()), count: itemsPerRow)
-    }()
+//    let columns: [GridItem] = {
+//        let width = UIScreen.main.bounds.width - 32
+//        let itemsPerRow = Int(width / Constants.wishListCardWidth)
+//        return Array(repeating: GridItem(.flexible()), count: itemsPerRow)
+//    }()
+    
+    let columns = [
+        GridItem(.adaptive(minimum: Constants.wishListCardWidth, maximum: Constants.wishListCardWidth+20)),
+    ]
     
     var body: some View {
         NavigationView {
@@ -116,17 +123,17 @@ struct MainView: View {
                 .padding(.top)
                 .accessibilityIdentifier(AccessibilityIdentifiers.showToGiveViewButton)
                 
-                if !wishListVM.wishLists.isEmpty {
-                    ScrollView{
-                        LazyVGrid(columns: columns, spacing: 16) {
-                            ForEach(wishListVM.wishLists) {wishlist in
+                if !viewModel.wishLists.isEmpty {
+                    ScrollView {
+                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(viewModel.wishLists) { wishList in
                                 NavigationLink(destination: WishListDetailsView()) {
-                                    WishListCardView(wishList: wishlist)
+                                    WishListCardView(wishList: wishList)
                                 }
                             }
                         }
+                        .padding()
                     }
-                    .padding(.top, 10)
                 } else {
                     VStack{
                         Image(systemName: "heart.text.square")
@@ -150,13 +157,15 @@ struct MainView: View {
             .background(Color(Asset.backgroundColor.color).gradient)
             .navigationBarHidden(true)
             .onAppear{
-                Task{
-                    await wishListVM.loadWishLists()
+                viewModel.loadWishLists()
+            }
+            .onReceive(viewModel.$wishLists) { wishLists in
+                print("WishList count: \(wishLists.count)")
+                for wishList in wishLists {
+                    print("id: \(String(describing: wishList.id)), name: \(wishList.name)")
                 }
             }
-            .onReceive(wishListVM.$wishLists) { wishLists in
-                print("WishList count: \(wishLists.count)")
-            }
+            .environmentObject(viewModel)
         }
     }
 }

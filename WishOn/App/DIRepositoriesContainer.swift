@@ -20,8 +20,8 @@ class DIRepositoriesContainer {
         repositories[typeName(type(of: T.self))] = repository
     }
     
-    func resolve<T>() -> T? {
+    func resolve<T>() -> T {
         let key = typeName(type(of: T.self))
-        return repositories[key] as? T
+        return repositories[key] as! T
     }
 }

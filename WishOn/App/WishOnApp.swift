@@ -6,36 +6,26 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 
 @main
 struct WishOnApp: App {
-    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var wishListVM: WishListViewModel
     
     let persistenceController = PersistenceController.shared
-    //#if DEBUG
-    //    let diContainer = DIContainer(wishListRepository: MockWishListRepository())
-    //    #else
-    //    let diContainer = DIContainer(wishListRepository: FirestoreWishListRepository())
-    //#endif
-
     
     init() {
-//        let mockRepository = MockWishListRepository()
-//
-//        let shouldReturnEmpty = CommandLine.arguments.contains("--emptyList")
-//        mockRepository.shouldReturnEmptyList = shouldReturnEmpty
     #if DEBUG
             WishOnApp.unitTestConfig()
     #else
-            DIRepositoriesContainer.shared.register(repository: FirestoreWishListRepository() as WishListRepositoryProtocol)
+        DIRepositoriesContainer.shared.register(repository: WishListRepository() as WishListRepositoryProtocol)
     #endif
         
         _wishListVM = StateObject(
             wrappedValue: WishListViewModel()
         )
-            
     }
     
     
@@ -61,4 +51,14 @@ struct WishOnApp: App {
     }
 #endif
 
+}
+
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+
+    return true
+  }
 }

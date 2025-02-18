@@ -10,6 +10,11 @@
 		EA5E25782D42797600B3ED34 /* gitignore.txt in Resources */ = {isa = PBXBuildFile; fileRef = EA5E25772D42797600B3ED34 /* gitignore.txt */; };
 		EA5E257E2D4298D700B3ED34 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA5E25792D428EB900B3ED34 /* Localizable.strings */; };
 		EAD48B462CF7929900C0A29D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = EAD48B452CF7929900C0A29D /* swiftgen.yml */; };
+		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
+		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
+		EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */; };
+		EAF55BAB2D633602009E4AEC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55BAA2D633602009E4AEC /* FirebaseCore */; };
+		EAF55BAD2D633602009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55BAC2D633602009E4AEC /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,7 @@
 		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				_Data/Repositories/WishListRepository.swift,
 				_Domain/Models/Wish.swift,
 				_Domain/Models/WishList.swift,
 				_Domain/Protocols/WishListRepositoryProtocol.swift,
@@ -66,6 +72,7 @@
 				Sources/Generated/Colors.swift,
 				Sources/Generated/Strings.swift,
 				Utilitites/AccessibilityIdentifiers.swift,
+				Utilitites/Constants.swift,
 				Utilitites/LocalizedStrings.swift,
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;
@@ -111,6 +118,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */,
+				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
+				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +135,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAF55BAB2D633602009E4AEC /* FirebaseCore in Frameworks */,
+				EAF55BAD2D633602009E4AEC /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +151,7 @@
 				EA5E25792D428EB900B3ED34 /* Localizable.strings */,
 				EA5E25772D42797600B3ED34 /* gitignore.txt */,
 				EAD48B452CF7929900C0A29D /* swiftgen.yml */,
+				EAF55BA92D633602009E4AEC /* Frameworks */,
 				EAD48AF22CF59C5100C0A29D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -162,6 +175,13 @@
 			path = WishOnTests;
 			sourceTree = "<group>";
 		};
+		EAF55BA92D633602009E4AEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -182,6 +202,9 @@
 			);
 			name = WishOn;
 			packageProductDependencies = (
+				EAF55A702D53C316009E4AEC /* FirebaseAuth */,
+				EAF55A722D53C316009E4AEC /* FirebaseFirestore */,
+				EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -228,6 +251,8 @@
 			);
 			name = WishOnUITests;
 			packageProductDependencies = (
+				EAF55BAA2D633602009E4AEC /* FirebaseCore */,
+				EAF55BAC2D633602009E4AEC /* FirebaseFirestore */,
 			);
 			productName = WishOnUITests;
 			productReference = EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */;
@@ -266,6 +291,8 @@
 			mainGroup = EAD48AE82CF59C5000C0A29D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EAD48AF22CF59C5100C0A29D /* Products */;
@@ -646,6 +673,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.9.1;
+			};
+		};
+		EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EAF55A702D53C316009E4AEC /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		EAF55A722D53C316009E4AEC /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+		EAF55BAA2D633602009E4AEC /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		EAF55BAC2D633602009E4AEC /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EAD48AE92CF59C5000C0A29D /* Project object */;
 }

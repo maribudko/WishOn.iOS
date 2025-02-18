@@ -16,7 +16,7 @@ struct AddWishlistView: View {
     @State private var isDatePickerVisible = false
     @State private var isNewItemDialogVisible = false   
     @State private var wishes: [Wish] = []
-
+    @EnvironmentObject var viewModel: WishListViewModel
     
     var body: some View {
         VStack {
@@ -38,7 +38,7 @@ struct AddWishlistView: View {
                     .accessibilityIdentifier("newWishlistLabel")
                 
                 Button {
-                    
+                    //TODO: save wishlist
                 } label: {
                     Image(systemName: "square.and.arrow.down")
                         .font(.title)
@@ -184,5 +184,6 @@ struct AddWishlistView: View {
 struct NewWishListView_Preview: PreviewProvider {
     static var previews: some View {
         AddWishlistView()
+            .environmentObject(WishListViewModel())
     }
 }

@@ -5,8 +5,10 @@
 //  Created by Mari Budko on 03.02.2025.
 //
 
-import Foundation
+import Combine
 
 protocol WishListRepositoryProtocol {
-    func fetchWishList()  async throws -> [WishList]
+    func fetchWishLists()  -> AnyPublisher<[WishList], Error>
+    func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> 
+    func deleteWishList(_ id: String) -> AnyPublisher<Void, Error>
 }

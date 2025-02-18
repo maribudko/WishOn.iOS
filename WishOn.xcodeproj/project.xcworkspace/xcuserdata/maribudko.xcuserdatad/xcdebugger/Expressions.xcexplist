@@ -3,7 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "DIRepositoriesContainer.resolve&lt;WishOn.WishListRepositoryProtocol&gt;():DIRepositoriesContainer.swift">
+         contextName = "DIRepositoriesContainer.resolve&lt;WishOnUITests.WishListRepositoryProtocol&gt;():DIRepositoriesContainer.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "repositories">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "WishOnApp.init():WishOnApp.swift">
@@ -17,10 +22,80 @@
          contextName = "WishListViewModel.loadWishLists():WishListViewModel.swift">
       </ContextState>
       <ContextState
+         contextName = "closure #1 in WishListViewModel.loadWishLists():WishListViewModel.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #4 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DIRepositoriesContainer.resolve&lt;WishOn.WishListRepositoryProtocol&gt;():DIRepositoriesContainer.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in closure #4 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewUITests.testNonEmptyWishlist():MainViewUITests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewUITests.testEmptyWishlist():MainViewUITests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WishListRepository.fetchWishLists():WishListRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #4 in closure #1 in AddWishlistView.body.getter:NewWishListView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "wishes.count">
+            </PersistentString>
+            <PersistentString
+               value = "LocalizedStrings.wishesCountLabel(wishes.count)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WishOnApp.body.getter:WishOnApp.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewWishListViewUITests.testTextFieldsInput():NewWishListViewUITests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in closure #4 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WishListViewModel.init():WishListViewModel.swift">
+      </ContextState>
+      <ContextState
          contextName = "DIRepositoriesContainer.register&lt;WishOn.MockWishListRepository&gt;(repository:):DIRepositoriesContainer.swift">
          <PersistentStrings>
             <PersistentString
                value = "T.self">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #5 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in WishListCardView.body.getter:WishListCardView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Color(wishList.color)">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -36,32 +111,7 @@
          contextName = "MockWishListRepository.fetchWishList():MockWishListRepository.swift">
       </ContextState>
       <ContextState
-         contextName = "NewWishListViewUITests.testTextFieldsInput():NewWishListViewUITests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "MainViewUITests.testEmptyWishlist():MainViewUITests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #4 in closure #1 in AddWishlistView.body.getter:NewWishListView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "wishes.count">
-            </PersistentString>
-            <PersistentString
-               value = "LocalizedStrings.wishesCountLabel(wishes.count)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MainViewUITests.testNonEmptyWishlist():MainViewUITests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DIRepositoriesContainer.resolve&lt;WishOnUITests.WishListRepositoryProtocol&gt;():DIRepositoriesContainer.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "repositories">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "closure #2 in WishListViewModel.loadWishLists():WishListViewModel.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

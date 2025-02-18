@@ -68,7 +68,7 @@ final class MainViewUITests: XCTestCase {
     func testEmptyWishlist() throws {
         
         let app = XCUIApplication()
-        app.launchArguments.append("--emptyList")
+        app.launchArguments.append(UnitTestsCaseConstants.emptyList)
         app.launch()
         
         let emptyView = app.staticTexts[AccessibilityIdentifiers.emptyWishList]
