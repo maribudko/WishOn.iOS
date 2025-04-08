@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WishListDetailsView: View {
-    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {

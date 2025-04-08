@@ -160,9 +160,9 @@ struct MainView: View {
                 viewModel.loadWishLists()
             }
             .onReceive(viewModel.$wishLists) { wishLists in
-                print("WishList count: \(wishLists.count)")
+                debugPrint("WishList count: \(wishLists.count)")
                 for wishList in wishLists {
-                    print("id: \(String(describing: wishList.id)), name: \(wishList.name)")
+                    debugPrint("id: \(String(describing: wishList.id)), name: \(wishList.name)")
                 }
             }
             .environmentObject(viewModel)
