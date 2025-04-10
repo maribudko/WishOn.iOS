@@ -1,13 +1,13 @@
 strings:
   inputs:
-    - /Users/maribudko/XCodeProjects/WishOn/WishOn/Resources/en.lproj/Localizable.strings
+    - WishOn/Resources/en.lproj/Localizable.strings
   outputs:
     - templateName: structured-swift5
-      output: /Users/maribudko/XCodeProjects/WishOn/WishOn/Sources/Generated/Strings.swift
+      output: WishOn/Sources/Generated/Strings.swift
 
 xcassets:
   inputs:
-    -  /Users/maribudko/XCodeProjects/WishOn/WishOn/Resources/Assets.xcassets
+    -  WishOn/Resources/Assets.xcassets
   outputs:
     - templateName: swift5
-      output: /Users/maribudko/XCodeProjects/WishOn/WishOn/Sources/Generated/Colors.swift
+      output: WishOn/Sources/Generated/Colors.swift

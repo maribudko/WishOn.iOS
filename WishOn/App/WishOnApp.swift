@@ -17,11 +17,11 @@ struct WishOnApp: App {
     let persistenceController = PersistenceController.shared
     
     init() {
-    #if DEBUG
-            WishOnApp.unitTestConfig()
-    #else
+#if DEBUG
+        WishOnApp.unitTestConfig()
+#else
         DIRepositoriesContainer.shared.register(repository: WishListRepository() as WishListRepositoryProtocol)
-    #endif
+#endif
         
         _wishListVM = StateObject(
             wrappedValue: WishListViewModel()
@@ -52,7 +52,6 @@ struct WishOnApp: App {
 #endif
 
 }
-
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,

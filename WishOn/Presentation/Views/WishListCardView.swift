@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct WishListCardView: View {
-    
     let wishList: WishList
     
     var body: some View{

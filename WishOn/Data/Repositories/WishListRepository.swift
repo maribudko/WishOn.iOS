@@ -10,10 +10,8 @@ import FirebaseFirestoreCombineSwift
 import Combine
 
 class WishListRepository: WishListRepositoryProtocol, ObservableObject {
-    
     @Published var wishLists: [WishList] = []
     private let db = Firestore.firestore()
-    private let path = "WishLists"
     
     func fetchWishLists() -> AnyPublisher<[WishList], Error>{
         return Future<[WishList], any Error> {promise in
@@ -23,17 +21,17 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     }
     
     fileprivate func getDocumentsFromFirestore(_ promise: @escaping (Result<[WishList], any Error>) -> Void) {
-        Firestore.firestore().collection(path).getDocuments{ snapshot, error in
+        Firestore.firestore().collection(Constant.wishListPath).getDocuments{ snapshot, error in
             if let error = error {
                 promise(.failure(error))
             } else if let snapshot = snapshot, !snapshot.documents.isEmpty {
                 var tempList: [WishList] = []
                 for document in snapshot.documents {
-                    print("\(document.documentID) => \(document.data())")
+                    debugPrint("\(document.documentID) => \(document.data())")
                     let data = document.data()
-                    let id = document.documentID
-                    let name = data["name"] as? String ?? ""
-                    let description = data["description"] as? String ?? ""
+                    let id = document.documentID // ніде не використовується
+                    let name = data[Constant.name] as? String ?? ""
+                    let description = data[Constant.description] as? String ?? ""
                     
                     let wishList = WishList(name: name, wishes: [])
                     tempList.append(wishList)
@@ -44,7 +42,7 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     }
     
     func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> {
-        let ref = Firestore.firestore().collection(self.path).document(wishList.id.uuidString)
+        let ref = Firestore.firestore().collection(Constant.wishListPath).document(wishList.id.uuidString)
         do{
             let data = try Firestore.Encoder().encode(wishList)
             return Future<Void, any Error> {promise in
@@ -63,7 +61,7 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     }
     
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
-        let ref = Firestore.firestore().collection(self.path).document(id)
+        let ref = Firestore.firestore().collection(Constant.wishListPath).document(id)
         
         return Future<Void, any Error> {promise in
             ref.delete(){error in
@@ -75,5 +73,13 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
             }
         }
         .eraseToAnyPublisher()
+    }
+}
+
+private extension WishListRepository {
+    enum Constant {
+        static let wishListPath = "wishList"
+        static let name = "name"
+        static let description = "description"
     }
 }

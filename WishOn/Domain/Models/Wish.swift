@@ -9,10 +9,10 @@ import Foundation
 
 struct Wish: Codable, Identifiable {
     var id = UUID()
-    var name: String
-    var image: String
+    let name: String
+    let image: String
     var price: Double?
-    var currency: String
-    var link: String
+    let currency: String
+    let link: String
     var isSelected: Bool = false
 }
