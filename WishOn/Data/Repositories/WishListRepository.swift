@@ -13,15 +13,15 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     @Published var wishLists: [WishList] = []
     private let db = Firestore.firestore()
     
-    func fetchWishLists() -> AnyPublisher<[WishList], Error>{
-        return Future<[WishList], any Error> {promise in
+    func fetchWishLists() -> AnyPublisher<[WishList], Error> {
+        return Future<[WishList], any Error> { promise in
             self.getDocumentsFromFirestore(promise)
         }
         .eraseToAnyPublisher()
     }
     
     fileprivate func getDocumentsFromFirestore(_ promise: @escaping (Result<[WishList], any Error>) -> Void) {
-        Firestore.firestore().collection(Constant.wishListPath).getDocuments{ snapshot, error in
+        Firestore.firestore().collection(Constant.wishListPath).getDocuments { snapshot, error in
             if let error = error {
                 promise(.failure(error))
             } else if let snapshot = snapshot, !snapshot.documents.isEmpty {
@@ -43,10 +43,10 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     
     func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> {
         let ref = Firestore.firestore().collection(Constant.wishListPath).document(wishList.id.uuidString)
-        do{
+        do {
             let data = try Firestore.Encoder().encode(wishList)
             return Future<Void, any Error> {promise in
-                ref.setData(data){error in
+                ref.setData(data) {error in
                     if let error = error {
                         promise(.failure(error))
                     } else {
@@ -63,8 +63,8 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
         let ref = Firestore.firestore().collection(Constant.wishListPath).document(id)
         
-        return Future<Void, any Error> {promise in
-            ref.delete(){error in
+        return Future<Void, any Error> { promise in
+            ref.delete { error in
                 if let error = error {
                     promise(.failure(error))
                 } else {

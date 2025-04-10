@@ -1,28 +1,19 @@
 import SwiftUI
 
 struct MainView: View {
-    //@EnvironmentObject var wishListVM: WishListViewModel
-    //@ObservedObject var repository: WishListRepository = WishListRepository()
     @State private var isAuthorized = false
     @StateObject var viewModel = WishListViewModel()
-   // @State private var wishLists:[WishList] = []
-    
-//    let columns: [GridItem] = {
-//        let width = UIScreen.main.bounds.width - 32
-//        let itemsPerRow = Int(width / Constants.wishListCardWidth)
-//        return Array(repeating: GridItem(.flexible()), count: itemsPerRow)
-//    }()
     
     let columns = [
-        GridItem(.adaptive(minimum: Constants.wishListCardWidth, maximum: Constants.wishListCardWidth+20)),
+        GridItem(.adaptive(minimum: Constants.wishListCardWidth, maximum: Constants.wishListCardWidth + 20))
     ]
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack{
+                HStack {
                     Button {
-                        //show calendar with planed events
+                        // show calendar with planed events
                     } label: {
                         Image(systemName: "calendar.circle")
                             .resizable()
@@ -41,9 +32,9 @@ struct MainView: View {
                         .frame(maxWidth: .infinity)
                     
                     Button {
-                        //open user profile
+                        // TODO: open user profile
                     } label: {
-                        ZStack{
+                        ZStack {
                             Image(systemName: "person.circle")
                                 .resizable()
                                 .frame(width: 32, height: 32, alignment: .trailing)
@@ -62,7 +53,7 @@ struct MainView: View {
                     .accessibilityIdentifier(AccessibilityIdentifiers.showProfileButton)
                 }
                 
-                HStack(alignment: .top){
+                HStack(alignment: .top) {
                     Image(systemName: "gift.fill")
                         .resizable()
                         .scaledToFit()
@@ -74,7 +65,7 @@ struct MainView: View {
                         )
                         .clipShape(.circle)
                     
-                    VStack(alignment: .leading){
+                    VStack(alignment: .leading) {
                         Text(L10n.helloWisher)
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title)
@@ -83,9 +74,9 @@ struct MainView: View {
                             )
                         
                         Text(L10n.aboutWisherPromt)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 0)
-                        .foregroundColor(Color(Asset.primaryTextColor.color))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 0)
+                            .foregroundColor(Color(Asset.primaryTextColor.color))
                         
                     }
                     .frame(maxWidth: .infinity, alignment: .top)
@@ -93,7 +84,6 @@ struct MainView: View {
                 }
                 .frame(maxWidth: .infinity)
                 
-
                 HStack {
                     NavigationLink {
                         AddWishlistView()
@@ -105,7 +95,6 @@ struct MainView: View {
                             .foregroundColor(.white)
                             .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
                     }
-                    
                     
                     NavigationLink {
                         ToGiveView()
@@ -135,28 +124,27 @@ struct MainView: View {
                         .padding()
                     }
                 } else {
-                    VStack{
+                    VStack {
                         Image(systemName: "heart.text.square")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100)
                             .foregroundColor(Color(Asset.eucalyptus.color))
                         Text(L10n.wishListEmptyView)
-                        .padding(.top, 10)
-                        .font(.headline)
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(Color(Asset.primaryColor.color))
-                        .accessibilityIdentifier(AccessibilityIdentifiers.emptyWishList)
+                            .padding(.top, 10)
+                            .font(.headline)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Color(Asset.primaryColor.color))
+                            .accessibilityIdentifier(AccessibilityIdentifiers.emptyWishList)
                     }
                     .frame(maxHeight: .infinity)
                 }
-                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, 16)
             .background(Color(Asset.backgroundColor.color).gradient)
             .navigationBarHidden(true)
-            .onAppear{
+            .onAppear {
                 viewModel.loadWishLists()
             }
             .onReceive(viewModel.$wishLists) { wishLists in

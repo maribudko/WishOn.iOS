@@ -14,8 +14,6 @@ struct LocalizedStrings {
     static let dateHint = NSLocalizedString("date_hint", comment: "Hint for date field")
     static let noWishesView = NSLocalizedString("no_wishes_label", comment: "Text shown on screen as label when there are no wishes in wishlist")
     static let toGiveLabel = NSLocalizedString("toGive", comment: "Label for button that shows To Give view")
-    
-    
     static func wishesCountLabel(_ count: Int) -> String {
         return String(format: NSLocalizedString("wishes_count_label", comment: "Text shown on screen as label for number of wishes in wishlist"), count)
     }

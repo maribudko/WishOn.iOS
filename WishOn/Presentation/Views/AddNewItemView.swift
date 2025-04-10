@@ -18,12 +18,12 @@ struct AddNewItemView: View {
     
     private let currencies = ["USD", "EUR", "UAH"]
     var body: some View {
-        ZStack{
+        ZStack {
             Color.black.opacity(0.4)
                 .ignoresSafeArea()
             VStack {
-                HStack{
-                    Button{
+                HStack {
+                    Button {
                         isShown = false
                     } label: {
                         Image(systemName: "xmark")
@@ -43,15 +43,16 @@ struct AddNewItemView: View {
                 TextField("Link", text: $wishLink)
                     .textFieldStyle(.roundedBorder)
                 
-                HStack{
+                HStack {
                     TextField("Price", text: $price)
                         .keyboardType(.numberPad)
                         .frame(maxWidth: .infinity)
-                    Picker("", selection: $currency){
+                    Picker("", selection: $currency) {
                         ForEach(currencies, id: \.self) {
                             Text($0)
                         }
-                    }.accentColor(Color(Asset.primaryColor.color))
+                    }
+                    .accentColor(Color(Asset.primaryColor.color))
                 }
                 .padding(8)
                 .background(Color(.systemGray6))

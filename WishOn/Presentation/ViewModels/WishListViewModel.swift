@@ -13,13 +13,13 @@ class WishListViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     @Published var repository: WishListRepositoryProtocol = DIRepositoriesContainer.shared.resolve()
     @Published var wishLists: [WishList] = []
-    var cancellable : AnyCancellable?
+    var cancellable: AnyCancellable?
     
     func loadWishLists() {
         wishLists.removeAll()
         cancellable = repository.fetchWishLists()
-            .sink(receiveCompletion: { completion in
-                switch(completion){
+            .sink(receiveCompletion: { completion in    
+                switch completion {
                 case .finished:
                     debugPrint("completion finished")
                     
@@ -32,25 +32,9 @@ class WishListViewModel: ObservableObject {
     }
     
     func addNewWishList(
-        name: String,
-        imageUrl: String,
-        eventDate: Date,
-        wishes: [Wish],
-        isSelected: Bool,
-        description: String,
-        color: String
+        wishList: WishList
     ) {
-        let newWishList = WishList(
-            name: name,
-            image: imageUrl,
-            eventDate: eventDate,
-            wishes: wishes,
-            isSelected: isSelected,
-            description: description,
-            color: color
-        )
-    
-        repository.addWishList(newWishList)
+        repository.addWishList(wishList)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -59,7 +43,7 @@ class WishListViewModel: ObservableObject {
                     debugPrint("Error occured: \(error)")
                 }
             } receiveValue: { _ in
-                self.wishLists.append(newWishList)
+                self.wishLists.append(wishList)
             }
     }
     

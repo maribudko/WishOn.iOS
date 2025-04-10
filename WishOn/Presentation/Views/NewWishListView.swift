@@ -14,7 +14,7 @@ struct AddWishlistView: View {
     @State private var selectedDate = Date()
     @State private var date = ""
     @State private var isDatePickerVisible = false
-    @State private var isNewItemDialogVisible = false   
+    @State private var isNewItemDialogVisible = false
     @State private var wishes: [Wish] = []
     @EnvironmentObject var viewModel: WishListViewModel
     
@@ -23,11 +23,11 @@ struct AddWishlistView: View {
             ZStack {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
-                }) {
+                }, label: {
                     Image(systemName: "chevron.left")
                         .font(.title)
                         .foregroundColor(Color(Asset.primaryColor.color))
-                }
+                })
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
@@ -38,7 +38,7 @@ struct AddWishlistView: View {
                     .accessibilityIdentifier("newWishlistLabel")
                 
                 Button {
-                    //TODO: save wishlist
+                    // TODO: save wishlist
                 } label: {
                     Image(systemName: "square.and.arrow.down")
                         .font(.title)
@@ -46,10 +46,9 @@ struct AddWishlistView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .trailing)
-
             }
             
-            HStack{
+            HStack {
                 Image("filofax")
                     .resizable()
                     .scaledToFill()
@@ -67,7 +66,6 @@ struct AddWishlistView: View {
                 .foregroundColor(Asset.primaryTextColor.swiftUIColor)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 5)
-                //.accessibilityIdentifier("nameTextField")
             
             TextField(LocalizedStrings.descriptionHint, text: $description)
                 .frame(height: 30)
@@ -78,7 +76,6 @@ struct AddWishlistView: View {
                 .foregroundColor(Asset.primaryTextColor.swiftUIColor)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 5)
-                
             
             HStack {
                 TextField(LocalizedStrings.dateHint, text: $date)
@@ -104,15 +101,15 @@ struct AddWishlistView: View {
             .padding(.horizontal, 16)
             
             Form {
-                Section(header: Text(LocalizedStrings.wishesCountLabel(wishes.count))){
+                Section(header: Text(LocalizedStrings.wishesCountLabel(wishes.count))) {
                     if wishes.isEmpty {
                         Text(LocalizedStrings.noWishesView)
                             .foregroundColor(.gray)
                             .background(Asset.textFieldBackground.swiftUIColor)
                             .foregroundColor(Asset.primaryTextColor.swiftUIColor)
                     } else {
-                        ForEach(wishes) {wish in
-                            HStack{
+                        ForEach(wishes) { wish in
+                            HStack {
                                 Image(
                                     systemName: wish.isSelected == true ? "largecircle.fill.circle" : "circle"
                                 )
@@ -132,18 +129,16 @@ struct AddWishlistView: View {
                                     }
                                 }
                             }
-                            
                         }
                     }
                 }
                 .listRowBackground(Asset.textFieldBackground.swiftUIColor)
-                
             }
             .padding(.top, 10)
             .scrollContentBackground(.hidden)
             .cornerRadius(5)
             
-            HStack{
+            HStack {
                 Button {
                     isNewItemDialogVisible = true
                 } label: {
@@ -175,15 +170,10 @@ struct AddWishlistView: View {
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
-       
     }
-        
 }
 
-
-struct NewWishListView_Preview: PreviewProvider {
-    static var previews: some View {
-        AddWishlistView()
-            .environmentObject(WishListViewModel())
-    }
+#Preview {
+    AddWishlistView()
+        .environmentObject(WishListViewModel())
 }

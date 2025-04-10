@@ -20,8 +20,6 @@ class MockWishListRepository: WishListRepositoryProtocol {
     public var isAddWishListCalled = false
     public var isDeleteWishListCalled = false
     
-    
-    
     func fetchWishLists() -> AnyPublisher<[WishList], any Error> {
         Just(list)
             .setFailureType(to: Error.self) // Converting to error type
@@ -29,14 +27,14 @@ class MockWishListRepository: WishListRepositoryProtocol {
     }
     
     func addWishList(_ wishList: WishList) -> AnyPublisher<Void, any Error> {
-        //list.append(wishList)
+        // list.append(wishList)
         isAddWishListCalled = true
         // Finishing publishing without errors
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
-        //list.removeAll { $0.id.uuidString == id }
+        // list.removeAll { $0.id.uuidString == id }
         isDeleteWishListCalled = true
         return Just(())
                 .setFailureType(to: Error.self)

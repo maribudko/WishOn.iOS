@@ -1,0 +1,2 @@
+/Users/maribudko/XCodeProjects/WishOn/WishOn/Sources/Generated/Colors.swift:1:22: warning: Blanket Disable Command Violation: Use 'next', 'this' or 'previous' instead to disable the 'all' rule once, or re-enable it as soon as possible` (blanket_disable_command)
+/Users/maribudko/XCodeProjects/WishOn/WishOn/Sources/Generated/Strings.swift:1:22: warning: Blanket Disable Command Violation: Use 'next', 'this' or 'previous' instead to disable the 'all' rule once, or re-enable it as soon as possible` (blanket_disable_command)

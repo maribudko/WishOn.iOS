@@ -13,7 +13,7 @@ struct DatePickerView: View {
     @Binding var isDatePickerVisible: Bool
     
     var body: some View {
-        ZStack{
+        ZStack {
             Color.black.opacity(0.4)
                 .ignoresSafeArea()
             VStack {
@@ -55,4 +55,3 @@ struct DatePickerView: View {
         return formatter.string(from: date)
     }
 }
-

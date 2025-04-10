@@ -18,9 +18,8 @@ final class MainViewUITests: XCTestCase {
         app = XCUIApplication()
         app.launchArguments.append("isTesting")
         app.launch()
-        
     }
-
+    
     override func tearDownWithError() throws {
         app = nil
     }
@@ -46,7 +45,6 @@ final class MainViewUITests: XCTestCase {
         let toGiveView = app.staticTexts["To Give"]
         XCTAssertTrue(toGiveView.exists)
     }
-
     
     func testShowCalendarButton() throws {
         let showCalendarButton = app.buttons[AccessibilityIdentifiers.showCalendarButton]
@@ -64,7 +62,7 @@ final class MainViewUITests: XCTestCase {
         showProfileButton.tap()
         
     }
-
+    
     func testEmptyWishlist() throws {
         
         let app = XCUIApplication()
@@ -74,7 +72,7 @@ final class MainViewUITests: XCTestCase {
         let emptyView = app.staticTexts[AccessibilityIdentifiers.emptyWishList]
         XCTAssertTrue(emptyView.exists)
     }
-
+    
     func testNonEmptyWishlist() throws {
         
         let firstWishlistCard = app.images["star.fill"]
@@ -94,9 +92,4 @@ final class MainViewUITests: XCTestCase {
         let aboutWisherText = app.staticTexts[L10n.aboutWisherPromt]
         XCTAssertTrue(aboutWisherText.exists)
     }
-
-
-
 }
-
-

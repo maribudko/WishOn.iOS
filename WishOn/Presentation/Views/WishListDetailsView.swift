@@ -11,15 +11,15 @@ struct WishListDetailsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        VStack{
+        VStack {
             ZStack {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
-                }) {
+                }, label: {
                     Image(systemName: "chevron.left")
                         .font(.title)
                         .foregroundColor(Color("PrimaryColor"))
-                }
+                })
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 

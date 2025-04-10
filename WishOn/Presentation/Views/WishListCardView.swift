@@ -10,7 +10,7 @@ import SwiftUI
 struct WishListCardView: View {
     let wishList: WishList
     
-    var body: some View{
+    var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(wishList.color))
@@ -19,7 +19,7 @@ struct WishListCardView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color(Asset.primaryTitleColor.color).opacity(0.3))
                 .frame(width: 20, height: 2)
-                .padding(.top,10)
+                .padding(.top, 10)
                     
             VStack {
                 Image(systemName: "star.fill")

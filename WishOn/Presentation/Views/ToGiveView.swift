@@ -16,51 +16,46 @@ struct ToGiveView: View {
     }()
     
     var body: some View {
-        //NavigationView{
-            VStack {
-                ZStack {
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "chevron.left")
-                            .font(.title)
-                            .foregroundColor(Color("PrimaryColor"))
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    Text("To Give")
-                        .font(.largeTitle)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color("PrimaryTitleColor"))
-                }
+        VStack {
+            ZStack {
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .font(.title)
+                        .foregroundColor(Color("PrimaryColor"))
+                })
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
                 
-                ScrollView{
-                    LazyVGrid(columns: columns, spacing: 32) {
-                        ForEach(0..<5){index in
-                            NavigationLink(destination: ToGiveCardDetails()) {
-                                ToGiveCardView()
-                            }
+                Text("To Give")
+                    .font(.largeTitle)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color("PrimaryTitleColor"))
+            }
+            
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 32) {
+                    ForEach(0..<5) { _ in
+                        NavigationLink(destination: ToGiveCardDetails()) {
+                            ToGiveCardView()
                         }
                     }
-                    .padding(.top, 14)
                 }
-                .padding(.horizontal)
-                //Spacer()
+                .padding(.top, 14)
             }
-            .background(Color("BackgroundColor"))
-            .navigationBarHidden(true)
-            .gesture(DragGesture().onChanged { value in
-                if value.translation.width > 100 {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-            })
+            .padding(.horizontal)
         }
-    //}
+        .background(Color("BackgroundColor"))
+        .navigationBarHidden(true)
+        .gesture(DragGesture().onChanged { value in
+            if value.translation.width > 100 {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        })
+    }
 }
 
-struct ToGiveView_Preview: PreviewProvider {
-    static var previews: some View {
-        ToGiveView()
-    }
+#Preview {
+    ToGiveView()
 }

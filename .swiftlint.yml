@@ -1,0 +1,29 @@
+# .swiftlint.yml
+
+disabled_rules: # Disable rules that might be too strict or not relevant for now
+  - line_length
+  - trailing_whitespace
+  - identifier_name
+  - force_cast
+  - force_unwrap
+  - todo
+
+opt_in_rules: # Enable useful rules that are not on by default
+  - empty_count
+  - explicit_init
+
+included: # Paths to include in linting
+  - .
+
+excluded: # Paths to exclude from linting (e.g. dependencies, build folders)
+  - Pods
+  - Carthage
+  - fastlane
+  - build
+
+line_length: # Customize line length rule
+  warning: 120
+  error: 200
+  ignores_comments: true
+  ignores_urls: true
+

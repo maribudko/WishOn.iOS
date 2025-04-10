@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseCore
 
-
 @main
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
@@ -28,7 +27,6 @@ struct WishOnApp: App {
         )
     }
     
-    
     var body: some Scene {
         WindowGroup {
             MainView()
@@ -40,7 +38,6 @@ struct WishOnApp: App {
         }
     }
     
-    
 #if DEBUG
     static func unitTestConfig() {
         if CommandLine.arguments.contains(UnitTestsCaseConstants.emptyList) {
@@ -50,14 +47,12 @@ struct WishOnApp: App {
         }
     }
 #endif
-
+    
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-    FirebaseApp.configure()
-
-    return true
-  }
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        FirebaseApp.configure()
+        return true
+    }
 }

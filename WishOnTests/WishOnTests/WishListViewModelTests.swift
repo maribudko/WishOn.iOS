@@ -41,7 +41,7 @@ class WishListViewModelTests: XCTestCase {
                 }
             }
             .store(in: &cancellables)
-
+        
         viewModel.loadWishLists()
         
         wait(for: [expectation], timeout: 2)
@@ -50,7 +50,8 @@ class WishListViewModelTests: XCTestCase {
     func testAddWishList() {
         let name = "New Test WishList"
         let description = "Some test description"
-        viewModel.addNewWishList(name: name, imageUrl: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: "")
+        
+        viewModel.addNewWishList(wishList: WishList(name: name, image: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: ""))
         
         viewModel.$wishLists
             .dropFirst()
@@ -62,28 +63,25 @@ class WishListViewModelTests: XCTestCase {
                 }
             }
             .store(in: &cancellables)
-        
-       
     }
     
     func testDeleteWishList() {
         
         let name = "New Test WishList"
         let description = "Some test description"
-        viewModel.addNewWishList(name: name, imageUrl: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: "")
-        viewModel.addNewWishList(name: "Some other", imageUrl: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: "")
+        viewModel.addNewWishList(wishList: WishList(name: name, image: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: ""))
+        
+        viewModel.addNewWishList(wishList: WishList(name: "Some other", image: "", eventDate: Date(), wishes: [], isSelected: false, description: description, color: ""))
         
         viewModel.$wishLists
             .dropFirst()
             .sink { wishLists in
                 if self.mockRepository.isDeleteWishListCalled {
                     XCTAssertTrue(wishLists.isEmpty)
-               }
+                }
             }
             .store(in: &cancellables)
         
         viewModel.removeWishList(id: MockWishListRepository.id.uuidString)
     }
-
-    
 }

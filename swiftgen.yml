@@ -1,13 +1,13 @@
 strings:
-  inputs:
+    inputs:
     - WishOn/Resources/en.lproj/Localizable.strings
-  outputs:
+    outputs:
     - templateName: structured-swift5
-      output: WishOn/Sources/Generated/Strings.swift
+        output: WishOn/Sources/Generated/Strings.swift
 
 xcassets:
-  inputs:
+    inputs:
     -  WishOn/Resources/Assets.xcassets
-  outputs:
+    outputs:
     - templateName: swift5
-      output: WishOn/Sources/Generated/Colors.swift
+        output: WishOn/Sources/Generated/Colors.swift
