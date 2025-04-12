@@ -23,19 +23,19 @@ struct AddWishlistView: View {
             ZStack {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
-                }, label: {
+                }) {
                     Image(systemName: "chevron.left")
                         .font(.title)
                         .foregroundColor(Color(Asset.primaryColor.color))
-                })
+                }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text(LocalizedStrings.newWishListLbl)
+                Text(L10n.newWishlistLbl)
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color("PrimaryTitleColor"))
-                    .accessibilityIdentifier("newWishlistLabel")
+                    .foregroundColor(Color(Asset.primaryColor.color))
+                    .accessibilityIdentifier(L10n.newWishlistLbl)
                 
                 Button {
                     // TODO: save wishlist
@@ -52,35 +52,35 @@ struct AddWishlistView: View {
                 Image("filofax")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 140, height: 140)
+                    .frame(width: AppDimensions.newItemImageSize, height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
             }
             .frame(maxWidth: .infinity, alignment: .center)
             
-            TextField(LocalizedStrings.nameHint, text: $name)
-                .frame(height: 30)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 5)
+            TextField(L10n.nameHint, text: $name)
+                .frame(height: AppDimensions.textFieldHeight)
+                .padding(.horizontal, AppPaddings.padding16)
+                .padding(.vertical, AppPaddings.padding5)
                 .background(Asset.textFieldBackground.swiftUIColor)
-                .cornerRadius(5)
+                .cornerRadius(AppRadiuses.smallRadius)
                 .foregroundColor(Asset.primaryTextColor.swiftUIColor)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 5)
+                .padding(.horizontal, AppPaddings.padding16)
+                .padding(.vertical, AppPaddings.padding5)
             
-            TextField(LocalizedStrings.descriptionHint, text: $description)
-                .frame(height: 30)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 5)
+            TextField(L10n.descriptionHint, text: $description)
+                .frame(height: AppDimensions.textFieldHeight)
+                .padding(.horizontal, AppPaddings.padding16)
+                .padding(.bottom, AppPaddings.padding5)
                 .background(Asset.textFieldBackground.swiftUIColor)
-                .cornerRadius(5)
+                .cornerRadius(AppRadiuses.smallRadius)
                 .foregroundColor(Asset.primaryTextColor.swiftUIColor)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 5)
+                .padding(.horizontal, AppPaddings.padding16)
+                .padding(.bottom, AppPaddings.padding5)
             
             HStack {
-                TextField(LocalizedStrings.dateHint, text: $date)
+                TextField(L10n.dateHint, text: $date)
                     .frame(maxWidth: .infinity)
-                    .padding(.horizontal, 8)
+                    .padding(.horizontal, AppPaddings.padding8)
                 Button {
                     isDatePickerVisible = true
                 } label: {
@@ -90,20 +90,23 @@ struct AddWishlistView: View {
                         .background(Color.clear)
                 }
             }
-            .padding(8)
+            .padding(AppPaddings.padding8)
             .background(Color(.systemGray6))
-            .cornerRadius(5)
+            .cornerRadius(AppPaddings.padding5)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Asset.textFieldBackground.swiftUIColor, lineWidth: 1)
+                RoundedRectangle(cornerRadius: AppRadiuses.roundedRectangleRadius)
+                    .stroke(Asset.textFieldBackground.swiftUIColor, lineWidth: AppDimensions.borderThin)
             )
-            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-            .padding(.horizontal, 16)
+            .shadow(color: AppShadows.medium.color,
+                    radius: AppShadows.medium.radius,
+                    x: AppShadows.medium.x,
+                    y: AppShadows.small.y)
+            .padding(.horizontal, AppPaddings.padding16)
             
             Form {
-                Section(header: Text(LocalizedStrings.wishesCountLabel(wishes.count))) {
+                Section(header: Text(L10n.wishesCountLabel(wishes.count))) {
                     if wishes.isEmpty {
-                        Text(LocalizedStrings.noWishesView)
+                        Text(L10n.noWishesLabel)
                             .foregroundColor(.gray)
                             .background(Asset.textFieldBackground.swiftUIColor)
                             .foregroundColor(Asset.primaryTextColor.swiftUIColor)
@@ -134,9 +137,9 @@ struct AddWishlistView: View {
                 }
                 .listRowBackground(Asset.textFieldBackground.swiftUIColor)
             }
-            .padding(.top, 10)
+            .padding(.top, AppPaddings.padding10)
             .scrollContentBackground(.hidden)
-            .cornerRadius(5)
+            .cornerRadius(AppRadiuses.smallRadius)
             
             HStack {
                 Button {
@@ -144,10 +147,10 @@ struct AddWishlistView: View {
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .frame(width: 64, height: 64)
+                        .frame(width: AppDimensions.fabSize, height: AppDimensions.fabSize)
                         .foregroundColor(Color(Asset.primaryColor.color))
                 }
-                .accessibilityIdentifier("plusCircleFillButton")
+                .accessibilityIdentifier(AccessibilityIdentifiers.plusCircleFillButton)
             }
             .padding()
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -157,7 +160,7 @@ struct AddWishlistView: View {
         .background(Asset.backgroundColor.swiftUIColor.gradient)
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
-            if value.translation.width > 100 {
+            if value.translation.width > AppDimensions.minimumGestureSize {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })

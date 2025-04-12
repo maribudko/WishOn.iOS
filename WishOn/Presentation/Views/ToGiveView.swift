@@ -23,7 +23,7 @@ struct ToGiveView: View {
                 }, label: {
                     Image(systemName: "chevron.left")
                         .font(.title)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(Color(Asset.primaryColor.color))
                 })
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,25 +31,25 @@ struct ToGiveView: View {
                 Text("To Give")
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color("PrimaryTitleColor"))
+                    .foregroundColor(Color(Asset.primaryTitleColor.color))
             }
             
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 32) {
+                LazyVGrid(columns: columns, spacing: AppPaddings.spacing32) {
                     ForEach(0..<5) { _ in
                         NavigationLink(destination: ToGiveCardDetails()) {
                             ToGiveCardView()
                         }
                     }
                 }
-                .padding(.top, 14)
+                .padding(.top, AppPaddings.padding14)
             }
             .padding(.horizontal)
         }
-        .background(Color("BackgroundColor"))
+        .background(Color(Asset.backgroundColor.color))
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
-            if value.translation.width > 100 {
+            if value.translation.width > AppDimensions.minimumGestureSize {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })

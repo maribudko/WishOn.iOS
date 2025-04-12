@@ -17,7 +17,7 @@ struct ToGiveCardDetails: View {
         }
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
-            if value.translation.width > 100 {
+            if value.translation.width > AppDimensions.minimumGestureSize {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })

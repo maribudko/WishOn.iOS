@@ -12,22 +12,22 @@ struct WishListCardView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: AppRadiuses.radius10)
                 .fill(Color(wishList.color))
-                .shadow(radius: 5)
+                .shadow(radius: AppRadiuses.smallRadius)
             
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(Asset.primaryTitleColor.color).opacity(0.3))
-                .frame(width: 20, height: 2)
-                .padding(.top, 10)
+            RoundedRectangle(cornerRadius: AppRadiuses.radius10)
+                .fill(Color(Asset.primaryTitleColor.color).opacity(AppOpacityLevels.grabberOpacity))
+                .frame(width: AppDimensions.grabberWidth, height: AppDimensions.grabberHeight)
+                .padding(.top, AppPaddings.padding10)
                     
             VStack {
                 Image(systemName: "star.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: AppDimensions.wishCardImageSize, height: AppDimensions.wishCardImageSize)
                     .foregroundColor(.white)
-                    .padding(.top, 20)
+                    .padding(.top, AppPaddings.padding10)
                         
                 Spacer()
                 
@@ -41,9 +41,10 @@ struct WishListCardView: View {
                     .font(.footnote)
                     .foregroundColor(.white)
             }
-            .padding(10)
+            .padding(AppPaddings.padding8)
         }
-        .frame(width: Constants.wishListCardWidth, height: Constants.wishListCardHeight)
+        .frame(width: AppDimensions.wishListCardWidth,
+               height: AppDimensions.wishListCardHeight)
         
     }
 }

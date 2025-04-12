@@ -13,7 +13,7 @@ opt_in_rules: # Enable useful rules that are not on by default
   - explicit_init
 
 included: # Paths to include in linting
-  - .
+  - WishOn
 
 excluded: # Paths to exclude from linting (e.g. dependencies, build folders)
   - Pods

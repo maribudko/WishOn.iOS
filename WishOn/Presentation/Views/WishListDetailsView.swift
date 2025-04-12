@@ -18,15 +18,15 @@ struct WishListDetailsView: View {
                 }, label: {
                     Image(systemName: "chevron.left")
                         .font(.title)
-                        .foregroundColor(Color("PrimaryColor"))
+                        .foregroundColor(Color(Asset.primaryColor.color))
                 })
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("WishList Details")
+                Text(L10n.wishlistDetails)
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color("PrimaryTitleColor"))
+                    .foregroundColor(Color(Asset.primaryTitleColor.color))
             }
             
             Spacer()
@@ -34,7 +34,7 @@ struct WishListDetailsView: View {
         .background(Color(Asset.backgroundColor.color).gradient)
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
-            if value.translation.width > 100 {
+            if value.translation.width > AppDimensions.minimumGestureSize {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })

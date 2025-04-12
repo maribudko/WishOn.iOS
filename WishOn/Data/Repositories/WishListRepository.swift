@@ -29,10 +29,7 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
                 for document in snapshot.documents {
                     debugPrint("\(document.documentID) => \(document.data())")
                     let data = document.data()
-                    let id = document.documentID // ніде не використовується
                     let name = data[Constant.name] as? String ?? ""
-                    let description = data[Constant.description] as? String ?? ""
-                    
                     let wishList = WishList(name: name, wishes: [])
                     tempList.append(wishList)
                 }

@@ -14,15 +14,15 @@ struct DatePickerView: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            Color.black.opacity(AppOpacityLevels.backgroundOpacity)
                 .ignoresSafeArea()
             VStack {
-                Text("Select a Date")
+                Text(L10n.selectDateHint)
                     .font(.headline)
                     .padding()
                 
                 DatePicker(
-                    "Select Date",
+                    L10n.selectDateHint,
                     selection: $selectedDate,
                     displayedComponents: [.date]
                 )
@@ -31,19 +31,22 @@ struct DatePickerView: View {
                 )
                 .padding()
                 
-                Button("Done") {
+                Button(L10n.doneLabel) {
                     date = formattedDate(selectedDate)
                     isDatePickerVisible = false
                 }
                 .padding(.vertical)
-                .padding(.horizontal, 26)
+                .padding(.horizontal, AppPaddings.padding26)
                 .background(Capsule().fill(Color(Asset.primaryColor.color)))
                 .foregroundColor(.white)
-                .padding(.bottom, 10)
+                .padding(.bottom, AppPaddings.padding8)
             }
             .background(Color(Asset.secondaryColor.color))
-            .cornerRadius(8)
-            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+            .cornerRadius(AppRadiuses.roundedRectangleRadius)
+            .shadow(color: AppShadows.medium.color,
+                    radius: AppShadows.medium.radius,
+                    x: AppShadows.medium.x,
+                    y: AppShadows.medium.y)
             .padding()
         }
     }
