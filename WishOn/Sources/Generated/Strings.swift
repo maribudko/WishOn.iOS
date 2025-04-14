@@ -19,6 +19,8 @@ internal enum L10n {
   internal static let addNewWishlist = L10n.tr("Localizable", "Add New Wishlist", fallback: "Add New Wishlist")
   /// WishOn
   internal static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
+  /// Attention!
+  internal static let attention = L10n.tr("Localizable", "Attention", fallback: "Attention!")
   /// Create
   internal static let createLabel = L10n.tr("Localizable", "create_label", fallback: "Create")
   /// Date
@@ -33,6 +35,8 @@ internal enum L10n {
   internal static let filter = L10n.tr("Localizable", "Filter", fallback: "Filter")
   /// Hello, Wisher!
   internal static let helloWisher = L10n.tr("Localizable", "helloWisher", fallback: "Hello, Wisher!")
+  /// You entered incorrect price value! Please, check it and try again.
+  internal static let incorrectPriceAlert = L10n.tr("Localizable", "incorrect_price_alert", fallback: "You entered incorrect price value! Please, check it and try again.")
   /// Link
   internal static let linkHint = L10n.tr("Localizable", "link_hint", fallback: "Link")
   /// My Christmas List

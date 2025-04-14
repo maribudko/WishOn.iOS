@@ -114,7 +114,7 @@ struct AddWishlistView: View {
                         ForEach(wishes) { wish in
                             HStack {
                                 Image(
-                                    systemName: wish.isSelected == true ? "largecircle.fill.circle" : "circle"
+                                    systemName: wish.isTaken == true ? "largecircle.fill.circle" : "circle"
                                 )
                                 
                                 Text(wish.name)

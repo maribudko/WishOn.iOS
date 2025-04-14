@@ -33,3 +33,7 @@
 "UAH" = "UAH";
 "EUR" = "EUR";
 "USD" = "USD";
+
+// Errors & Alerts
+"Attention" = "Attention!";
+"incorrect_price_alert" = "You entered incorrect price value! Please, check it and try again.";

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AddNewItemView: View {
     @Binding var isShown: Bool
+    @State var showErrorAlert: Bool = false
     @State private var name = ""
     @State private var wishLink = ""
     @State private var imageLink = ""
@@ -69,9 +70,15 @@ struct AddNewItemView: View {
                         y: AppShadows.medium.y)
                 
                 Button {
-                    let wish = Wish(name: name, image: imageLink, currency: currency, link: wishLink)
-                    wishes.append(wish)
-                    isShown = false
+                    if let priceValue = Double(price) {
+                        let wish = Wish(id: UUID(), name: name, image: imageLink, price: priceValue, currency: currency, link: wishLink, isTaken: false)
+                        wishes.append(wish)
+                        isShown = false
+                    } else {
+                        debugPrint("Price is not valid")
+                        showErrorAlert = true
+                    }
+                    
                 } label: {
                     Text(L10n.createLabel)
                         .padding(.horizontal, AppPaddings.padding16)
@@ -91,6 +98,11 @@ struct AddNewItemView: View {
                     x: AppShadows.small.x,
                     y: AppShadows.small.y)
             .padding(.horizontal, AppPaddings.padding16)
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text(L10n.attention),
+                      message: Text(L10n.incorrectPriceAlert),
+                      dismissButton: .default(Text("Ok")))
+            }
         }
     }
 }
