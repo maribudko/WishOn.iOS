@@ -30,7 +30,9 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
                     debugPrint("\(document.documentID) => \(document.data())")
                     let data = document.data()
                     let name = data[Constant.name] as? String ?? ""
-                    let wishList = WishList(name: name, wishes: [])
+                    let description = data[Constant.description] as? String ?? ""
+                    // TODO: add fields to firestore DB
+                    let wishList = WishList(id: UUID(), name: name, image: "", eventDate: Date(), wishes: [], description: description, createdAt: Date())
                     tempList.append(wishList)
                 }
                 promise(.success(tempList))

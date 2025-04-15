@@ -13,7 +13,7 @@ struct WishListCardView: View {
     var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: AppRadiuses.radius10)
-                .fill(Color(wishList.color))
+                .fill(Color(Asset.highLightColor.color))
                 .shadow(radius: AppRadiuses.smallRadius)
             
             RoundedRectangle(cornerRadius: AppRadiuses.radius10)
@@ -58,5 +58,5 @@ extension DateFormatter {
 }
 
 #Preview {
-    WishListCardView(wishList: WishList(name: "Some", eventDate: Date(), wishes: []))
+    WishListCardView(wishList: WishList(id: UUID(), name: "Some name", image: "", eventDate: Date(), wishes: [], description: "Some description", createdAt: Date()))   
 }
