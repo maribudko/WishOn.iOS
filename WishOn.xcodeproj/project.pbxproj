@@ -56,13 +56,13 @@
 				Presentation/ViewModels/WishListViewModel.swift,
 				Presentation/Views/AddNewItemView.swift,
 				Presentation/Views/DatePickerView.swift,
-				Presentation/Views/MainView.swift,
 				Presentation/Views/NewWishListView.swift,
 				Presentation/Views/ToGiveCardDetails.swift,
 				Presentation/Views/ToGiveCardView.swift,
 				Presentation/Views/ToGiveView.swift,
 				Presentation/Views/WishListCardView.swift,
 				Presentation/Views/WishListDetailsView.swift,
+				Presentation/Views/WishListRootView.swift,
 				Utilitites/AccessibilityIdentifiers.swift,
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;

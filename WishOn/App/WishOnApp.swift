@@ -11,7 +11,7 @@ import FirebaseCore
 @main
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject private var wishListVM: WishListViewModel
+    @StateObject private var wishListVM: WishListViewModel = WishListViewModel()
     
     let persistenceController = PersistenceController.shared
     
@@ -21,16 +21,11 @@ struct WishOnApp: App {
 #else
         DIRepositoriesContainer.shared.register(repository: WishListRepository() as WishListRepositoryProtocol)
 #endif
-        
-        _wishListVM = StateObject(
-            wrappedValue: WishListViewModel()
-        )
     }
     
     var body: some Scene {
         WindowGroup {
-            MainView()
-                .environmentObject(wishListVM)
+            WishListRootView(viewModel: wishListVM)
                 .environment(
                     \.managedObjectContext,
                      persistenceController.container.viewContext
@@ -47,7 +42,6 @@ struct WishOnApp: App {
         }
     }
 #endif
-    
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
