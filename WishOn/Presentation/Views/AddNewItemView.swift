@@ -7,17 +7,124 @@
 
 import SwiftUI
 
+
+final class AddNewItemViewModel: ObservableObject {
+    @Published var name = ""
+    @Published var wishLink = ""
+    @Published var imageLink = ""
+    @Published var price = ""
+    @Published var currency = L10n.uah
+    @Published var nameState: FieldState = .valid
+    @Published var linkState: FieldState = .valid
+    @Published var priceState: FieldState = .valid
+    
+    @Published var state: AddNewItemState = .idle
+    
+    let currencies = [L10n.usd, L10n.eur, L10n.uah]
+    var priceValue: Double?
+    
+    func validate() -> (Bool, String?) {
+        state = .validating
+        var isValid = true
+        var errorMessage: String? = nil
+        
+        if name.isEmpty {
+            nameState = .invalid(L10n.cannotBeEmpty)
+            isValid = false
+            if errorMessage == nil {
+                errorMessage = L10n.nameCannotBeEmpty
+            }
+        } else {
+            nameState = .valid
+        }
+        
+        if wishLink.isEmpty {
+            linkState = .invalid(L10n.cannotBeEmpty)
+            isValid = false
+            if errorMessage == nil {
+                errorMessage = L10n.linkCannotBeEmpty
+            }
+        } else if let url = URL(string: wishLink), url.scheme == "http" || url.scheme == "https" {
+            linkState = .valid
+        } else {
+            linkState = .invalid(L10n.invalidUrl)
+            isValid = false
+            if errorMessage == nil {
+                errorMessage = L10n.invalidUrl
+            }
+        }
+        
+        if let priceValue = Double(price),
+           priceValue > 0 {
+            priceState = .valid
+            self.priceValue = priceValue
+        } else {
+            priceState = .invalid(L10n.invalidPrice)
+            isValid = false
+            if errorMessage == nil {
+                errorMessage = L10n.invalidPrice
+            }
+        }
+        
+        if isValid {
+            state = .valid
+        }
+        
+        return (isValid, errorMessage)
+    }
+    
+    
+    func save(to wishes: Binding<[Wish]>, onSuccess: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        let (isValid, errorMessage) = validate()
+        guard isValid else {
+            let message = errorMessage ?? L10n.fillAllFields
+            state = .error(message)
+            onError(message)
+            return
+        }
+        
+        state = .saving
+        
+        // network request imitation
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            let newWish = Wish(id: UUID(),
+                               name: self.name,
+                               image: self.imageLink,
+                               price: self.priceValue,
+                               currency: self.currency,
+                               link: self.wishLink,
+                               isTaken: false)
+            wishes.wrappedValue.append(newWish)
+            
+            self.state = .success
+            onSuccess()
+        }
+    }
+    
+}
+
+enum FieldState: Equatable {
+    case valid
+    case invalid(String)
+}
+
+enum AddNewItemState: Equatable {
+    case idle
+    case validating
+    case valid
+    case saving
+    case success
+    case error(String)
+}
+
 struct AddNewItemView: View {
     @Binding var isShown: Bool
-    @State var showErrorAlert: Bool = false
-    @State private var name = ""
-    @State private var wishLink = ""
-    @State private var imageLink = ""
-    @State private var price = ""
-    @State private var currency = L10n.uah
     @Binding var wishes: [Wish]
     
-    private let currencies = [L10n.usd, L10n.eur, L10n.uah]
+    @StateObject private var viewModel = AddNewItemViewModel()
+    @State var showErrorAlert: Bool = false
+    @State var errorMessage = ""
+    
     var body: some View {
         ZStack {
             Color.black.opacity(AppOpacityLevels.backgroundOpacity)
@@ -41,17 +148,42 @@ struct AddNewItemView: View {
                     .frame(width: AppDimensions.newItemImageSize,
                            height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
-                TextField(L10n.nameHint, text: $name)
-                    .textFieldStyle(.roundedBorder)
-                TextField(L10n.linkHint, text: $wishLink)
-                    .textFieldStyle(.roundedBorder)
+                
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    TextField(L10n.nameHint, text: $viewModel.name)
+                        .textFieldStyle(.roundedBorder)
+                        .onChange(of: viewModel.name) { _, _ in
+                            viewModel.nameState = .valid
+                        }
+                    if case .invalid(let message) = viewModel.nameState {
+                        Text(message)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .padding(.leading, 5)
+                    }
+                }
+                
+                VStack(alignment: .leading, spacing: 2) {
+                    TextField(L10n.linkHint, text: $viewModel.wishLink)
+                        .textFieldStyle(.roundedBorder)
+                        .onChange(of: viewModel.wishLink) { _, _ in
+                            viewModel.linkState = .valid
+                        }
+                    if case .invalid(let message) = viewModel.linkState {
+                        Text(message)
+                            .font(.caption)
+                            .foregroundColor(.red)
+                            .padding(.leading, 5)
+                    }
+                }
                 
                 HStack {
-                    TextField(L10n.priceHint, text: $price)
-                        .keyboardType(.numberPad)
+                    TextField(L10n.priceHint, text: $viewModel.price)
+                        .keyboardType(.decimalPad)
                         .frame(maxWidth: .infinity)
-                    Picker("", selection: $currency) {
-                        ForEach(currencies, id: \.self) {
+                    Picker("", selection: $viewModel.currency) {
+                        ForEach(viewModel.currencies, id: \.self) {
                             Text($0)
                         }
                     }
@@ -70,26 +202,32 @@ struct AddNewItemView: View {
                         y: AppShadows.medium.y)
                 
                 Button {
-                    if let priceValue = Double(price) {
-                        let wish = Wish(id: UUID(), name: name, image: imageLink, price: priceValue, currency: currency, link: wishLink, isTaken: false)
-                        wishes.append(wish)
-                        isShown = false
-                    } else {
-                        debugPrint("Price is not valid")
+                    viewModel.save(to: $wishes) {
+                        withAnimation {
+                            isShown = false
+                        }
+                    } onError: {message in
                         showErrorAlert = true
+                        errorMessage = message
+                        viewModel.state = .idle
                     }
-                    
                 } label: {
-                    Text(L10n.createLabel)
-                        .padding(.horizontal, AppPaddings.padding16)
-                        .foregroundStyle(Color(Asset.greenButtonTextColor.color))
+                    if viewModel.state == .saving {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            .frame(height: 20)
+                    } else {
+                        Text(L10n.createLabel)
+                            .padding(.horizontal, AppPaddings.padding16)
+                            .foregroundStyle(Color(Asset.greenButtonTextColor.color))
+                    }
                 }
                 .padding()
                 .background(Color(Asset.primaryColor.color))
                 .cornerRadius(AppRadiuses.buttonRadius)
                 .padding(.top, AppPaddings.padding20)
-                
             }
+            .disabled(viewModel.state == .saving)
             .padding(AppPaddings.padding20)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)
             .background(Color(Asset.backgroundColor.color))
@@ -100,8 +238,8 @@ struct AddNewItemView: View {
             .padding(.horizontal, AppPaddings.padding16)
             .alert(isPresented: $showErrorAlert) {
                 Alert(title: Text(L10n.attention),
-                      message: Text(L10n.incorrectPriceAlert),
-                      dismissButton: .default(Text("Ok")))
+                      message: Text(errorMessage),
+                      dismissButton: .default(Text(L10n.okLabel)))
             }
         }
     }

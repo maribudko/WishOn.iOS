@@ -21,6 +21,8 @@ internal enum L10n {
   internal static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
   /// Attention!
   internal static let attention = L10n.tr("Localizable", "Attention", fallback: "Attention!")
+  /// This field cannot be empty.
+  internal static let cannotBeEmpty = L10n.tr("Localizable", "cannot_be_empty", fallback: "This field cannot be empty.")
   /// Create
   internal static let createLabel = L10n.tr("Localizable", "create_label", fallback: "Create")
   /// Date
@@ -31,16 +33,26 @@ internal enum L10n {
   internal static let doneLabel = L10n.tr("Localizable", "done_label", fallback: "Done")
   /// EUR
   internal static let eur = L10n.tr("Localizable", "EUR", fallback: "EUR")
+  /// Please, fill all fields.
+  internal static let fillAllFields = L10n.tr("Localizable", "fill_all_fields", fallback: "Please, fill all fields.")
   /// Filter
   internal static let filter = L10n.tr("Localizable", "Filter", fallback: "Filter")
   /// Hello, Wisher!
   internal static let helloWisher = L10n.tr("Localizable", "helloWisher", fallback: "Hello, Wisher!")
   /// You entered incorrect price value! Please, check it and try again.
   internal static let incorrectPriceAlert = L10n.tr("Localizable", "incorrect_price_alert", fallback: "You entered incorrect price value! Please, check it and try again.")
+  /// Oops! That doesn’t look like a valid price value.
+  internal static let invalidPrice = L10n.tr("Localizable", "invalid_price", fallback: "Oops! That doesn’t look like a valid price value.")
+  /// Oops! That doesn’t look like a valid URL.
+  internal static let invalidUrl = L10n.tr("Localizable", "invalid_url", fallback: "Oops! That doesn’t look like a valid URL.")
+  /// Link cannot be empty.
+  internal static let linkCannotBeEmpty = L10n.tr("Localizable", "link_cannot_be_empty", fallback: "Link cannot be empty.")
   /// Link
   internal static let linkHint = L10n.tr("Localizable", "link_hint", fallback: "Link")
   /// My Christmas List
   internal static let myChristmasList = L10n.tr("Localizable", "My Christmas List", fallback: "My Christmas List")
+  /// Name cannot be empty.
+  internal static let nameCannotBeEmpty = L10n.tr("Localizable", "name_cannot_be_empty", fallback: "Name cannot be empty.")
   /// Name
   internal static let nameHint = L10n.tr("Localizable", "name_hint", fallback: "Name")
   /// New wishlist
@@ -49,10 +61,14 @@ internal enum L10n {
   internal static let newWishlistLbl = L10n.tr("Localizable", "new_wishlist_lbl", fallback: "New wishlist")
   /// No wishes yet. Tap the button below to add one!
   internal static let noWishesLabel = L10n.tr("Localizable", "no_wishes_label", fallback: "No wishes yet. Tap the button below to add one!")
+  /// Ok
+  internal static let okLabel = L10n.tr("Localizable", "ok_label", fallback: "Ok")
   /// Price
   internal static let priceHint = L10n.tr("Localizable", "price_hint", fallback: "Price")
   /// Select a Date
   internal static let selectDateHint = L10n.tr("Localizable", "select_date_hint", fallback: "Select a Date")
+  /// Done!
+  internal static let successMessage = L10n.tr("Localizable", "success_message", fallback: "Done!")
   /// To Give
   internal static let toGive = L10n.tr("Localizable", "toGive", fallback: "To Give")
   /// UAH

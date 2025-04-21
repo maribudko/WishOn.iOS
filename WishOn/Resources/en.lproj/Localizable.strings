@@ -23,6 +23,7 @@
 "link_hint" = "Link";
 "price_hint" = "Price";
 "done_label" = "Done";
+"ok_label" = "Ok";
 "select_date_hint" = "Select a Date";
 "create_label" = "Create";
 "description_hint" = "Description";
@@ -37,3 +38,10 @@
 // Errors & Alerts
 "Attention" = "Attention!";
 "incorrect_price_alert" = "You entered incorrect price value! Please, check it and try again.";
+"cannot_be_empty" = "This field cannot be empty.";
+"fill_all_fields" = "Please, fill all fields.";
+"name_cannot_be_empty" = "Name cannot be empty.";
+"link_cannot_be_empty" = "Link cannot be empty.";
+"success_message" = "Done!";
+"invalid_url" = "Oops! That doesn’t look like a valid URL.";
+"invalid_price" = "Oops! That doesn’t look like a valid price value.";
