@@ -54,7 +54,6 @@
 				Domain/Models/WishList.swift,
 				Domain/Protocols/WishListRepositoryProtocol.swift,
 				Presentation/ViewModels/WishListViewModel.swift,
-				Presentation/Views/AddNewItemView.swift,
 				Presentation/Views/DatePickerView.swift,
 				Presentation/Views/NewWishListView.swift,
 				Presentation/Views/ToGiveCardDetails.swift,
@@ -63,6 +62,13 @@
 				Presentation/Views/WishListCardView.swift,
 				Presentation/Views/WishListDetailsView.swift,
 				Presentation/Views/WishListRootView.swift,
+				Scenes/AddNewItem/AddNewitemModule.swift,
+				Scenes/AddNewItem/AddNewItemPresenter.swift,
+				Scenes/AddNewItem/AddNewItemStateFactory.swift,
+				Scenes/AddNewItem/AddNewItemStateMachine.swift,
+				Scenes/AddNewItem/AddNewItemView.swift,
+				Scenes/AddNewItem/AddNewItemViewModel.swift,
+				Scenes/AddNewItem/Validator.swift,
 				Utilitites/AccessibilityIdentifiers.swift,
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;

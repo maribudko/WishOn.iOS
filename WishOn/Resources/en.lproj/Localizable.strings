@@ -45,3 +45,6 @@
 "success_message" = "Done!";
 "invalid_url" = "Oops! That doesn’t look like a valid URL.";
 "invalid_price" = "Oops! That doesn’t look like a valid price value.";
+"name_cannot_be_empty" = "Name should contain at least 2 characters.";
+"link_is_incorrect" = "Link value is incorrect.";
+"price_is_incorrect" = "Price value is incorrect.";

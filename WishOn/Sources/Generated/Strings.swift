@@ -49,6 +49,8 @@ internal enum L10n {
   internal static let linkCannotBeEmpty = L10n.tr("Localizable", "link_cannot_be_empty", fallback: "Link cannot be empty.")
   /// Link
   internal static let linkHint = L10n.tr("Localizable", "link_hint", fallback: "Link")
+  /// Link value is incorrect.
+  internal static let linkIsIncorrect = L10n.tr("Localizable", "link_is_incorrect", fallback: "Link value is incorrect.")
   /// My Christmas List
   internal static let myChristmasList = L10n.tr("Localizable", "My Christmas List", fallback: "My Christmas List")
   /// Name cannot be empty.
@@ -65,6 +67,8 @@ internal enum L10n {
   internal static let okLabel = L10n.tr("Localizable", "ok_label", fallback: "Ok")
   /// Price
   internal static let priceHint = L10n.tr("Localizable", "price_hint", fallback: "Price")
+  /// Price value is incorrect.
+  internal static let priceIsIncorrect = L10n.tr("Localizable", "price_is_incorrect", fallback: "Price value is incorrect.")
   /// Select a Date
   internal static let selectDateHint = L10n.tr("Localizable", "select_date_hint", fallback: "Select a Date")
   /// Done!

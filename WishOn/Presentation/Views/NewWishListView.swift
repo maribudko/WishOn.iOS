@@ -169,7 +169,8 @@ struct AddWishlistView: View {
                 DatePickerView(selectedDate: $selectedDate, date: $date, isDatePickerVisible: $isDatePickerVisible)
             }
             if isNewItemDialogVisible {
-                AddNewItemView(isShown: $isNewItemDialogVisible, wishes: $wishes)
+                let module = AddNewItemModule(isShown: $isNewItemDialogVisible)
+                module.view()
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
