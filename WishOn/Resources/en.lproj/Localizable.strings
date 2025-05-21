@@ -31,6 +31,9 @@
 "wishes_count_label" = "Your wishes (%d)";
 "no_wishes_label" = "No wishes yet. Tap the button below to add one!";
 
+"google_login_label" = "Login with Google";
+"apple_login_label" = "Login with Apple";
+
 "UAH" = "UAH";
 "EUR" = "EUR";
 "USD" = "USD";
@@ -39,7 +42,7 @@
 "Attention" = "Attention!";
 "incorrect_price_alert" = "You entered incorrect price value! Please, check it and try again.";
 "cannot_be_empty" = "This field cannot be empty.";
-"fill_all_fields" = "Please, fill all fields.";
+"fill_all_fields" = "Please, fill all fields correctly.";
 "name_cannot_be_empty" = "Name cannot be empty.";
 "link_cannot_be_empty" = "Link cannot be empty.";
 "success_message" = "Done!";
@@ -48,3 +51,4 @@
 "name_cannot_be_empty" = "Name should contain at least 2 characters.";
 "link_is_incorrect" = "Link value is incorrect.";
 "price_is_incorrect" = "Price value is incorrect.";
+

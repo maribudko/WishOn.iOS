@@ -12,7 +12,14 @@ struct AddNewItemState {
     let name: TextFieldViewState
     let link: TextFieldViewState
     let price: PriceInputViewState
+    let button: ButtonViewState
 }
+
+//protocol AddNewItemProtocol: AnyObject {
+//    func inject(presenter: AddNewItemPresenterProtocol)
+//    func render(with viewState: AddNewItemState)
+//    func showAlert(with message: String)
+//}
 
 enum FocusableField: Hashable {
     case name
@@ -26,8 +33,6 @@ struct AddNewItemView: View {
     @Binding var isShown: Bool
     
     @ObservedObject var viewModel: AddNewItemViewModel
-    @State var showErrorAlert: Bool = false
-    @State var errorMessage = ""
     
     var body: some View {
         ZStack {
@@ -72,19 +77,9 @@ struct AddNewItemView: View {
                 )
                 .focused($focusedField, equals: .price)
                 
-                Button {
-                    //TODO: add button action
-                } label: {
-                    Text(L10n.createLabel)
-                        .padding(.horizontal, AppPaddings.padding16)
-                        .foregroundStyle(Color(Asset.greenButtonTextColor.color))
-                }
-                .padding()
-                .background(Color(Asset.primaryColor.color))
-                .cornerRadius(AppRadiuses.buttonRadius)
-                .padding(.top, AppPaddings.padding20)
-                .disabled(!viewModel.isAddButtonEnabled)
-                .opacity(viewModel.isAddButtonEnabled ? 1 : 0.5)
+                ButtonView(buttonViewState: viewModel.viewState.button, action: viewModel.onAddTapped)
+                    .disabled(!viewModel.isAddButtonEnabled)
+                    .opacity(viewModel.isAddButtonEnabled ? 1 : 0.5)
             }
             .padding(AppPaddings.padding20)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)
@@ -94,10 +89,12 @@ struct AddNewItemView: View {
                     x: AppShadows.small.x,
                     y: AppShadows.small.y)
             .padding(.horizontal, AppPaddings.padding16)
-            .alert(isPresented: $showErrorAlert) {
+            .alert(isPresented: $viewModel.showAlert) {
                 Alert(title: Text(L10n.attention),
-                      message: Text(errorMessage),
-                      dismissButton: .default(Text(L10n.okLabel)))
+                      message: Text(viewModel.alertMessage ?? ""),
+                      dismissButton: .default(Text(L10n.okLabel)){
+                    viewModel.onSuccess?()
+                })
             }
             .onChange(of: focusedField) { oldFocus, newFocus in
                 if let lostFocus = oldFocus, lostFocus != newFocus {

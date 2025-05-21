@@ -178,5 +178,10 @@ struct AddWishlistView: View {
 }
 
 #Preview {
-    AddWishlistView(viewModel: WishListViewModel())
+    let stateMachine = WishListsStateMachine()
+    let viewStateFactory = WishListsStateFactory()
+    let useCase = WishListsInteractor(repository: WishListRepository())
+   
+    
+    AddWishlistView(viewModel: WishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory, useCase: useCase))
 }

@@ -14,6 +14,11 @@ struct AddNewItemModule: BaseSwiftUIModule {
         let stateMachine = AddNewItemStateMachine()
         let viewStateFactory = AddNewItemStateFactory()
         let viewModel = AddNewItemViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory)
+        viewModel.onSuccess = {
+            withAnimation {
+                isShown = false
+            }
+        }
         
         return AddNewItemView(isShown: $isShown, viewModel: viewModel)
     }

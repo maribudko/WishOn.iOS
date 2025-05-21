@@ -15,7 +15,8 @@ final class AddNewItemStateFactory {
                         price: state.priceField.text,
                         currency: state.priceField.currency,
                         currencies: state.priceField.currencies,
-                        errorMessage: state.priceField.isError ? L10n.priceIsIncorrect : nil))
+                        errorMessage: state.priceField.isError ? L10n.priceIsIncorrect : nil),
+                     button: ButtonViewState(label: state.addButton.label))
     }
 }
 
@@ -23,20 +24,24 @@ private extension AddNewItemStateFactory {
     func makeField(from state: AddNewItemStateMachine.TextFieldState) -> TextFieldViewState {
         let title: String
         let errorMessage: String?
+        let inputType: InputFieldType
         
         switch state.kind {
         case .name:
             title = "Name"
             errorMessage = state.isError ? L10n.nameCannotBeEmpty : nil
+            inputType = .name
         case .url:
             title = "Link"
             errorMessage = state.isError ? L10n.linkIsIncorrect : nil
+            inputType = .url
         default:
             title = ""
             errorMessage = nil
+            inputType = .plain
         }
         
-        return .init(title: title, text: state.text, errorMessage: errorMessage)
+        return .init(title: title, text: state.text, errorMessage: errorMessage, inputType: inputType)
     }
 }
 

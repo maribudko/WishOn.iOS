@@ -30,6 +30,7 @@ struct PriceInputView: View {
                     }))
                 .keyboardType(.decimalPad)
                 .frame(maxWidth: .infinity)
+                
                 Picker("", selection: Binding(
                     get: { viewState.currency },
                     set: { currency in

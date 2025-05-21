@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AddNewItemViewModel: ObservableObject {
+final class AddNewItemViewModel: ObservableObject {			    
     @Published private(set) var viewState: AddNewItemState
     @Published var showAlert: Bool = false
     @Published var alertMessage: String?
@@ -15,6 +15,8 @@ final class AddNewItemViewModel: ObservableObject {
     
     private let stateMachine: AddNewItemStateMachine
     private let stateFactory: AddNewItemStateFactory
+    
+    var onSuccess: (() -> Void)?
     
     init(stateMachine: AddNewItemStateMachine, stateFactory: AddNewItemStateFactory) {
         self.stateMachine = stateMachine
@@ -56,6 +58,11 @@ final class AddNewItemViewModel: ObservableObject {
     func onAddTapped() {
         stateMachine.didTapAddButton()
         updateViewState()
+        
+        if stateMachine.state.addButton.isEnabled {
+            showAlert = true
+            alertMessage = L10n.doneLabel
+        }
         // TODO: save wish to list
     }
     

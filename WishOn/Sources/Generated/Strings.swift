@@ -17,6 +17,8 @@ internal enum L10n {
   /// 
   ///   Created by Mari Budko on 28.11.2024.
   internal static let addNewWishlist = L10n.tr("Localizable", "Add New Wishlist", fallback: "Add New Wishlist")
+  /// Login with Apple
+  internal static let appleLoginLabel = L10n.tr("Localizable", "apple_login_label", fallback: "Login with Apple")
   /// WishOn
   internal static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
   /// Attention!
@@ -33,10 +35,12 @@ internal enum L10n {
   internal static let doneLabel = L10n.tr("Localizable", "done_label", fallback: "Done")
   /// EUR
   internal static let eur = L10n.tr("Localizable", "EUR", fallback: "EUR")
-  /// Please, fill all fields.
-  internal static let fillAllFields = L10n.tr("Localizable", "fill_all_fields", fallback: "Please, fill all fields.")
+  /// Please, fill all fields correctly.
+  internal static let fillAllFields = L10n.tr("Localizable", "fill_all_fields", fallback: "Please, fill all fields correctly.")
   /// Filter
   internal static let filter = L10n.tr("Localizable", "Filter", fallback: "Filter")
+  /// Login with Google
+  internal static let googleLoginLabel = L10n.tr("Localizable", "google_login_label", fallback: "Login with Google")
   /// Hello, Wisher!
   internal static let helloWisher = L10n.tr("Localizable", "helloWisher", fallback: "Hello, Wisher!")
   /// You entered incorrect price value! Please, check it and try again.
@@ -53,8 +57,8 @@ internal enum L10n {
   internal static let linkIsIncorrect = L10n.tr("Localizable", "link_is_incorrect", fallback: "Link value is incorrect.")
   /// My Christmas List
   internal static let myChristmasList = L10n.tr("Localizable", "My Christmas List", fallback: "My Christmas List")
-  /// Name cannot be empty.
-  internal static let nameCannotBeEmpty = L10n.tr("Localizable", "name_cannot_be_empty", fallback: "Name cannot be empty.")
+  /// Name should contain at least 2 characters.
+  internal static let nameCannotBeEmpty = L10n.tr("Localizable", "name_cannot_be_empty", fallback: "Name should contain at least 2 characters.")
   /// Name
   internal static let nameHint = L10n.tr("Localizable", "name_hint", fallback: "Name")
   /// New wishlist

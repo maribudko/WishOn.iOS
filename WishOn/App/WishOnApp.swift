@@ -11,7 +11,8 @@ import FirebaseCore
 @main
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject private var wishListVM: WishListViewModel = WishListViewModel()
+    @State private var isLoggedIn = false
+    private let loginModule = LoginModule()
     
     let persistenceController = PersistenceController.shared
     
@@ -25,11 +26,17 @@ struct WishOnApp: App {
     
     var body: some Scene {
         WindowGroup {
-            WishListRootView(viewModel: wishListVM)
-                .environment(
-                    \.managedObjectContext,
-                     persistenceController.container.viewContext
-                )
+            if isLoggedIn {
+                WishListsModule()
+                    .view()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                LoginModule(onLoginSuccess: {
+                    isLoggedIn = true
+                })
+                .view()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
         }
     }
     

@@ -41,8 +41,8 @@ final class AddNewItemStateMachine {
     }
     
     class PriceInputState: TextFieldState {
-        var currency: String = ""
-        var currencies: [String] = []
+        var currency: String = L10n.uah 
+        var currencies: [String] = [L10n.uah, L10n.usd, L10n.eur]
     }
     
     class ButtonState {
@@ -65,7 +65,7 @@ final class AddNewItemStateMachine {
         self.nameField = .init(kind: .name, validator: NameValidator())
         self.urlField = .init(kind: .url, validator: UrlValidator())
         self.priceField = .init(kind: .price, validator: PriceValidator())
-        self.addButton = .init(label: L10n.addNewWishlist, isEnabled: true)
+        self.addButton = .init(label: L10n.createLabel, isEnabled: true)
     }
     
     func setNameText(_ text: String) {
@@ -100,11 +100,11 @@ final class AddNewItemStateMachine {
         validateAllFields()
         
         guard addButton.isEnabled else {
-            didRequestShowAlert?("Please, fill all fields correctly and try again.")
+            didRequestShowAlert?(L10n.fillAllFields)
             return
         }
         
-        didRequestShowAlert?("Successfully added")
+        didRequestShowAlert?(L10n.successMessage)
         //TODO: add wish to list
     }
     

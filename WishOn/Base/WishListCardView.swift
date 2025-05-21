@@ -7,8 +7,16 @@
 
 import SwiftUI
 
+struct WishListCardViewState {
+    let imageName: String
+    let name: String
+    let date: Date?
+}
+
 struct WishListCardView: View {
-    let wishList: WishList
+   // let wishList: WishList
+    let viewState: WishListCardViewState
+    //let onCardTapped: () -> Void
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -22,7 +30,7 @@ struct WishListCardView: View {
                 .padding(.top, AppPaddings.padding10)
                     
             VStack {
-                Image(systemName: "star.fill")
+                Image(systemName: viewState.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: AppDimensions.wishCardImageSize, height: AppDimensions.wishCardImageSize)
@@ -31,13 +39,13 @@ struct WishListCardView: View {
                         
                 Spacer()
                 
-                Text(wishList.name)
+                Text(viewState.name)
                     .font(.callout)
                     .bold()
                     .foregroundColor(.white)
                     .lineLimit(1)
                         
-                Text("\(wishList.eventDate ?? .now, formatter: DateFormatter.shortDate)")
+                Text("\(viewState.date ?? .now, formatter: DateFormatter.shortDate)")
                     .font(.footnote)
                     .foregroundColor(.white)
             }
@@ -58,5 +66,6 @@ extension DateFormatter {
 }
 
 #Preview {
-    WishListCardView(wishList: WishList(id: UUID(), name: "Some name", image: "", eventDate: Date(), wishes: [], description: "Some description", createdAt: Date()))   
+    let viewState = WishListCardViewState(imageName: "star.fill", name: "Some wish", date: Date())
+    WishListCardView(viewState: viewState)
 }
