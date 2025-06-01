@@ -16,7 +16,7 @@ struct AddWishlistView: View {
     @State private var isDatePickerVisible = false
     @State private var isNewItemDialogVisible = false
     @State private var wishes: [Wish] = []
-    @EnvironmentObject var viewModel: WishListViewModel
+    @ObservedObject var viewModel: WishListViewModel
     
     var body: some View {
         VStack {
@@ -177,6 +177,5 @@ struct AddWishlistView: View {
 }
 
 #Preview {
-    AddWishlistView()
-        .environmentObject(WishListViewModel())
+    AddWishlistView(viewModel: WishListViewModel())
 }

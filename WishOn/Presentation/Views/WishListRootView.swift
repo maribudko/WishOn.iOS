@@ -1,12 +1,17 @@
 import SwiftUI
 
-struct MainView: View {
+struct WishListRootView: View {
     @State private var isAuthorized = false
-    @StateObject var viewModel = WishListViewModel()
+    private var viewModel: WishListViewModel
     
     let columns = [
         GridItem(.adaptive(minimum: AppDimensions.wishListCardWidth, maximum: AppDimensions.wishListCardWidthMax))
     ]
+    
+    init(isAuthorized: Bool = false, viewModel: WishListViewModel) {
+        self.isAuthorized = isAuthorized
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -85,7 +90,7 @@ struct MainView: View {
                 
                 HStack {
                     NavigationLink {
-                        AddWishlistView()
+                        AddWishlistView(viewModel: viewModel)
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
@@ -159,7 +164,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
-            .environmentObject(WishListViewModel())
+        WishListRootView(viewModel: WishListViewModel())
     }
 }
