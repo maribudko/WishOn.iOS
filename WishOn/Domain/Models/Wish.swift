@@ -8,11 +8,23 @@
 import Foundation
 
 struct Wish: Codable, Identifiable {
-    var id = UUID()
+    let id: UUID
     let name: String
     let image: String
-    var price: Double?
+    let price: Double?
     let currency: String
     let link: String
-    var isSelected: Bool = false
+    let isTaken: Bool
+}
+
+extension Wish {
+    func with(isTaken: Bool) -> Wish {
+        return Wish(id: self.id,
+                    name: self.name,
+                    image: self.image,
+                    price: self.price,
+                    currency: self.currency,
+                    link: self.link,
+                    isTaken: isTaken)
+    }
 }

@@ -11,16 +11,15 @@ import Combine
 class MockWishListRepository: WishListRepositoryProtocol {
     static public let id = UUID()
     
-    public var list: [WishList] = [WishList(
-        id: id,
-        name: "Some Name",
-        eventDate: Date.now,
-        wishes: []
-    )]
+    public var list: [WishList] = [WishList(id: id,
+                                            name: "some name",
+                                            image: "",
+                                            eventDate: Date.now,
+                                            wishes: [],
+                                            description: "Description",
+                                            createdAt: Date.now)]
     public var isAddWishListCalled = false
     public var isDeleteWishListCalled = false
-    
-    
     
     func fetchWishLists() -> AnyPublisher<[WishList], any Error> {
         Just(list)
@@ -29,18 +28,16 @@ class MockWishListRepository: WishListRepositoryProtocol {
     }
     
     func addWishList(_ wishList: WishList) -> AnyPublisher<Void, any Error> {
-        //list.append(wishList)
         isAddWishListCalled = true
         // Finishing publishing without errors
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
     
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
-        //list.removeAll { $0.id.uuidString == id }
         isDeleteWishListCalled = true
         return Just(())
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
-
+    
 }

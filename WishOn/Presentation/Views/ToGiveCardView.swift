@@ -10,15 +10,15 @@ import SwiftUI
 struct ToGiveCardView: View {
     var body: some View {
         ZStack(alignment: .top) {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: AppRadiuses.radius10)
                 .fill(Color(Asset.steelBlue.color))
-                .shadow(radius: 5)
+                .shadow(radius: AppRadiuses.smallRadius)
                     
             VStack {
                 Image("filofax")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 100, height: 100)
+                    .frame(width: AppDimensions.wishListCardWidth, height: AppDimensions.wishListCardWidth)
                     .clipped()
                     .foregroundColor(.white)
                 
@@ -33,9 +33,9 @@ struct ToGiveCardView: View {
                     .font(.footnote)
                     .foregroundColor(.white)
             }
-            .padding(10)
+            .padding(AppPaddings.padding10)
         }
-        .frame(width: 100, height: 140)
+        .frame(width: AppDimensions.toGiveCardViewWidth, height: AppDimensions.toGiveCardViewHeight)
     }
     
 }

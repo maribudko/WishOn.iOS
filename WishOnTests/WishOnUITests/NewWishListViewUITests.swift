@@ -46,7 +46,6 @@ final class NewWishListViewUITests: XCTestCase {
         let nameField = app.textFields["Name"]
         let descriptionField = app.textFields["Description"]
             
-            
         nameField.tap()
         nameField.typeText("My wishlist")
             

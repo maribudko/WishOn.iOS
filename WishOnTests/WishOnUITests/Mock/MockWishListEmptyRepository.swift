@@ -12,7 +12,7 @@ class MockWishListEmptyRepository: WishListRepositoryProtocol {
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
-    
+
     public var list: [WishList] = []
     func fetchWishLists() -> AnyPublisher<[WishList], any Error> {
         Just(list)
@@ -24,8 +24,4 @@ class MockWishListEmptyRepository: WishListRepositoryProtocol {
         // Finishing publishing without errors
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
-    
-    
-    
-    
 }

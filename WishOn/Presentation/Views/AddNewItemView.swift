@@ -9,79 +9,100 @@ import SwiftUI
 
 struct AddNewItemView: View {
     @Binding var isShown: Bool
+    @State var showErrorAlert: Bool = false
     @State private var name = ""
     @State private var wishLink = ""
     @State private var imageLink = ""
     @State private var price = ""
-    @State private var currency = "UAH"
+    @State private var currency = L10n.uah
     @Binding var wishes: [Wish]
     
-    private let currencies = ["USD", "EUR", "UAH"]
+    private let currencies = [L10n.usd, L10n.eur, L10n.uah]
     var body: some View {
-        ZStack{
-            Color.black.opacity(0.4)
+        ZStack {
+            Color.black.opacity(AppOpacityLevels.backgroundOpacity)
                 .ignoresSafeArea()
             VStack {
-                HStack{
-                    Button{
+                HStack {
+                    Button {
                         isShown = false
                     } label: {
                         Image(systemName: "xmark")
                             .resizable()
                             .foregroundColor(Color(Asset.primaryColor.color))
                     }
-                    .frame(width: 24, height: 24)
+                    .frame(width: AppDimensions.iconSize,
+                           height: AppDimensions.iconSize)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 Image("filofax")
                     .resizable()
                     .scaledToFill()
-                    .frame(width: 140, height: 140)
+                    .frame(width: AppDimensions.newItemImageSize,
+                           height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
-                TextField("Name", text: $name)
+                TextField(L10n.nameHint, text: $name)
                     .textFieldStyle(.roundedBorder)
-                TextField("Link", text: $wishLink)
+                TextField(L10n.linkHint, text: $wishLink)
                     .textFieldStyle(.roundedBorder)
                 
-                HStack{
-                    TextField("Price", text: $price)
+                HStack {
+                    TextField(L10n.priceHint, text: $price)
                         .keyboardType(.numberPad)
                         .frame(maxWidth: .infinity)
-                    Picker("", selection: $currency){
+                    Picker("", selection: $currency) {
                         ForEach(currencies, id: \.self) {
                             Text($0)
                         }
-                    }.accentColor(Color(Asset.primaryColor.color))
+                    }
+                    .accentColor(Color(Asset.primaryColor.color))
                 }
-                .padding(8)
+                .padding(AppPaddings.padding8)
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
+                .cornerRadius(AppRadiuses.roundedRectangleRadius)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(.systemGray5), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: AppRadiuses.roundedRectangleRadius)
+                        .stroke(Color(.systemGray5), lineWidth: AppDimensions.borderThin)
                 )
-                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                .shadow(color: AppShadows.medium.color,
+                        radius: AppShadows.medium.radius,
+                        x: AppShadows.medium.x,
+                        y: AppShadows.medium.y)
                 
                 Button {
-                    let wish = Wish(name: name, image: imageLink, currency: currency, link: wishLink)
-                    wishes.append(wish)
-                    isShown = false
+                    if let priceValue = Double(price) {
+                        let wish = Wish(id: UUID(), name: name, image: imageLink, price: priceValue, currency: currency, link: wishLink, isTaken: false)
+                        wishes.append(wish)
+                        isShown = false
+                    } else {
+                        debugPrint("Price is not valid")
+                        showErrorAlert = true
+                    }
+                    
                 } label: {
-                    Text("Create")
-                        .padding(.horizontal, 16)
+                    Text(L10n.createLabel)
+                        .padding(.horizontal, AppPaddings.padding16)
                         .foregroundStyle(Color(Asset.greenButtonTextColor.color))
                 }
                 .padding()
                 .background(Color(Asset.primaryColor.color))
-                .cornerRadius(30)
-                .padding(.top, 20)
+                .cornerRadius(AppRadiuses.buttonRadius)
+                .padding(.top, AppPaddings.padding20)
                 
             }
-            .padding(20)
-            .cornerRadius(8)
+            .padding(AppPaddings.padding20)
+            .cornerRadius(AppRadiuses.roundedRectangleRadius)
             .background(Color(Asset.backgroundColor.color))
-            .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)
-            .padding(.horizontal, 16)
+            .shadow(color: AppShadows.small.color,
+                    radius: AppShadows.small.radius,
+                    x: AppShadows.small.x,
+                    y: AppShadows.small.y)
+            .padding(.horizontal, AppPaddings.padding16)
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text(L10n.attention),
+                      message: Text(L10n.incorrectPriceAlert),
+                      dismissButton: .default(Text("Ok")))
+            }
         }
     }
 }

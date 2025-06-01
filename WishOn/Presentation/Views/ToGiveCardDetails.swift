@@ -7,23 +7,22 @@
 
 import SwiftUI
 
-struct ToGiveCardDetails: View{
+struct ToGiveCardDetails: View {
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        NavigationView{
-            VStack{
+        NavigationView {
+            VStack {
                 Text("To Give Card Details here")
             }
         }
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
-            if value.translation.width > 100 {
+            if value.translation.width > AppDimensions.minimumGestureSize {
                 self.presentationMode.wrappedValue.dismiss()
             }
         })
     }
 }
-
 
 #Preview {
     ToGiveCardDetails()

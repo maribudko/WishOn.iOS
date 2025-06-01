@@ -19,16 +19,52 @@ internal enum L10n {
   internal static let addNewWishlist = L10n.tr("Localizable", "Add New Wishlist", fallback: "Add New Wishlist")
   /// WishOn
   internal static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
+  /// Attention!
+  internal static let attention = L10n.tr("Localizable", "Attention", fallback: "Attention!")
+  /// Create
+  internal static let createLabel = L10n.tr("Localizable", "create_label", fallback: "Create")
+  /// Date
+  internal static let dateHint = L10n.tr("Localizable", "date_hint", fallback: "Date")
+  /// Description
+  internal static let descriptionHint = L10n.tr("Localizable", "description_hint", fallback: "Description")
+  /// Done
+  internal static let doneLabel = L10n.tr("Localizable", "done_label", fallback: "Done")
+  /// EUR
+  internal static let eur = L10n.tr("Localizable", "EUR", fallback: "EUR")
   /// Filter
   internal static let filter = L10n.tr("Localizable", "Filter", fallback: "Filter")
   /// Hello, Wisher!
   internal static let helloWisher = L10n.tr("Localizable", "helloWisher", fallback: "Hello, Wisher!")
+  /// You entered incorrect price value! Please, check it and try again.
+  internal static let incorrectPriceAlert = L10n.tr("Localizable", "incorrect_price_alert", fallback: "You entered incorrect price value! Please, check it and try again.")
+  /// Link
+  internal static let linkHint = L10n.tr("Localizable", "link_hint", fallback: "Link")
   /// My Christmas List
   internal static let myChristmasList = L10n.tr("Localizable", "My Christmas List", fallback: "My Christmas List")
+  /// Name
+  internal static let nameHint = L10n.tr("Localizable", "name_hint", fallback: "Name")
   /// New wishlist
   internal static let newWishlist = L10n.tr("Localizable", "New wishlist", fallback: "New wishlist")
+  /// New wishlist
+  internal static let newWishlistLbl = L10n.tr("Localizable", "new_wishlist_lbl", fallback: "New wishlist")
+  /// No wishes yet. Tap the button below to add one!
+  internal static let noWishesLabel = L10n.tr("Localizable", "no_wishes_label", fallback: "No wishes yet. Tap the button below to add one!")
+  /// Price
+  internal static let priceHint = L10n.tr("Localizable", "price_hint", fallback: "Price")
+  /// Select a Date
+  internal static let selectDateHint = L10n.tr("Localizable", "select_date_hint", fallback: "Select a Date")
   /// To Give
   internal static let toGive = L10n.tr("Localizable", "toGive", fallback: "To Give")
+  /// UAH
+  internal static let uah = L10n.tr("Localizable", "UAH", fallback: "UAH")
+  /// USD
+  internal static let usd = L10n.tr("Localizable", "USD", fallback: "USD")
+  /// Your wishes (%d)
+  internal static func wishesCountLabel(_ p1: Int) -> String {
+    return L10n.tr("Localizable", "wishes_count_label", p1, fallback: "Your wishes (%d)")
+  }
+  /// WishList Details
+  internal static let wishlistDetails = L10n.tr("Localizable", "wishlist_details", fallback: "WishList Details")
   /// Start your first WishList!
   /// And make your dreams come true!
   internal static let wishListEmptyView = L10n.tr("Localizable", "wishListEmptyView", fallback: "Start your first WishList!\nAnd make your dreams come true!")

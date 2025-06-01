@@ -17,4 +17,5 @@ enum AccessibilityIdentifiers {
     static let newWishListView = "newWishListView"
     
     static let createWishlistButton = "createWishlistButton"
+    static let plusCircleFillButton = "plusCircleFillButton"
 }

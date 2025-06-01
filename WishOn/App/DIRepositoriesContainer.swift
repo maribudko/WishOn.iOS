@@ -10,7 +10,7 @@ import Foundation
 class DIRepositoriesContainer {
     static let shared = DIRepositoriesContainer()
     
-    private lazy var repositories = [String:Any]()
+    private lazy var repositories = [String: Any]()
     
     private func typeName(_ some: Any) -> String {
         return (some is Any.Type) ? "\(some)" : "\(type(of: some))"
