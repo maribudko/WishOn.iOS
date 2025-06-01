@@ -16,7 +16,7 @@ struct AddWishlistView: View {
     @State private var isDatePickerVisible = false
     @State private var isNewItemDialogVisible = false
     @State private var wishes: [Wish] = []
-    @EnvironmentObject var viewModel: WishListViewModel
+    @ObservedObject var viewModel: WishListViewModel
     
     var body: some View {
         VStack {
@@ -169,7 +169,8 @@ struct AddWishlistView: View {
                 DatePickerView(selectedDate: $selectedDate, date: $date, isDatePickerVisible: $isDatePickerVisible)
             }
             if isNewItemDialogVisible {
-                AddNewItemView(isShown: $isNewItemDialogVisible, wishes: $wishes)
+                let module = AddNewItemModule(isShown: $isNewItemDialogVisible)
+                module.view()
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
@@ -177,6 +178,10 @@ struct AddWishlistView: View {
 }
 
 #Preview {
-    AddWishlistView()
-        .environmentObject(WishListViewModel())
+    let stateMachine = WishListsStateMachine()
+    let viewStateFactory = WishListsStateFactory()
+    let useCase = WishListsInteractor(repository: WishListRepository())
+   
+    
+    AddWishlistView(viewModel: WishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory, useCase: useCase))
 }

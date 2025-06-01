@@ -1,12 +1,23 @@
 import SwiftUI
 
-struct MainView: View {
-    @State private var isAuthorized = false
-    @StateObject var viewModel = WishListViewModel()
+struct WishListsState {
+    let addNewWishlistButton: NavigationLinkButtonViewState
+    let toGiveButton: NavigationLinkButtonViewState
+    let wishLists: [WishList]
+}
+
+struct WishListRootView: View {
+    private var isAuthorized = false
+    private var viewModel: WishListViewModel
     
     let columns = [
         GridItem(.adaptive(minimum: AppDimensions.wishListCardWidth, maximum: AppDimensions.wishListCardWidthMax))
     ]
+    
+    init(isAuthorized: Bool = false, viewModel: WishListViewModel) {
+        self.isAuthorized = isAuthorized
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         NavigationView {
@@ -85,7 +96,7 @@ struct MainView: View {
                 
                 HStack {
                     NavigationLink {
-                        AddWishlistView()
+                        AddWishlistView(viewModel: viewModel)
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
@@ -111,12 +122,18 @@ struct MainView: View {
                 .padding(.top)
                 .accessibilityIdentifier(AccessibilityIdentifiers.showToGiveViewButton)
                 
-                if !viewModel.wishLists.isEmpty {
+                if !viewModel.viewState.wishLists.isEmpty {
                     ScrollView {
                         LazyVGrid(columns: columns, spacing: AppPaddings.padding8) {
-                            ForEach(viewModel.wishLists) { wishList in
+                            ForEach(viewModel.viewState.wishLists) { wishList in
+                                
+                                let cardViewState = WishListCardViewState(
+                                    imageName: wishList.image ?? "",
+                                        name: wishList.name,
+                                    date: wishList.eventDate ?? Date()
+                                    )
                                 NavigationLink(destination: WishListDetailsView()) {
-                                    WishListCardView(wishList: wishList)
+                                    WishListCardView(viewState: cardViewState)
                                 }
                             }
                         }
@@ -146,12 +163,6 @@ struct MainView: View {
             .onAppear {
                 viewModel.loadWishLists()
             }
-            .onReceive(viewModel.$wishLists) { wishLists in
-                debugPrint("WishList count: \(wishLists.count)")
-                for wishList in wishLists {
-                    debugPrint("id: \(String(describing: wishList.id)), name: \(wishList.name)")
-                }
-            }
             .environmentObject(viewModel)
         }
     }
@@ -159,7 +170,12 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
-            .environmentObject(WishListViewModel())
+        let stateMachine = WishListsStateMachine()
+        let stateFactory = WishListsStateFactory()
+        let repository = WishListRepository()
+        let useCase = WishListsInteractor(repository: repository)
+        let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory, useCase: useCase)
+        
+        WishListRootView(viewModel: viewModel)
     }
 }
