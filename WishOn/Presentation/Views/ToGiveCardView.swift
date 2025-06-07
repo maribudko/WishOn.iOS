@@ -15,21 +15,21 @@ struct ToGiveCardView: View {
                 .shadow(radius: AppRadiuses.smallRadius)
                     
             VStack {
-                Image("filofax")
+                Image(asset: Asset.filofax)
                     .resizable()
                     .scaledToFill()
                     .frame(width: AppDimensions.wishListCardWidth, height: AppDimensions.wishListCardWidth)
                     .clipped()
                     .foregroundColor(.white)
                 
-                Text("Filofax Finsbury")
+                Text(L10n.nameHint)
                     .font(.callout)
                     .bold()
                     .foregroundColor(.white)
                     .lineLimit(1)
                     .fixedSize(horizontal: false, vertical: true)
                         
-                Text("10.12.24")
+                Text(L10n.dateHint)
                     .font(.footnote)
                     .foregroundColor(.white)
             }

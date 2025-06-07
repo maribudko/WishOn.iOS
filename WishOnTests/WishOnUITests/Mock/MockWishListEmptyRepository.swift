@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// CR: продакшн додаток взагалі не має мати цього коду, тільки тестовий 
 class MockWishListEmptyRepository: WishListRepositoryProtocol {
     func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()

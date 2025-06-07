@@ -41,37 +41,41 @@
 		EA5E257F2D4298F400B3ED34 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				"/Localized: Resources/Localizable.strings",
+				"/Localized: Sources/Resources/Localizable.strings",
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
 		};
 		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				App/DIRepositoriesContainer.swift,
-				Base/DatePickerView.swift,
-				Base/WishListCardView.swift,
 				Data/Repositories/WishListRepository.swift,
 				Domain/Models/Wish.swift,
 				Domain/Models/WishList.swift,
 				Domain/Protocols/WishListRepositoryProtocol.swift,
-				Presentation/Views/NewWishListView.swift,
 				Presentation/Views/ToGiveCardDetails.swift,
 				Presentation/Views/ToGiveCardView.swift,
 				Presentation/Views/ToGiveView.swift,
 				Presentation/Views/WishListDetailsView.swift,
-				Scenes/AddNewItem/AddNewitemModule.swift,
-				Scenes/AddNewItem/AddNewItemStateFactory.swift,
-				Scenes/AddNewItem/AddNewItemStateMachine.swift,
-				Scenes/AddNewItem/AddNewItemView.swift,
-				Scenes/AddNewItem/AddNewItemViewModel.swift,
-				Scenes/AddNewItem/Validator.swift,
-				Scenes/WishListsRoot/WishListRootView.swift,
-				Scenes/WishListsRoot/WishListsInteractor.swift,
-				Scenes/WishListsRoot/WishListsModule.swift,
-				Scenes/WishListsRoot/WishListsStateFactory.swift,
-				Scenes/WishListsRoot/WishListsStateMachine.swift,
-				Scenes/WishListsRoot/WishListViewModel.swift,
+				Sources/App/DIRepositoriesContainer.swift,
+				Sources/Base/Views/DatePickerView.swift,
+				Sources/Base/Views/WishListCardView.swift,
+				Sources/Scenes/AddNewItem/AddNewitemModule.swift,
+				Sources/Scenes/AddNewItem/AddNewItemStateFactory.swift,
+				Sources/Scenes/AddNewItem/AddNewItemStateMachine.swift,
+				Sources/Scenes/AddNewItem/AddNewItemView.swift,
+				Sources/Scenes/AddNewItem/AddNewItemViewModel.swift,
+				Sources/Scenes/AddNewItem/Validator.swift,
+				Sources/Scenes/NewWishList/NewWishLIstModule.swift,
+				Sources/Scenes/NewWishList/NewWishListStateFactory.swift,
+				Sources/Scenes/NewWishList/NewWishListStateMachine.swift,
+				Sources/Scenes/NewWishList/NewWishListView.swift,
+				Sources/Scenes/NewWishList/NewWishListViewModel.swift,
+				Sources/Scenes/WishListsRoot/WishListRootView.swift,
+				Sources/Scenes/WishListsRoot/WishListsInteractor.swift,
+				Sources/Scenes/WishListsRoot/WishListsModule.swift,
+				Sources/Scenes/WishListsRoot/WishListsStateFactory.swift,
+				Sources/Scenes/WishListsRoot/WishListsStateMachine.swift,
+				Sources/Scenes/WishListsRoot/WishListViewModel.swift,
 				Utilitites/AccessibilityIdentifiers.swift,
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;
