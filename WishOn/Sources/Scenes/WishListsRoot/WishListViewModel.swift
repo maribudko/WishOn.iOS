@@ -43,7 +43,6 @@ class WishListViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-   
     
     func addNewWishList(wishList: WishList) {
         useCase.addWishList(wishList)

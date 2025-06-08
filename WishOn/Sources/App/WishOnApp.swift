@@ -24,9 +24,6 @@ final class AppEnvironment {
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @State private var isLoggedIn = false
-    private let loginModule = LoginModule()
-    
-    let persistenceController = PersistenceController.shared
     
     init() {
         // CR: створити для unit tests окремий таргет +
@@ -43,15 +40,13 @@ struct WishOnApp: App {
     var body: some Scene {
         WindowGroup {
             if isLoggedIn {
-                WishListsModule()
+                WishListsModule(resolver: DIContainer.shared.container)
                     .view()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
-                LoginModule(onLoginSuccess: {
+                LoginModule(resolver: DIContainer.shared.container, onLoginSuccess: {
                     isLoggedIn = true
                 })
                 .view()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
             }
         }
     }

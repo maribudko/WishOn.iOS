@@ -21,17 +21,15 @@ struct LoginView: View {
             ButtonView(buttonViewState: viewModel.viewState.loginGoogleButton)
             
             ButtonView(buttonViewState: viewModel.viewState.loginAppleButton)
-                      // , action: viewModel.onAppleLoginButtonTapped)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, AppPaddings.padding20)
         .background(Color(Asset.backgroundColor.color).gradient)
         .fullScreenCover(isPresented: $viewModel.isShowinWishListsView) {
-            WishListsModule().view()
+            WishListsModule(resolver: DIContainer.shared.container).view()
         }
     }
 }
-
 
 #Preview {
     let stateMachine = LoginStateMachine()

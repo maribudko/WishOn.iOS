@@ -6,15 +6,25 @@
 //
 
 import SwiftUI
+import Swinject
 
 struct WishListsModule: BaseSwiftUIModule {
+    let resolver: Resolver
     
     func view() -> some View {
-        let stateMachine = WishListsStateMachine()
-        let viewStateFactory = WishListsStateFactory()
-        let repository = WishListRepository()
-        let useCase = WishListsInteractor(repository: repository)
-        let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory, useCase: useCase)
+        guard
+            let stateMachine = resolver.resolve(WishListsStateMachine.self),
+            let stateFactory = resolver.resolve(WishListsStateFactory.self),
+            let useCase = resolver.resolve(WishListUseCase.self)
+        else {
+            fatalError("Failed to resolve WishListsModule dependencies")
+        }
+        //CR: як уникнути ситуації, коли тип не зареєстровано у контейнері?
+        let viewModel = WishListViewModel(
+            stateMachine: stateMachine,
+            stateFactory: stateFactory,
+            useCase: useCase
+        )
         return WishListRootView(viewModel: viewModel)
         
     }

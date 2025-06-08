@@ -6,14 +6,19 @@
 //
 
 import SwiftUICore
+import Swinject
 
 struct LoginModule: BaseSwiftUIModule {
+    let resolver: Resolver
     var onLoginSuccess: (() -> Void)?
     
     func view() -> some View {
-        let stateMachine = LoginStateMachine()
-        let viewStateFactory = LoginStateFactory()
-        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory)
+        guard let stateMachine = resolver.resolve(LoginStateMachine.self),
+              let stateFactory = resolver.resolve(LoginStateFactory.self)
+        else {
+            fatalError("Failed to resolve WishListsModule dependencies")
+        }
+        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
         
         stateMachine.onLoginSuccess = {
             onLoginSuccess?()
