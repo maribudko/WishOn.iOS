@@ -6,7 +6,6 @@
 //
 
 import Combine
-import Foundation
 
 protocol WishListUseCase {
     func fetchWishLists() -> AnyPublisher<[WishList], Error>

@@ -26,7 +26,10 @@ struct LoginView: View {
         .padding(.horizontal, AppPaddings.padding20)
         .background(Color(Asset.backgroundColor.color).gradient)
         .fullScreenCover(isPresented: $viewModel.isShowinWishListsView) {
-            WishListsModule(resolver: DIContainer.shared.container).view()
+            AppAssembler.shared
+                .resolver
+                .resolve(WishListsModule.self)
+                .view()
         }
     }
 }

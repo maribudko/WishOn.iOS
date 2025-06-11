@@ -40,13 +40,17 @@ struct WishOnApp: App {
     var body: some Scene {
         WindowGroup {
             if isLoggedIn {
-                WishListsModule(resolver: DIContainer.shared.container)
+                AppAssembler.shared
+                    .resolver
+                    .resolve(WishListsModule.self)
                     .view()
             } else {
-                LoginModule(resolver: DIContainer.shared.container, onLoginSuccess: {
-                    isLoggedIn = true
-                })
-                .view()
+                AppAssembler.shared
+                    .resolver
+                    .resolve(LoginModule.self, argument: {
+                        isLoggedIn = true
+                    })
+                    .view()
             }
         }
     }
