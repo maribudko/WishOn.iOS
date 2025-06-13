@@ -18,7 +18,6 @@ struct WishListsModule: BaseSwiftUIModule {
             stateFactory: stateFactory,
             useCase: useCase
         )
-        return WishListRootView(viewModel: viewModel)
-        
+        return WishListRootView(viewModel: viewModel)   
     }
 }

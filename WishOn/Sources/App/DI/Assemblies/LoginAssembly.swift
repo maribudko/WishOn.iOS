@@ -11,6 +11,7 @@ final class LoginAssembly: Assembly {
     func assemble(container: Swinject.Container) {
         container.register(LoginStateMachine.self) { _ in LoginStateMachine() }
         container.register(LoginStateFactory.self) { _ in LoginStateFactory() }
+            .inObjectScope(.container)
         
         container.register(LoginModule.self) { (resolver, onLoginSuccess: @escaping (() -> Void)) in
             guard

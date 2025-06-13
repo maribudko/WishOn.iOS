@@ -16,7 +16,9 @@ final class AppAssembler {
     private init() {
         assembler = Assembler([
             LoginAssembly(),
-            WishListAssembly(),
+            WishListsAssembly(),
+            AddNewItemAssembly(),
+            NewWishListAssembly(),
         ])
         resolver = SwinjectResolver(resolver: assembler.resolver)
     }

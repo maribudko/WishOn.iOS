@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct NewWishLIstModule: BaseSwiftUIModule {
+struct NewWishListModule: BaseSwiftUIModule {
+    let stateMachine: NewWishListStateMachine
+    let stateFactory: NewWishListStateFactory
     
     func view() -> some View {
-        let stateMachine = NewWishListStateMachine()
-        let stateFactory = NewWishListStateFactory()
         let viewModel = NewWishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
         return NewWishlistView(viewModel: viewModel)
     }

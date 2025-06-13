@@ -167,8 +167,10 @@ struct NewWishlistView: View {
                 DatePickerView(viewState: viewModel.viewState.datePicker)
             }
             if isNewItemDialogVisible {
-                let module = AddNewItemModule(isShown: $isNewItemDialogVisible)
-                module.view()
+                let module = AppAssembler.shared
+                    .resolver
+                    .resolve(AddNewItemModule.self)
+                module.view(isShown: $isNewItemDialogVisible)
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)

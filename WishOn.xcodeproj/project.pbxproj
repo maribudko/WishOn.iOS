@@ -62,7 +62,7 @@
 				Sources/Scenes/AddNewItem/AddNewItemView.swift,
 				Sources/Scenes/AddNewItem/AddNewItemViewModel.swift,
 				Sources/Scenes/AddNewItem/Validator.swift,
-				Sources/Scenes/NewWishList/NewWishLIstModule.swift,
+				Sources/Scenes/NewWishList/NewWishListModule.swift,
 				Sources/Scenes/NewWishList/NewWishListStateFactory.swift,
 				Sources/Scenes/NewWishList/NewWishListStateMachine.swift,
 				Sources/Scenes/NewWishList/NewWishListView.swift,

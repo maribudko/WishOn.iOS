@@ -7,7 +7,7 @@
 
 import Swinject
 
-final class WishListAssembly: Assembly {
+final class WishListsAssembly: Assembly {
     func assemble(container: Container) {
         container.register(WishListRepositoryProtocol.self) { _ in WishListRepository() }
             .inObjectScope(.container)
@@ -20,6 +20,7 @@ final class WishListAssembly: Assembly {
         
         container.register(WishListsStateMachine.self) { _ in WishListsStateMachine() }
         container.register(WishListsStateFactory.self) { _ in WishListsStateFactory() }
+            .inObjectScope(.container)
         
         container.register(WishListsModule.self) { resolver in
             guard
