@@ -9,6 +9,6 @@ import Foundation
 
 extension L10n {
     static var trimmedEmptyString: String {
-        emptyText.trimmingCharacters(in: .whitespacesAndNewlines)
+        spaceText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

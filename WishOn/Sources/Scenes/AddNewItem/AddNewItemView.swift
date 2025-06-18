@@ -12,6 +12,7 @@ struct AddNewItemState {
     let link: TextFieldViewState
     let price: PriceInputViewState
     let button: ButtonViewState
+    let crossIcon: IconViewState
 }
 
 enum FocusableField: Hashable {
@@ -36,8 +37,7 @@ struct AddNewItemView: View {
                     Button {
                         isShown = false
                     } label: {
-                        Image(systemName: SFSymbols.close.name)
-                            .resizable()
+                        IconView(viewState: viewModel.viewState.crossIcon)
                             .foregroundColor(Color(Asset.primaryColor.color))
                     }
                     .frame(width: AppDimensions.iconSize,
@@ -45,7 +45,7 @@ struct AddNewItemView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
-                Image(asset: Asset.filofax)
+                Image(asset: Asset.blankImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: AppDimensions.newItemImageSize,
@@ -107,7 +107,7 @@ struct AddNewItemView: View {
 }
 
 #Preview {
-    let stateMachine = AddNewItemStateMachine()
+    let stateMachine = AddNewItemStateMachine(crossIcon: .init(icon: SFSymbolsIcon(symbol: .close)))
     let stateFactory = AddNewItemStateFactory()
     let viewModel = AddNewItemViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
     

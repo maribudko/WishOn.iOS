@@ -15,7 +15,7 @@ struct ToGiveCardView: View {
                 .shadow(radius: AppRadiuses.smallRadius)
                     
             VStack {
-                Image(asset: Asset.filofax)
+                Image(asset: Asset.blankImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: AppDimensions.wishListCardWidth, height: AppDimensions.wishListCardWidth)

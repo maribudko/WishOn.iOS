@@ -4,6 +4,9 @@ struct WishListsState {
     let addNewWishlistButton: NavigationLinkButtonViewState
     let toGiveButton: NavigationLinkButtonViewState
     let wishLists: [WishList]
+    let calendarIcon: IconViewState
+    let profileIcon: IconViewState
+    let emptyListIcon: IconViewState
 }
 
 struct WishListRootView: View {
@@ -29,8 +32,7 @@ struct WishListRootView: View {
                     Button {
                         //TODO: show calendar with planed events
                     } label: {
-                        Image(systemName: SFSymbols.calendar.name)
-                            .resizable()
+                        IconView(viewState: viewModel.viewState.calendarIcon)
                             .frame(width: AppDimensions.iconLargeSize,
                                    height: AppDimensions.iconLargeSize)
                             .foregroundColor(
@@ -50,8 +52,7 @@ struct WishListRootView: View {
                         // TODO: open user profile
                     } label: {
                         ZStack {
-                            Image(systemName: SFSymbols.person.name)
-                                .resizable()
+                            IconView(viewState: viewModel.viewState.profileIcon)
                                 .frame(width: AppDimensions.iconLargeSize, height: AppDimensions.iconLargeSize, alignment: .trailing)
                                 .foregroundColor(
                                     Color(Asset.primaryTextColor.color)
@@ -69,17 +70,7 @@ struct WishListRootView: View {
                 }
                 
                 HStack(alignment: .top) {
-                    Image(systemName: SFSymbols.gift.name)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: AppDimensions.userImageSize,
-                               height: AppDimensions.userImageSize)
-                        .foregroundColor(Color(Asset.backgroundColor.color))
-                        .padding(AppPaddings.padding26)
-                        .background(
-                            Circle().fill(Color(Asset.primaryColor.color))
-                        )
-                        .clipShape(.circle)
+                    UserImageView(viewState: viewModel.userImageViewState)
                     
                     VStack(alignment: .leading) {
                         Text(L10n.helloWisher)
@@ -147,8 +138,7 @@ struct WishListRootView: View {
                     }
                 } else {
                     VStack {
-                        Image(systemName: SFSymbols.heart.name)
-                            .resizable()
+                        IconView(viewState: viewModel.viewState.emptyListIcon)
                             .scaledToFit()
                             .frame(width: AppDimensions.emptyListImageSize)
                             .foregroundColor(Color(Asset.eucalyptus.color))
@@ -176,7 +166,11 @@ struct WishListRootView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        let stateMachine = WishListsStateMachine()
+        let stateMachine = WishListsStateMachine(
+            calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar)),
+            profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person)),
+            emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart))
+        )
         let stateFactory = WishListsStateFactory()
         let repository = WishListRepository()
         let useCase = WishListsInteractor(repository: repository)

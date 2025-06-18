@@ -41,10 +41,18 @@ final class WishListsStateMachine {
     
     private let addNewWishlistButton: NavLinkButtonState
     private let toGiveButton: NavLinkButtonState
+    private let calendarIcon: IconState
+    private let profileIcon: IconState
+    private let emptyListIcon: IconState
+    private var userImageData: Data? = nil
+    //private let userImage: UserProfileImageState
     
-    init() {
+    init(calendarIcon: IconState, profileIcon: IconState, emptyListIcon: IconState) {
         addNewWishlistButton = .init(label: L10n.addNewWishlist, accessibilityId: AccessibilityIdentifiers.addWishlistButton, color: .green)
         toGiveButton = .init(label: L10n.toGive, accessibilityId: AccessibilityIdentifiers.showToGiveViewButton, color: .grey)
+        self.calendarIcon = calendarIcon
+        self.profileIcon = profileIcon
+        self.emptyListIcon = emptyListIcon
     }
     
     func setWishLists(_ wishLists: [WishList]) {
@@ -72,6 +80,10 @@ final class WishListsStateMachine {
         onToGiveTapped?()
     }
     
+    func updateUserImage(data: Data?) {
+        self.userImageData = data
+    }
+    
 }
 
 extension WishListsStateMachine {
@@ -79,9 +91,19 @@ extension WishListsStateMachine {
         let wishLists: [WishListItemState]
         let addNewWishlistButton: NavLinkButtonState
         let toGiveButton: NavLinkButtonState
+        let calendarIcon: IconState
+        let profileIcon: IconState
+        let emptyListIcon: IconState
     }
     
     var state: State {
-        .init(wishLists: wishListItems, addNewWishlistButton: addNewWishlistButton, toGiveButton: toGiveButton)
+        .init(
+            wishLists: wishListItems,
+            addNewWishlistButton: addNewWishlistButton,
+            toGiveButton: toGiveButton,
+            calendarIcon: calendarIcon,
+            profileIcon: profileIcon,
+            emptyListIcon: emptyListIcon
+        )
     }
 }

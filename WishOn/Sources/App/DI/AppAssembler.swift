@@ -19,6 +19,7 @@ final class AppAssembler {
             WishListsAssembly(),
             AddNewItemAssembly(),
             NewWishListAssembly(),
+            IconAssembly(),
         ])
         resolver = SwinjectResolver(resolver: assembler.resolver)
     }

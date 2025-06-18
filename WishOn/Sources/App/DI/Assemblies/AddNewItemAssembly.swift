@@ -9,7 +9,12 @@ import Swinject
 
 final class AddNewItemAssembly: Assembly {
     func assemble(container: Swinject.Container) {
-        container.register(AddNewItemStateMachine.self) { _ in AddNewItemStateMachine() }
+        container.register(AddNewItemStateMachine.self) { resolver in
+            guard let closeIcon = resolver.resolve(IconRepresentable.self, name: "closeIcon") else {
+                fatalError("Could not resolve dependencies for AddNewItemModule")
+            }
+            return AddNewItemStateMachine(crossIcon: IconState(icon: closeIcon))
+        }
         container.register(AddNewItemStateFactory.self) { _ in AddNewItemStateFactory() }
             .inObjectScope(.container)
         

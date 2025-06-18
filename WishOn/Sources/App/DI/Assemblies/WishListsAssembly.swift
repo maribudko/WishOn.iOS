@@ -18,7 +18,21 @@ final class WishListsAssembly: Assembly {
             )
         }
         
-        container.register(WishListsStateMachine.self) { _ in WishListsStateMachine() }
+        container.register(WishListsStateMachine.self) { resolver in
+            guard
+                let calendarIcon = resolver.resolve(IconRepresentable.self, name: IconNames.calendarIcon),
+                let profileIcon = resolver.resolve(IconRepresentable.self, name: IconNames.profileIcon),
+                let emptyListIcon = resolver.resolve(IconRepresentable.self, name: IconNames.heartListIcon)
+            else {
+                fatalError("Could not resolve dependencies for WishListsModule")
+            }
+                
+            return WishListsStateMachine(
+                calendarIcon: IconState(icon: calendarIcon, isResizable: true),
+                profileIcon: IconState(icon: profileIcon, isResizable: true),
+                emptyListIcon: IconState(icon: emptyListIcon, isResizable: true)
+            )
+        }
         container.register(WishListsStateFactory.self) { _ in WishListsStateFactory() }
             .inObjectScope(.container)
         

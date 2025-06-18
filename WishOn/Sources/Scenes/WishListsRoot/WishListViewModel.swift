@@ -11,6 +11,7 @@ import Firebase
 
 class WishListViewModel: ObservableObject {
     @Published private(set) var viewState: WishListsState
+    @Published var userImageViewState: UserImageViewState
     
     private let stateMachine: WishListsStateMachine
     private let stateFactory: WishListsStateFactory
@@ -23,6 +24,9 @@ class WishListViewModel: ObservableObject {
         self.stateFactory = stateFactory
         self.useCase = useCase
         self.viewState = stateFactory.make(from: stateMachine.state)
+        self.userImageViewState = .init(image: nil, placeholderIcon: SFSymbolsIcon(symbol: .gift))
+        //TODO: load user image
+        //loadUserImage()
     }
     
     func onAppear() {
@@ -71,8 +75,9 @@ class WishListViewModel: ObservableObject {
             .store(in: &cancellables)
 
     }
-    
+
     private func updateViewState() {
         viewState = stateFactory.make(from: stateMachine.state)
     }
+    
 }
