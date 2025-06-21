@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WOResources
 
 struct WishListDetailsView: View {
     @Environment(\.presentationMode) var presentationMode

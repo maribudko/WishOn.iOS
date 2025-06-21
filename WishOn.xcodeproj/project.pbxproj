@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA59CB702E06A48800F78E22 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB6F2E06A48800F78E22 /* WOResources */; };
 		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
@@ -33,19 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA59CA952E06A22E00F78E22 /* WOResources */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WOResources; sourceTree = "<group>"; };
 		EAD48AF12CF59C5100C0A29D /* WishOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		EA5E257F2D4298F400B3ED34 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				"/Localized: Sources/Resources/Localizable.strings",
-			);
-			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
-		};
 		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -95,7 +90,6 @@
 		EAD48AF32CF59C5100C0A29D /* WishOn */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				EA5E257F2D4298F400B3ED34 /* Exceptions for "WishOn" folder in "WishOn" target */,
 				EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */,
 			);
 			path = WishOn;
@@ -123,6 +117,7 @@
 			files = (
 				EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */,
 				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
+				EA59CB702E06A48800F78E22 /* WOResources in Frameworks */,
 				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
 				EA984EB72DF4646A00D6179C /* Swinject in Frameworks */,
 			);
@@ -150,6 +145,7 @@
 		EAD48AE82CF59C5000C0A29D = {
 			isa = PBXGroup;
 			children = (
+				EA59CA952E06A22E00F78E22 /* WOResources */,
 				EAD48AF32CF59C5100C0A29D /* WishOn */,
 				EAF559672D50F49C009E4AEC /* WishOnTests */,
 				EAD48AF22CF59C5100C0A29D /* Products */,
@@ -200,6 +196,7 @@
 				EAF55A722D53C316009E4AEC /* FirebaseFirestore */,
 				EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */,
 				EA984EB62DF4646A00D6179C /* Swinject */,
+				EA59CB6F2E06A48800F78E22 /* WOResources */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -288,6 +285,7 @@
 			packageReferences = (
 				EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */,
+				EA59CB6E2E06A48800F78E22 /* XCLocalSwiftPackageReference "WOResources" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EAD48AF22CF59C5100C0A29D /* Products */;
@@ -673,6 +671,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		EA59CB6E2E06A48800F78E22 /* XCLocalSwiftPackageReference "WOResources" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = WOResources;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -693,6 +698,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EA59CB6F2E06A48800F78E22 /* WOResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOResources;
+		};
 		EA984EB62DF4646A00D6179C /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */;

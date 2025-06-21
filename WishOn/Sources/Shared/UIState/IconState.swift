@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WOResources
 
 final class IconState {
     let icon: IconRepresentable

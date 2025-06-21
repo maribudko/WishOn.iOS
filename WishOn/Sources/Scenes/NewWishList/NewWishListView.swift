@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WOResources
 
 struct NewWishListState {
     let name: TextFieldViewState

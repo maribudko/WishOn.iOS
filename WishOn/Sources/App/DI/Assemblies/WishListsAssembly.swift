@@ -6,6 +6,7 @@
 //
 
 import Swinject
+import WOResources
 
 final class WishListsAssembly: Assembly {
     func assemble(container: Container) {

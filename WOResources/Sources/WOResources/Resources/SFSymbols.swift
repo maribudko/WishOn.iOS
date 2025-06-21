@@ -8,11 +8,11 @@
 import Foundation
 import SwiftUI
 
-protocol IconRepresentable {
+public protocol IconRepresentable {
     var image: Image { get }
 }
 
-enum SFSymbols: String {
+public enum SFSymbols: String {
     
     case close = "xmark"
     case back = "chevron.left"
@@ -27,16 +27,20 @@ enum SFSymbols: String {
     case gift = "gift.fill"
     case heart = "heart.text.square"
     
-    var name: String { rawValue }
+    public var name: String { rawValue }
     
-    var image: Image {
+    public var image: Image {
         Image(systemName: self.rawValue)
     }
 }
 
-struct SFSymbolsIcon: IconRepresentable {
+public struct SFSymbolsIcon: IconRepresentable {
     let symbol: SFSymbols
-    var image: Image {
+    public init(symbol: SFSymbols) {
+        self.symbol = symbol
+    }
+    
+    public var image: Image {
         Image(systemName: symbol.rawValue)
     }
 }

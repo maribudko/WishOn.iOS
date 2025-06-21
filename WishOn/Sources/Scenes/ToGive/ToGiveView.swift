@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WOResources
 
 struct ToGiveView: View {
     @Environment(\.presentationMode) var presentationMode

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WOResources
 
 struct UserImageViewState {
     let image: Data?
