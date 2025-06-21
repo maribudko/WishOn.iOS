@@ -8,15 +8,24 @@
 import SwiftUI
 import WOResources
 
-struct UserImageViewState {
-    let image: Data?
-    let placeholderIcon: IconRepresentable
+public struct UserImageViewState {
+    public let image: Data?
+    public let placeholderIcon: IconRepresentable
+    
+    public init(image: Data?, placeholderIcon: IconRepresentable) {
+        self.image = image
+        self.placeholderIcon = placeholderIcon
+    }
 }
 
-struct UserImageView: View {
-    let viewState: UserImageViewState
+public struct UserImageView: View {
+    public let viewState: UserImageViewState
     
-    var body: some View {
+    public init(viewState: UserImageViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         Group {
             if let data = viewState.image, let uiImage = UIImage(data: data) {
                 Image(uiImage: uiImage)

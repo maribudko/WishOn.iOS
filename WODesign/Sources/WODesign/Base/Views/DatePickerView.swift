@@ -6,19 +6,30 @@
 //
 
 import SwiftUI
+import WOResources
 
-struct DatePickerViewState {
-    let selectedDate: Date
+public struct DatePickerViewState {
+    public let selectedDate: Date
     //let isVisible: Bool // ??? Саша - продебажити
-    let onDateSelected: (Date) -> Void
-    let onDismiss: () -> Void
+    public let onDateSelected: (Date) -> Void
+    public let onDismiss: () -> Void
+    
+    public init(selectedDate: Date, onDateSelected: @escaping (Date) -> Void, onDismiss: @escaping () -> Void) {
+        self.selectedDate = selectedDate
+        self.onDateSelected = onDateSelected
+        self.onDismiss = onDismiss
+    }
 }
 
-struct DatePickerView: View {
+public struct DatePickerView: View {
     
-    let viewState: DatePickerViewState
+    public let viewState: DatePickerViewState
     
-    var body: some View {
+    public init(viewState: DatePickerViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         ZStack {
             Color.black.opacity(AppOpacityLevels.backgroundOpacity)
                 .ignoresSafeArea()

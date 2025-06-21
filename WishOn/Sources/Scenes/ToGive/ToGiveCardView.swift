@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WOResources
+import WODesign
 
 struct ToGiveCardView: View {
     var body: some View {

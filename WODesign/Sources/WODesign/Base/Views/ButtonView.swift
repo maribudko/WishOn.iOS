@@ -6,16 +6,26 @@
 //
 
 import SwiftUI
+import WOResources
 
-struct ButtonViewState {
-    let label: String
-    let action: () -> Void
+public struct ButtonViewState {
+    public let label: String
+    public let action: () -> Void
+    
+    public init(label: String, action: @escaping () -> Void) {
+        self.label = label
+        self.action = action
+    }
 }
 
-struct ButtonView: View {
-    let buttonViewState: ButtonViewState
+public struct ButtonView: View {
+    public let buttonViewState: ButtonViewState
     
-    var body: some View {
+    public init(buttonViewState: ButtonViewState) {
+        self.buttonViewState = buttonViewState
+    }
+    
+    public var body: some View {
         Button {
             buttonViewState.action()
         } label: {

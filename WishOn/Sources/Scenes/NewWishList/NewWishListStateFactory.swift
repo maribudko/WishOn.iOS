@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WOResources
+import WODesign
 
 final class NewWishListStateFactory {
     func make(from state: NewWishListStateMachine.State) -> NewWishListState {

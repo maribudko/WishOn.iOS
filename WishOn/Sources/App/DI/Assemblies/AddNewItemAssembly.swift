@@ -7,6 +7,7 @@
 
 import Swinject
 import WOResources
+import WODesign
 
 final class AddNewItemAssembly: Assembly {
     func assemble(container: Swinject.Container) {

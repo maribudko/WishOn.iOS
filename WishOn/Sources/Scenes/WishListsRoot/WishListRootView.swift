@@ -1,5 +1,6 @@
 import SwiftUI
 import WOResources
+import WODesign
 
 struct WishListsState {
     let addNewWishlistButton: NavigationLinkButtonViewState

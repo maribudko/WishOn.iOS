@@ -6,17 +6,28 @@
 //
 
 import SwiftUI
+import WOResources
 
-struct WishListCardViewState {
-    let imageName: String
-    let name: String
-    let formattedDate: String
+public struct WishListCardViewState {
+    public let imageName: String
+    public let name: String
+    public let formattedDate: String
+    
+    public init(imageName: String, name: String, formattedDate: String) {
+        self.imageName = imageName
+        self.name = name
+        self.formattedDate = formattedDate
+    }
 }
 
-struct WishListCardView: View {
-    let viewState: WishListCardViewState
+public struct WishListCardView: View {
+    public let viewState: WishListCardViewState
     
-    var body: some View {
+    public init(viewState: WishListCardViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: AppRadiuses.radius10)
                 .fill(Color(Asset.highLightColor.color))

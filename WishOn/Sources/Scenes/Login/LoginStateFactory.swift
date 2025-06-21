@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WOResources
+import WODesign
 
 final class LoginStateFactory {
     func make(from state: LoginStateMachine.State) -> LoginState {

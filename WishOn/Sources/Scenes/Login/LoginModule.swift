@@ -6,6 +6,7 @@
 //
 
 import SwiftUICore
+import WODesign
 
 struct LoginModule: BaseSwiftUIModule {
     

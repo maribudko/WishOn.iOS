@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import Firebase
 import WOResources
+import WODesign
 
 class WishListViewModel: ObservableObject {
     @Published private(set) var viewState: WishListsState

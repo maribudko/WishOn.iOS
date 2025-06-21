@@ -8,11 +8,11 @@
 import Foundation
 import WOResources
 
-final class IconState {
-    let icon: IconRepresentable
-    let isResizable: Bool?
+public final class IconState {
+    public let icon: IconRepresentable
+    public let isResizable: Bool?
     
-    init(icon: IconRepresentable, isResizable: Bool? = false) {
+    public init(icon: IconRepresentable, isResizable: Bool? = false) {
         self.icon = icon
         self.isResizable = isResizable
     }

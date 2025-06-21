@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WOResources
 
 final class AddNewItemViewModel: ObservableObject {			    
     @Published private(set) var viewState: AddNewItemState

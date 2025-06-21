@@ -5,15 +5,14 @@
 //  Created by Mari Budko on 14.05.2025.
 //
 
+import SwiftUI
 
 enum FieldKind {
     case name
     case city
 }
 
-import SwiftUI
-
-enum InputFieldType {
+public enum InputFieldType {
     case email
     case url
     case name
@@ -51,18 +50,30 @@ enum InputFieldType {
     }
 }
 
-struct TextFieldViewState {
-    let title: String
-    let text: String
-    let errorMessage: String?
-    let inputType: InputFieldType
+public struct TextFieldViewState {
+    public let title: String
+    public let text: String
+    public let errorMessage: String?
+    public let inputType: InputFieldType
+    
+    public init(title: String, text: String, errorMessage: String?, inputType: InputFieldType) {
+        self.title = title
+        self.text = text
+        self.errorMessage = errorMessage
+        self.inputType = inputType
+    }
 }
 
-struct TextFieldView: View {
-    let viewState: TextFieldViewState
-    let onTextChanged: (String) -> Void
+public struct TextFieldView: View {
+    public let viewState: TextFieldViewState
+    public let onTextChanged: (String) -> Void
     
-    var body: some View {
+    public init(viewState: TextFieldViewState, onTextChanged: @escaping (String) -> Void) {
+        self.viewState = viewState
+        self.onTextChanged = onTextChanged
+    }
+    
+    public var body: some View {
         VStack(alignment: .leading, spacing: 2) {
             TextField(
                 viewState.title,

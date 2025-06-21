@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WODesign
 
 final class NewWishListStateMachine {
     

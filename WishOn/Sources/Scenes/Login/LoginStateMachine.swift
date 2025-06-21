@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WOResources
 
 class LoginStateMachine {
     

@@ -8,19 +8,24 @@
 import SwiftUI
 import WOResources
 
-struct IconViewState {
-    let icon: IconRepresentable
-    let isResizable: Bool?
+public struct IconViewState {
+    public let icon: IconRepresentable
+    public let isResizable: Bool?
     
-    init(icon: IconRepresentable, isResizable: Bool? = nil) {
+    public init(icon: IconRepresentable, isResizable: Bool? = nil) {
         self.icon = icon
         self.isResizable = isResizable
     }
 }
 
-struct IconView: View {
-    let viewState: IconViewState
-    var body: some View {
+public struct IconView: View {
+    public let viewState: IconViewState
+    
+    public init(viewState: IconViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         Group {
             if viewState.isResizable == true {
                 viewState.icon.image

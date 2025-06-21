@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-protocol BaseSwiftUIModule {
+public protocol BaseSwiftUIModule {
     
     associatedtype ContentView: View
     func view() -> ContentView

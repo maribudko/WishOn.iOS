@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WOResources
+import WODesign
 
 struct LoginState {
     let loginGoogleButton: ButtonViewState

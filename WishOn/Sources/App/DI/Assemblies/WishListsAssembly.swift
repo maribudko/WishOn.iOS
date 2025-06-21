@@ -7,6 +7,7 @@
 
 import Swinject
 import WOResources
+import WODesign
 
 final class WishListsAssembly: Assembly {
     func assemble(container: Container) {

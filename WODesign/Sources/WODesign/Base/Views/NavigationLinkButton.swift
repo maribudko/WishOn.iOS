@@ -6,22 +6,33 @@
 //
 
 import SwiftUI
+import WOResources
 
-struct NavigationLinkButtonViewState {
+public struct NavigationLinkButtonViewState {
     let label: String
     let accessibilityId: String
     let color: ButtonColor
+    
+    public init(label: String, accessibilityId: String, color: ButtonColor) {
+        self.label = label
+        self.accessibilityId = accessibilityId
+        self.color = color
+    }
 }
 
-enum ButtonColor {
+public enum ButtonColor {
     case green
     case grey
 }
 
-struct NavigationLinkButton: View {
+public struct NavigationLinkButton: View {
     let viewState: NavigationLinkButtonViewState
     
-    var body: some View {
+    public init(viewState: NavigationLinkButtonViewState) {
+        self.viewState = viewState
+    }
+    
+    public var body: some View {
         Text(viewState.label)
             .padding()
             .frame(maxWidth: .infinity)

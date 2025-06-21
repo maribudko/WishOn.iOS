@@ -6,20 +6,34 @@
 //
 
 import SwiftUI
+import WOResources
 
-struct PriceInputViewState {
-    let price: String
-    let currency: String
-    let currencies: [String]
-    let errorMessage: String?
+public struct PriceInputViewState {
+    public let price: String
+    public let currency: String
+    public let currencies: [String]
+    public let errorMessage: String?
+    
+    public init(price: String, currency: String, currencies: [String], errorMessage: String?) {
+        self.price = price
+        self.currency = currency
+        self.currencies = currencies
+        self.errorMessage = errorMessage
+    }
 }
 
-struct PriceInputView: View {
-    let viewState: PriceInputViewState
-    let onCurrencyChanged: (String) -> Void
-    let onPriceChanged: (String) -> Void
+public struct PriceInputView: View {
+    public let viewState: PriceInputViewState
+    public let onCurrencyChanged: (String) -> Void
+    public let onPriceChanged: (String) -> Void
+    
+    public init(viewState: PriceInputViewState, onCurrencyChanged: @escaping (String) -> Void, onPriceChanged: @escaping (String) -> Void) {
+        self.viewState = viewState
+        self.onCurrencyChanged = onCurrencyChanged
+        self.onPriceChanged = onPriceChanged
+    }
 
-    var body: some View {
+    public var body: some View {
         VStack(alignment: .leading){
             HStack {
                 TextField(L10n.priceHint, text: Binding(

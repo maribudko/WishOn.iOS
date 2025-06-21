@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WODesign
 
 struct NewWishListModule: BaseSwiftUIModule {
     let stateMachine: NewWishListStateMachine

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WODesign
 
 struct ToGiveCardDetails: View {
     @Environment(\.presentationMode) var presentationMode

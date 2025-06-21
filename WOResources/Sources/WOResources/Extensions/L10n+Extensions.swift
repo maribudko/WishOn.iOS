@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension L10n {
+public extension L10n {
     static var trimmedEmptyString: String {
         spaceText.trimmingCharacters(in: .whitespacesAndNewlines)
     }

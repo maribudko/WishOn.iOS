@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import WOResources
+import WODesign
 
 final class AddNewItemStateFactory {
     func make(from state: AddNewItemStateMachine.State) -> AddNewItemState {
