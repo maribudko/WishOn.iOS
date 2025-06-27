@@ -8,6 +8,7 @@
 import Foundation
 import WOResources
 import WODesign
+import WOCore
 
 final class AddNewItemStateMachine {
     

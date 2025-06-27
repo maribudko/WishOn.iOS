@@ -7,6 +7,7 @@
 
 import Foundation
 import WOResources
+import WOCore
 
 public protocol TextFieldKindRepresentable: Equatable {}
 

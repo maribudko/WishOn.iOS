@@ -7,6 +7,7 @@
 
 import Foundation
 import WODesign
+import WOCore
 
 final class NewWishListStateMachine {
     
