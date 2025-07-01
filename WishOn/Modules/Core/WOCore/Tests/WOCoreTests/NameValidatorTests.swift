@@ -2,33 +2,27 @@
 //  File.swift
 //  WOCore
 //
-//  Created by Mari Budko on 27.06.2025.
+//  Created by Mari Budko on 01.07.2025.
 //
 
-import Foundation
-import XCTest
+import Testing
 @testable import WOCore
 
-final class NameValidatorTests: XCTestCase {
-    var validator: NameValidator!
+struct NameValidatorTests {
+    var validator = NameValidator()
     
-    override func setUp() {
-        super.setUp()
-        validator = NameValidator()
-    }
-    
+    @Test("Valid name returns true")
     func testValidName() {
-        XCTAssertTrue(validator.validate("Mari"))
+        #expect(validator.validate("Marina") == true)
     }
     
+    @Test("Empty name returns false")
     func testEmptyName() {
-        XCTAssertFalse(validator.validate(""))
+        #expect(validator.validate("") == false)
     }
     
-    func testShortName() {
-        XCTAssertFalse(validator.validate("a"))
+    @Test("Short name returns false")
+    func testTooShortName() {
+        #expect(validator.validate("M") == false)
     }
-    
-    
 }
-

@@ -5,31 +5,29 @@
 //  Created by Mari Budko on 27.06.2025.
 //
 
-import Foundation
-import XCTest
+import Testing
 @testable import WOCore
 
-final class URLValidatorTests: XCTestCase {
-    var validator: UrlValidator!
+struct URLValidatorTests {
+    let validator = UrlValidator()
     
-    override func setUp() {
-        super.setUp()
-        validator = UrlValidator()
-    }
-    
+    @Test("Valid http URL returns true")
     func testValidHttpURL() {
-        XCTAssertTrue(validator.validate("http://www.google.com"))
+        #expect(validator.validate("http://www.google.com") == true)
     }
     
+    @Test("Valid https URL returns true")
     func testValidHttpsUrl() {
-        XCTAssertTrue(validator.validate("https://google.com"))
+        #expect(validator.validate("https://google.com") == true)
     }
     
+    @Test("Invalid scheme returns false")
     func testInvalidScheme() {
-        XCTAssertFalse(validator.validate("ftp://example.com"))
+        #expect(validator.validate("ftp://example.com") == false)
     }
     
+    @Test("Malformed URL returns false")
     func testMalformedUrl() {
-        XCTAssertFalse(validator.validate("just text"))
+        #expect(validator.validate("just text") == false)
     }
 }
