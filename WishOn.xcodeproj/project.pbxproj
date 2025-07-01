@@ -47,6 +47,7 @@
 				Modules/Core/WOCore,
 				Modules/Core/WODesign,
 				Modules/Core/WOResources,
+				Modules/WONetwork,
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
 		};
@@ -80,15 +81,6 @@
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;
 		};
-		EAF559972D52677A009E4AEC /* Exceptions for "WishOnUITests" folder in "WishOn" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Mock/MockWishListEmptyRepository.swift,
-				Mock/MockWishListRepository.swift,
-				UnitTestsCaseConstants.swift,
-			);
-			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -108,9 +100,6 @@
 		};
 		EAD48B132CF59C5300C0A29D /* WishOnUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				EAF559972D52677A009E4AEC /* Exceptions for "WishOnUITests" folder in "WishOn" target */,
-			);
 			path = WishOnUITests;
 			sourceTree = "<group>";
 		};
