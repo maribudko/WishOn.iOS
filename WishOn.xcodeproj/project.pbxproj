@@ -93,16 +93,6 @@
 			path = WishOn;
 			sourceTree = "<group>";
 		};
-		EAD48B092CF59C5300C0A29D /* WishOnTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WishOnTests;
-			sourceTree = "<group>";
-		};
-		EAD48B132CF59C5300C0A29D /* WishOnUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WishOnUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				EAD48AF32CF59C5100C0A29D /* WishOn */,
-				EAF559672D50F49C009E4AEC /* WishOnTests */,
 				EAD48AF22CF59C5100C0A29D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,15 +144,6 @@
 				EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		EAF559672D50F49C009E4AEC /* WishOnTests */ = {
-			isa = PBXGroup;
-			children = (
-				EAD48B092CF59C5300C0A29D /* WishOnTests */,
-				EAD48B132CF59C5300C0A29D /* WishOnUITests */,
-			);
-			path = WishOnTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,9 +191,6 @@
 			dependencies = (
 				EAD48B082CF59C5300C0A29D /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				EAD48B092CF59C5300C0A29D /* WishOnTests */,
-			);
 			name = WishOnTests;
 			packageProductDependencies = (
 			);
@@ -233,9 +210,6 @@
 			);
 			dependencies = (
 				EAD48B122CF59C5300C0A29D /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EAD48B132CF59C5300C0A29D /* WishOnUITests */,
 			);
 			name = WishOnUITests;
 			packageProductDependencies = (
