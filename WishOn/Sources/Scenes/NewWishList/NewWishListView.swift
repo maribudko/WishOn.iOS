@@ -8,6 +8,7 @@
 import SwiftUI
 import WOResources
 import WODesign
+import DependencyInjection
 
 struct NewWishListState {
     let name: TextFieldViewState
