@@ -8,14 +8,20 @@
 import SwiftUICore
 import WODesign
 
-struct LoginModule: BaseSwiftUIModule {
+public struct LoginModule: BaseSwiftUIModule {
     
-    let stateMachine: LoginStateMachine
-    let stateFactory: LoginStateFactory
+    public let stateMachine: LoginStateMachine
+    public let stateFactory: LoginStateFactory
     
-    var onLoginSuccess: (() -> Void)?
+    public var onLoginSuccess: (() -> Void)?
     
-    func view() -> some View {
+    public init(stateMachine: LoginStateMachine, stateFactory: LoginStateFactory, onLoginSuccess: (() -> Void)? = nil) {
+        self.stateMachine = stateMachine
+        self.stateFactory = stateFactory
+        self.onLoginSuccess = onLoginSuccess
+    }
+    
+    public func view() -> some View {
         let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
         
         stateMachine.onLoginSuccess = {

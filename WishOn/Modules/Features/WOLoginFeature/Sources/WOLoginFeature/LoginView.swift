@@ -10,16 +10,25 @@ import WOResources
 import WODesign
 import DependencyInjection
 
-struct LoginState {
-    let loginGoogleButton: ButtonViewState
-    let loginAppleButton: ButtonViewState
+public struct LoginState {
+    public let loginGoogleButton: ButtonViewState
+    public let loginAppleButton: ButtonViewState
+    
+    public init(loginGoogleButton: ButtonViewState, loginAppleButton: ButtonViewState) {
+        self.loginGoogleButton = loginGoogleButton
+        self.loginAppleButton = loginAppleButton
+    }
 }
 
-struct LoginView: View {
+public struct LoginView: View {
     
     @ObservedObject var viewModel: LoginViewModel
     
-    var body: some View {
+    public init(viewModel: LoginViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    public var body: some View {
         VStack {
             ButtonView(buttonViewState: viewModel.viewState.loginGoogleButton)
             
@@ -29,10 +38,12 @@ struct LoginView: View {
         .padding(.horizontal, AppPaddings.padding20)
         .background(Color(Asset.backgroundColor.color).gradient)
         .fullScreenCover(isPresented: $viewModel.isShowinWishListsView) {
-            AppAssembler.shared
-                .resolver
-                .resolve(WishListsModule.self)
-                .view()
+            
+            //TODO: move WishListsRoot to module
+//            AppAssembler.shared
+//                .resolver
+//                .resolve(WishListsModule.self)
+//                .view()
         }
     }
 }

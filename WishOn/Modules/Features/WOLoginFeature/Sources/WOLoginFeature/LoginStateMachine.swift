@@ -8,19 +8,19 @@
 import Foundation
 import WOResources
 
-class LoginStateMachine {
+public class LoginStateMachine {
     
-    enum ButtonKind {
+    public enum ButtonKind {
         case appleLogin
         case googleLogin
     }
     
-    class ButtonState {
-        let label: String
-        let kind: ButtonKind
-        let action: () -> Void
+    public class ButtonState {
+        public let label: String
+        public let kind: ButtonKind
+        public let action: () -> Void
         
-        init(label: String, kind: ButtonKind, action: @escaping () -> Void) {
+        public init(label: String, kind: ButtonKind, action: @escaping () -> Void) {
             self.label = label
             self.kind = kind
             self.action = action
@@ -29,21 +29,25 @@ class LoginStateMachine {
     
     private lazy var googleLoginButton: ButtonState = .init(label: L10n.googleLoginLabel, kind: .googleLogin, action: didTapGoogleLoginButton)
     private lazy var appleLoginButton: ButtonState = .init(label: L10n.appleLoginLabel, kind: .appleLogin, action: didTapAppleLoginButton)
-    var onLoginSuccess: (() -> Void)?
+    public var onLoginSuccess: (() -> Void)?
     
-    func didTapGoogleLoginButton() {
+    public init(onLoginSuccess: (() -> Void)? = nil) {
+        self.onLoginSuccess = onLoginSuccess
+    }
+    
+    public func didTapGoogleLoginButton() {
         //TODO: do google auth
         
         //after successed auth
         onLoginSuccess?()
     }
     
-    func didTapAppleLoginButton() {
+    public func didTapAppleLoginButton() {
         //TODO: do apple auth
     }
 }
 
-extension LoginStateMachine {
+public extension LoginStateMachine {
     struct State {
         let googleLoginButton: ButtonState
         let appleLoginButton: ButtonState

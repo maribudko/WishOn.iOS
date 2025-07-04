@@ -9,8 +9,8 @@ import Foundation
 import WOResources
 import WODesign
 
-final class LoginStateFactory {
-    func make(from state: LoginStateMachine.State) -> LoginState {
+public final class LoginStateFactory {
+    public func make(from state: LoginStateMachine.State) -> LoginState {
         return .init(
             loginGoogleButton: makeButton(from: state.googleLoginButton),
             loginAppleButton: makeButton(from: state.appleLoginButton)

@@ -49,6 +49,7 @@
 				Modules/Core/WOCore,
 				Modules/Core/WODesign,
 				Modules/Core/WOResources,
+				Modules/Features/WOLoginFeature,
 				Modules/WONetwork,
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
