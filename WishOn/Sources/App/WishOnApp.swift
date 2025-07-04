@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseCore
+import DependencyInjection
 
 // schema 
 final class AppEnvironment {
@@ -26,6 +27,7 @@ struct WishOnApp: App {
     @State private var isLoggedIn = false
     
     init() {
+        registerAssemblies()
         // CR: створити для unit tests окремий таргет +
         // CR: менеджер який буде повертати актуальне значення в якому ми режимі
     }
@@ -46,6 +48,16 @@ struct WishOnApp: App {
                     .view()
             }
         }
+    }
+    
+    func registerAssemblies() {
+        AppAssembler.shared.addAssemblies(assemblies:         [
+            LoginAssembly(),
+            WishListsAssembly(),
+            AddNewItemAssembly(),
+            NewWishListAssembly(),
+            IconAssembly(),
+        ])
     }
 }
 

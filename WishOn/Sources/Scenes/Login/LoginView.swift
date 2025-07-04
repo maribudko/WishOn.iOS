@@ -8,6 +8,7 @@
 import SwiftUI
 import WOResources
 import WODesign
+import DependencyInjection
 
 struct LoginState {
     let loginGoogleButton: ButtonViewState
