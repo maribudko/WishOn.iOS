@@ -7,9 +7,10 @@
 
 import Foundation
 import WODesign
+import WOCore
 
-final class WishListsStateFactory {
-    func make(from state: WishListsStateMachine.State) -> WishListsState {
+public final class WishListsStateFactory {
+    public func make(from state: WishListsStateMachine.State) -> WishListsState {
         
         let list: [WishList] = state.wishLists.map({ wishList in
             WishList(id: UUID(uuidString: wishList.id) ?? UUID(), name: wishList.title, image: "", eventDate: Date(), wishes: [], description: wishList.subtitle, createdAt: Date())

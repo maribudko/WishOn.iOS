@@ -9,6 +9,7 @@ import SwiftUI
 import WOResources
 import WODesign
 import DependencyInjection
+import WOWishListsRootFeature
 
 public struct LoginState {
     public let loginGoogleButton: ButtonViewState
@@ -38,12 +39,10 @@ public struct LoginView: View {
         .padding(.horizontal, AppPaddings.padding20)
         .background(Color(Asset.backgroundColor.color).gradient)
         .fullScreenCover(isPresented: $viewModel.isShowinWishListsView) {
-            
-            //TODO: move WishListsRoot to module
-//            AppAssembler.shared
-//                .resolver
-//                .resolve(WishListsModule.self)
-//                .view()
+            AppAssembler.shared
+                .resolver
+                .resolve(WishListsModule.self)
+                .view()
         }
     }
 }

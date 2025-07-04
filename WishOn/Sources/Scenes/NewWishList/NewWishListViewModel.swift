@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import WOCore
 
 final class NewWishListViewModel: ObservableObject {
     @Published private(set) var viewState: NewWishListState

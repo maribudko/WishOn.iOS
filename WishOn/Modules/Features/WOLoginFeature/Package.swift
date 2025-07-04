@@ -17,7 +17,9 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
         .package(path: "../../Core/WODesign"),
-        .package(path: "../../Core/DependencyInjection")
+        .package(path: "../../Core/WOResources"),
+        .package(path: "../../Core/DependencyInjection"),
+        .package(path: "../WOWishListsRootFeature"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,6 +29,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Swinject", package: "Swinject"),
                 .product(name: "WODesign", package: "WODesign"),
+                .product(name: "WOResources", package: "WOResources"),
+                .product(name: "WOWishListsRootFeature", package: "WOWishListsRootFeature"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
             ]
         ),

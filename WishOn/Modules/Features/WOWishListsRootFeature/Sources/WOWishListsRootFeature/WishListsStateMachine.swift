@@ -8,27 +8,28 @@
 import Foundation
 import WOResources
 import WODesign
+import WOCore
 
-final class WishListsStateMachine {
+public final class WishListsStateMachine {
     
-    class NavLinkButtonState {
-        let label: String
-        let accessibilityId: String
-        let color: ButtonColor
+    public class NavLinkButtonState {
+        public let label: String
+        public let accessibilityId: String
+        public let color: ButtonColor
         
-        init(label: String, accessibilityId: String, color: ButtonColor) {
+        public init(label: String, accessibilityId: String, color: ButtonColor) {
             self.label = label
             self.accessibilityId = accessibilityId
             self.color = color
         }
     }
     
-    class WishListItemState {
-        let id: String
-        let title: String
-        let subtitle: String?
+    public class WishListItemState {
+        public let id: String
+        public let title: String
+        public let subtitle: String?
         
-        init(id: String, title: String, subtitle: String?) {
+        public init(id: String, title: String, subtitle: String?) {
             self.id = id
             self.title = title
             self.subtitle = subtitle
@@ -37,9 +38,9 @@ final class WishListsStateMachine {
     
     private var wishLists: [WishList] = []
     
-    var wishListItems: [WishListItemState] {
-            wishLists.map { WishListItemState(id: $0.id.uuidString, title: $0.name, subtitle: $0.description) }
-        }
+    public var wishListItems: [WishListItemState] {
+        wishLists.map { WishListItemState(id: $0.id.uuidString, title: $0.name, subtitle: $0.description) }
+    }
     
     private let addNewWishlistButton: NavLinkButtonState
     private let toGiveButton: NavLinkButtonState
@@ -49,7 +50,7 @@ final class WishListsStateMachine {
     private var userImageData: Data? = nil
     //private let userImage: UserProfileImageState
     
-    init(calendarIcon: IconState, profileIcon: IconState, emptyListIcon: IconState) {
+    public init(calendarIcon: IconState, profileIcon: IconState, emptyListIcon: IconState) {
         addNewWishlistButton = .init(label: L10n.addNewWishlist, accessibilityId: AccessibilityIdentifiers.addWishlistButton, color: .green)
         toGiveButton = .init(label: L10n.toGive, accessibilityId: AccessibilityIdentifiers.showToGiveViewButton, color: .grey)
         self.calendarIcon = calendarIcon
@@ -57,38 +58,38 @@ final class WishListsStateMachine {
         self.emptyListIcon = emptyListIcon
     }
     
-    func setWishLists(_ wishLists: [WishList]) {
+    public func setWishLists(_ wishLists: [WishList]) {
         self.wishLists = wishLists
     }
     
-    func addWishList(_ wishList: WishList) {
+    public func addWishList(_ wishList: WishList) {
         self.wishLists.append(wishList)
     }
     
-    func removeWishList(by id: String) {
+    public func removeWishList(by id: String) {
         self.wishLists.removeAll { $0.id == UUID(uuidString: id) }
     }
     
-    var onAddNewTapped: (() -> Void)?
-    var onToGiveTapped: (() -> Void)?
+    public var onAddNewTapped: (() -> Void)?
+    public var onToGiveTapped: (() -> Void)?
     
-    func didTapAddNewWishListButton() {
+    public func didTapAddNewWishListButton() {
         //TODO: show new wishlist view
         onAddNewTapped?()
     }
     
-    func didTapToGiveButton() {
+    public func didTapToGiveButton() {
         //TODO: show toGive view
         onToGiveTapped?()
     }
     
-    func updateUserImage(data: Data?) {
+    public func updateUserImage(data: Data?) {
         self.userImageData = data
     }
     
 }
 
-extension WishListsStateMachine {
+public extension WishListsStateMachine {
     struct State {
         let wishLists: [WishListItemState]
         let addNewWishlistButton: NavLinkButtonState

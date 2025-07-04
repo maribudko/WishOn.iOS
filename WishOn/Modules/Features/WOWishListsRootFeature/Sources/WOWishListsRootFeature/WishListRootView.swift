@@ -1,18 +1,28 @@
 import SwiftUI
 import WOResources
 import WODesign
+import WOCore
 import DependencyInjection
 
-struct WishListsState {
-    let addNewWishlistButton: NavigationLinkButtonViewState
-    let toGiveButton: NavigationLinkButtonViewState
-    let wishLists: [WishList]
-    let calendarIcon: IconViewState
-    let profileIcon: IconViewState
-    let emptyListIcon: IconViewState
+public struct WishListsState {
+    public let addNewWishlistButton: NavigationLinkButtonViewState
+    public let toGiveButton: NavigationLinkButtonViewState
+    public let wishLists: [WishList]
+    public let calendarIcon: IconViewState
+    public let profileIcon: IconViewState
+    public let emptyListIcon: IconViewState
+    
+    public init(addNewWishlistButton: NavigationLinkButtonViewState, toGiveButton: NavigationLinkButtonViewState, wishLists: [WishList], calendarIcon: IconViewState, profileIcon: IconViewState, emptyListIcon: IconViewState) {
+        self.addNewWishlistButton = addNewWishlistButton
+        self.toGiveButton = toGiveButton
+        self.wishLists = wishLists
+        self.calendarIcon = calendarIcon
+        self.profileIcon = profileIcon
+        self.emptyListIcon = emptyListIcon
+    }
 }
 
-struct WishListRootView: View {
+public struct WishListRootView: View {
     private var isAuthorized = false
     private var viewModel: WishListViewModel
     
@@ -23,12 +33,12 @@ struct WishListRootView: View {
         )
     ]
     
-    init(isAuthorized: Bool = false, viewModel: WishListViewModel) {
+    public init(isAuthorized: Bool = false, viewModel: WishListViewModel) {
         self.isAuthorized = isAuthorized
         self.viewModel = viewModel
     }
     
-    var body: some View {
+    public var body: some View {
         NavigationView {
             VStack {
                 HStack {
@@ -93,10 +103,11 @@ struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
-                        AppAssembler.shared
-                            .resolver
-                            .resolve(NewWishListModule.self)
-                            .view()
+                        //TODO: extract NewWishListFeature
+//                        AppAssembler.shared
+//                            .resolver
+//                            .resolve(NewWishListModule.self)
+//                            .view()
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
@@ -107,7 +118,8 @@ struct WishListRootView: View {
                     }
                     
                     NavigationLink {
-                        ToGiveView()
+                        //TODO: extract ToGiveFeature
+                        //ToGiveView()
                     } label: {
                         Text(L10n.toGive)
                             .padding()

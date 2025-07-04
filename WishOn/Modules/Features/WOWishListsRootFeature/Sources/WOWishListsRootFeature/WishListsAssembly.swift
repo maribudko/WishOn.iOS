@@ -8,9 +8,11 @@
 import Swinject
 import WOResources
 import WODesign
+import WOCore
 
-final class WishListsAssembly: Assembly {
-    func assemble(container: Container) {
+public final class WishListsAssembly: Assembly {
+    public init() {}
+    public func assemble(container: Container) {
         container.register(WishListRepositoryProtocol.self) { _ in WishListRepository() }
             .inObjectScope(.container)
         

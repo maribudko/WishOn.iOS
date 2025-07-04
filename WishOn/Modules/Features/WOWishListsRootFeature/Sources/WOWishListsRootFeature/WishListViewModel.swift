@@ -7,11 +7,11 @@
 
 import Foundation
 import Combine
-import Firebase
 import WOResources
 import WODesign
+import WOCore
 
-class WishListViewModel: ObservableObject {
+public class WishListViewModel: ObservableObject {
     @Published private(set) var viewState: WishListsState
     @Published var userImageViewState: UserImageViewState
     
@@ -21,7 +21,7 @@ class WishListViewModel: ObservableObject {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(stateMachine: WishListsStateMachine, stateFactory: WishListsStateFactory, useCase: WishListUseCase) {
+    public init(stateMachine: WishListsStateMachine, stateFactory: WishListsStateFactory, useCase: WishListUseCase) {
         self.stateMachine = stateMachine
         self.stateFactory = stateFactory
         self.useCase = useCase
@@ -36,7 +36,7 @@ class WishListViewModel: ObservableObject {
         loadWishLists()
     }
     
-    func loadWishLists() {
+    public func loadWishLists() {
         
         useCase.fetchWishLists()
             .sink { completion in
@@ -50,7 +50,7 @@ class WishListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func addNewWishList(wishList: WishList) {
+    public func addNewWishList(wishList: WishList) {
         useCase.addWishList(wishList)
             .sink { completion in
                 if case .failure(let error) = completion {

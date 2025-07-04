@@ -7,8 +7,8 @@
 
 import Combine
 
-protocol WishListRepositoryProtocol {
+public protocol WishListRepositoryProtocol {
     func fetchWishLists() -> AnyPublisher<[WishList], Error>
-    func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> 
+    func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error>
     func deleteWishList(_ id: String) -> AnyPublisher<Void, Error>
 }

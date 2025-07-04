@@ -8,6 +8,7 @@
 import Swinject
 
 public final class LoginAssembly: Assembly {
+    public init() {}
     public func assemble(container: Container) {
         container.register(LoginStateMachine.self) { _ in LoginStateMachine() }
         container.register(LoginStateFactory.self) { _ in LoginStateFactory() }

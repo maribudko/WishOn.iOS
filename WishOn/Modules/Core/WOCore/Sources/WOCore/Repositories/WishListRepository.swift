@@ -6,14 +6,15 @@
 //
 
 import FirebaseFirestore
-import FirebaseFirestoreCombineSwift
 import Combine
 
-class WishListRepository: WishListRepositoryProtocol, ObservableObject {
+public class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     @Published var wishLists: [WishList] = []
     private let db = Firestore.firestore()
     
-    func fetchWishLists() -> AnyPublisher<[WishList], Error> {
+    public init() {}
+    
+    public func fetchWishLists() -> AnyPublisher<[WishList], Error> {
         return Future<[WishList], any Error> { promise in
             self.getDocumentsFromFirestore(promise)
         }
@@ -40,7 +41,7 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
         }
     }
     
-    func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> {
+    public func addWishList(_ wishList: WishList) -> AnyPublisher<Void, Error> {
         let ref = Firestore.firestore().collection(Constant.wishListPath).document(wishList.id.uuidString)
         do {
             let data = try Firestore.Encoder().encode(wishList)
@@ -59,7 +60,7 @@ class WishListRepository: WishListRepositoryProtocol, ObservableObject {
         }
     }
     
-    func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
+    public func deleteWishList(_ id: String) -> AnyPublisher<Void, any Error> {
         let ref = Firestore.firestore().collection(Constant.wishListPath).document(id)
         
         return Future<Void, any Error> { promise in

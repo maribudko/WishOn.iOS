@@ -8,6 +8,8 @@
 import SwiftUI
 import FirebaseCore
 import DependencyInjection
+import WOWishListsRootFeature
+import WOLoginFeature
 
 // schema 
 final class AppEnvironment {

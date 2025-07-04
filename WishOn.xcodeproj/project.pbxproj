@@ -10,6 +10,8 @@
 		EA59CB702E06A48800F78E22 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB6F2E06A48800F78E22 /* WOResources */; };
 		EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB732E06ABC800F78E22 /* WODesign */; };
 		EA5A5E4B2E17EA0D007E162E /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A5E4A2E17EA0D007E162E /* DependencyInjection */; };
+		EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60032E186BA6007E162E /* WOWishListsRootFeature */; };
+		EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60052E186BC9007E162E /* WOLoginFeature */; };
 		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
@@ -50,6 +52,7 @@
 				Modules/Core/WODesign,
 				Modules/Core/WOResources,
 				Modules/Features/WOLoginFeature,
+				Modules/Features/WOWishListsRootFeature,
 				Modules/WONetwork,
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
@@ -57,10 +60,6 @@
 		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Data/Repositories/WishListRepository.swift,
-				Domain/Models/Wish.swift,
-				Domain/Models/WishList.swift,
-				Domain/Protocols/WishListRepositoryProtocol.swift,
 				Sources/Scenes/AddNewItem/AddNewitemModule.swift,
 				Sources/Scenes/AddNewItem/AddNewItemStateFactory.swift,
 				Sources/Scenes/AddNewItem/AddNewItemStateMachine.swift,
@@ -74,12 +73,6 @@
 				Sources/Scenes/ToGive/ToGiveCardDetails.swift,
 				Sources/Scenes/ToGive/ToGiveCardView.swift,
 				Sources/Scenes/ToGive/ToGiveView.swift,
-				Sources/Scenes/WishListsRoot/WishListRootView.swift,
-				Sources/Scenes/WishListsRoot/WishListsInteractor.swift,
-				Sources/Scenes/WishListsRoot/WishListsModule.swift,
-				Sources/Scenes/WishListsRoot/WishListsStateFactory.swift,
-				Sources/Scenes/WishListsRoot/WishListsStateMachine.swift,
-				Sources/Scenes/WishListsRoot/WishListViewModel.swift,
 				Utilitites/AccessibilityIdentifiers.swift,
 			);
 			target = EAD48B0F2CF59C5300C0A29D /* WishOnUITests */;
@@ -109,7 +102,9 @@
 				EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */,
 				EA59CB702E06A48800F78E22 /* WOResources in Frameworks */,
 				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
+				EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */,
 				EA984EB72DF4646A00D6179C /* Swinject in Frameworks */,
+				EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +181,8 @@
 				EA59CB6F2E06A48800F78E22 /* WOResources */,
 				EA59CB732E06ABC800F78E22 /* WODesign */,
 				EA5A5E4A2E17EA0D007E162E /* DependencyInjection */,
+				EA5A60032E186BA6007E162E /* WOWishListsRootFeature */,
+				EA5A60052E186BC9007E162E /* WOLoginFeature */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -684,6 +681,14 @@
 		EA5A5E4A2E17EA0D007E162E /* DependencyInjection */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DependencyInjection;
+		};
+		EA5A60032E186BA6007E162E /* WOWishListsRootFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOWishListsRootFeature;
+		};
+		EA5A60052E186BC9007E162E /* WOLoginFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOLoginFeature;
 		};
 		EA984EB62DF4646A00D6179C /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
