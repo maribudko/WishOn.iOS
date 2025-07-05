@@ -4,6 +4,7 @@ import WODesign
 import WOCore
 import WONewWishListFeature
 import DependencyInjection
+import WOToGiveFeature
 
 public struct WishListsState {
     public let addNewWishlistButton: NavigationLinkButtonViewState
@@ -118,8 +119,7 @@ public struct WishListRootView: View {
                     }
                     
                     NavigationLink {
-                        //TODO: extract ToGiveFeature
-                        //ToGiveView()
+                        ToGiveView()
                     } label: {
                         Text(L10n.toGive)
                             .padding()

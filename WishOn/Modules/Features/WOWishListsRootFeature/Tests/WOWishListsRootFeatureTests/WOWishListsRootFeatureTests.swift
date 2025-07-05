@@ -1,6 +1,61 @@
 import Testing
+import WOResources
+import WOCore
+import Foundation
 @testable import WOWishListsRootFeature
 
-@Test func example() async throws {
-    // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+@Test func setWishLists() {
+    let stateMachine = makeStateMachine()
+    let wishList = WishList(
+        id: UUID(),
+        name: "New year",
+        image: nil,
+        eventDate: nil,
+        wishes: [],
+        description: "Presents from Saint Claus",
+        createdAt: nil
+    )
+    
+    stateMachine.setWishLists([wishList])
+    
+    let wishLists = stateMachine.state.wishLists
+    
+    #expect(wishLists.count == 1)
+    #expect(wishLists.first?.title == "New year")
+    #expect(wishLists.first?.subtitle == "Presents from Saint Claus")
+}
+
+@Test func appendItems() {
+    let stateMachine = makeStateMachine()
+    
+    #expect(stateMachine.state.wishLists.isEmpty)
+    
+    let newList = WishList(id: UUID(), name: "New", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    
+    stateMachine.addWishList(newList)
+    
+    #expect(stateMachine.state.wishLists.count == 1)
+    #expect(stateMachine.state.wishLists.first?.title == "New")
+}
+
+@Test func removeItems() {
+    let idToRemove = UUID()
+    let idToKeep = UUID()
+    
+    let stateMachine = makeStateMachine()
+    let listToRemove = WishList(id: idToRemove, name: "To Remove", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    let listToKeep = WishList(id: idToKeep, name: "To Keep", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    
+    stateMachine.setWishLists([listToKeep, listToRemove])
+    stateMachine.removeWishList(by: idToRemove.uuidString)
+    
+    #expect(stateMachine.state.wishLists.count == 1)
+    #expect(stateMachine.state.wishLists.first?.title == "To Keep")
+}
+
+private func makeStateMachine() -> WishListsStateMachine {
+    return .init(
+        calendarIcon: .init(icon: SFSymbolsIcon(symbol: .calendar)),
+        profileIcon: .init(icon: SFSymbolsIcon(symbol: .person)),
+        emptyListIcon: .init(icon: SFSymbolsIcon(symbol: .heart)))
 }
