@@ -9,8 +9,11 @@ import SwiftUI
 import WOResources
 import WODesign
 
-struct ToGiveCardView: View {
-    var body: some View {
+public struct ToGiveCardView: View {
+    
+    public init() {}
+    
+    public var body: some View {
         ZStack(alignment: .top) {
             RoundedRectangle(cornerRadius: AppRadiuses.radius10)
                 .fill(Color(Asset.steelBlue.color))
