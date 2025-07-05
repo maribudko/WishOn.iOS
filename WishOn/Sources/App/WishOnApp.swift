@@ -11,6 +11,7 @@ import DependencyInjection
 import WOWishListsRootFeature
 import WOLoginFeature
 import WONewWishListFeature
+import WOAddNewItemFeature
 
 // schema 
 final class AppEnvironment {

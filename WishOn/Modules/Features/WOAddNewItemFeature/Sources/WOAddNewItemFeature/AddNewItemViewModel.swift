@@ -8,7 +8,7 @@
 import Foundation
 import WOResources
 
-final class AddNewItemViewModel: ObservableObject {			    
+public final class AddNewItemViewModel: ObservableObject {
     @Published private(set) var viewState: AddNewItemState
     @Published var showAlert: Bool = false
     @Published var alertMessage: String?
@@ -17,9 +17,9 @@ final class AddNewItemViewModel: ObservableObject {
     private let stateMachine: AddNewItemStateMachine
     private let stateFactory: AddNewItemStateFactory
     
-    var onSuccess: (() -> Void)?
+    public var onSuccess: (() -> Void)?
     
-    init(stateMachine: AddNewItemStateMachine, stateFactory: AddNewItemStateFactory) {
+    public init(stateMachine: AddNewItemStateMachine, stateFactory: AddNewItemStateFactory) {
         self.stateMachine = stateMachine
         self.stateFactory = stateFactory
         self.viewState = stateFactory.make(from: stateMachine.state)
@@ -31,32 +31,32 @@ final class AddNewItemViewModel: ObservableObject {
     }
     
     //MARK: - User Actions
-    func onNameChanged(_ name: String) {
+    public func onNameChanged(_ name: String) {
         stateMachine.setNameText(name)
         updateViewState()
     }
     
-    func onUrlChanged(_ url: String) {
+    public func onUrlChanged(_ url: String) {
         stateMachine.setUrlText(url)
         updateViewState()
     }
     
-    func onPriceChanged(_ price: String) {
+    public func onPriceChanged(_ price: String) {
         stateMachine.setPriceText(price)
         updateViewState()
     }
     
-    func onCurrencyChanged(_ currency: String) {
+    public func onCurrencyChanged(_ currency: String) {
         stateMachine.setCurrencyText(currency)
         updateViewState()
     }
     
-    func onFieldLostFocus(_ kind: AddNewItemStateMachine.TextFieldKind) {
+    public func onFieldLostFocus(_ kind: AddNewItemStateMachine.TextFieldKind) {
         stateMachine.setDidLoseFocus(kind)
         updateViewState()
     }
     
-    func onAddTapped() {
+    public func onAddTapped() {
         stateMachine.didTapAddButton()
         updateViewState()
         

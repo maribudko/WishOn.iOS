@@ -2,6 +2,7 @@ import SwiftUI
 import WOResources
 import WODesign
 import WOCore
+import WONewWishListFeature
 import DependencyInjection
 
 public struct WishListsState {
@@ -103,11 +104,10 @@ public struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
-                        //TODO: extract NewWishListFeature
-//                        AppAssembler.shared
-//                            .resolver
-//                            .resolve(NewWishListModule.self)
-//                            .view()
+                        AppAssembler.shared
+                            .resolver
+                            .resolve(NewWishListModule.self)
+                            .view()
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()

@@ -13,6 +13,7 @@
 		EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60032E186BA6007E162E /* WOWishListsRootFeature */; };
 		EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60052E186BC9007E162E /* WOLoginFeature */; };
 		EA5A600B2E18EC7A007E162E /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A600A2E18EC7A007E162E /* WONewWishListFeature */; };
+		EA5A60592E18F119007E162E /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60582E18F119007E162E /* WOAddNewItemFeature */; };
 		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
@@ -52,6 +53,7 @@
 				Modules/Core/WOCore,
 				Modules/Core/WODesign,
 				Modules/Core/WOResources,
+				Modules/Features/WOAddNewItemFeature,
 				Modules/Features/WOLoginFeature,
 				Modules/Features/WONewWishListFeature,
 				Modules/Features/WOWishListsRootFeature,
@@ -62,11 +64,6 @@
 		EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Sources/Scenes/AddNewItem/AddNewitemModule.swift,
-				Sources/Scenes/AddNewItem/AddNewItemStateFactory.swift,
-				Sources/Scenes/AddNewItem/AddNewItemStateMachine.swift,
-				Sources/Scenes/AddNewItem/AddNewItemView.swift,
-				Sources/Scenes/AddNewItem/AddNewItemViewModel.swift,
 				Sources/Scenes/ToGive/ToGiveCardDetails.swift,
 				Sources/Scenes/ToGive/ToGiveCardView.swift,
 				Sources/Scenes/ToGive/ToGiveView.swift,
@@ -98,6 +95,7 @@
 				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
 				EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */,
 				EA59CB702E06A48800F78E22 /* WOResources in Frameworks */,
+				EA5A60592E18F119007E162E /* WOAddNewItemFeature in Frameworks */,
 				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
 				EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */,
 				EA984EB72DF4646A00D6179C /* Swinject in Frameworks */,
@@ -182,6 +180,7 @@
 				EA5A60032E186BA6007E162E /* WOWishListsRootFeature */,
 				EA5A60052E186BC9007E162E /* WOLoginFeature */,
 				EA5A600A2E18EC7A007E162E /* WONewWishListFeature */,
+				EA5A60582E18F119007E162E /* WOAddNewItemFeature */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -692,6 +691,10 @@
 		EA5A600A2E18EC7A007E162E /* WONewWishListFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WONewWishListFeature;
+		};
+		EA5A60582E18F119007E162E /* WOAddNewItemFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOAddNewItemFeature;
 		};
 		EA984EB62DF4646A00D6179C /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
