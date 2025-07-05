@@ -9,28 +9,43 @@ import SwiftUI
 import WOResources
 import WODesign
 
-struct AddNewItemState {
-    let name: TextFieldViewState
-    let link: TextFieldViewState
-    let price: PriceInputViewState
-    let button: ButtonViewState
-    let crossIcon: IconViewState
+public struct AddNewItemState {
+    public let name: TextFieldViewState
+    public let link: TextFieldViewState
+    public let price: PriceInputViewState
+    public let button: ButtonViewState
+    public let crossIcon: IconViewState
+    
+    public  init(name: TextFieldViewState, link: TextFieldViewState, price: PriceInputViewState, button: ButtonViewState, crossIcon: IconViewState) {
+        self.name = name
+        self.link = link
+        self.price = price
+        self.button = button
+        self.crossIcon = crossIcon
+    }
 }
 
-enum FocusableField: Hashable {
+public enum FocusableField: Hashable {
     case name
     case link
     case price
 }
 
-struct AddNewItemView: View {
+public struct AddNewItemView: View {
     @FocusState private var focusedField: FocusableField?
+    @State private var previousFocusedField: FocusableField?
+
     
     @Binding var isShown: Bool
     
     @ObservedObject var viewModel: AddNewItemViewModel
     
-    var body: some View {
+    public init(isShown: Binding<Bool>, viewModel: AddNewItemViewModel) {
+        self._isShown = isShown
+        self.viewModel = viewModel
+    }
+    
+    public var body: some View {
         ZStack {
             Color.black.opacity(AppOpacityLevels.backgroundOpacity)
                 .ignoresSafeArea()
@@ -92,8 +107,8 @@ struct AddNewItemView: View {
                     viewModel.onSuccess?()
                 })
             }
-            .onChange(of: focusedField) { oldFocus, newFocus in
-                if let lostFocus = oldFocus, lostFocus != newFocus {
+            .onChange(of: focusedField) { newFocus in
+                if let lostFocus = previousFocusedField, lostFocus != newFocus {
                     switch lostFocus {
                     case .name:
                         viewModel.onFieldLostFocus(.name)
@@ -103,6 +118,7 @@ struct AddNewItemView: View {
                         viewModel.onFieldLostFocus(.price)
                     }
                 }
+                previousFocusedField = newFocus
             }
         }
     }

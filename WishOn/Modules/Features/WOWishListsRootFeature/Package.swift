@@ -19,6 +19,7 @@ let package = Package(
         .package(path: "../../Core/WODesign"),
         .package(path: "../../Core/WOCore"),
         .package(path: "../../Core/WOResources"),
+        .package(path: "../../Core/WONewWishListFeature"),
         .package(path: "../../Core/DependencyInjection")
     ],
     targets: [
@@ -31,6 +32,7 @@ let package = Package(
                 .product(name: "WODesign", package: "WODesign"),
                 .product(name: "WOCore", package: "WOCore"),
                 .product(name: "WOResources", package: "WOResources"),
+                .product(name: "WONewWishListFeature", package: "WONewWishListFeature"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
             ]
         ),

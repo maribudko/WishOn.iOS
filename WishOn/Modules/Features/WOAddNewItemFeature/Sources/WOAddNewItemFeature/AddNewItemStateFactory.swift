@@ -9,8 +9,9 @@ import Foundation
 import WOResources
 import WODesign
 
-final class AddNewItemStateFactory {
-    func make(from state: AddNewItemStateMachine.State) -> AddNewItemState {
+public final class AddNewItemStateFactory {
+    public init() {}
+    public func make(from state: AddNewItemStateMachine.State) -> AddNewItemState {
         let price = PriceInputViewState(
             price: state.priceField.text,
             currency: state.priceField.currency,

@@ -10,27 +10,27 @@ import WOResources
 import WODesign
 import WOCore
 
-final class AddNewItemStateMachine {
+public final class AddNewItemStateMachine {
     
-    class PriceInputState: TextFieldState<TextFieldKind> {
+    public class PriceInputState: TextFieldState<TextFieldKind> {
         var currency: String = L10n.uah
         var currencies: [String] = [L10n.uah, L10n.usd, L10n.eur]
         var onPriceChanged: (String) -> Void
         var onCurrencyChanged: (String) -> Void
         
-        init(onPriceChanged: @escaping (String) -> Void, onCurrencyChanged: @escaping (String) -> Void) {
+        public init(onPriceChanged: @escaping (String) -> Void, onCurrencyChanged: @escaping (String) -> Void) {
             self.onPriceChanged = onPriceChanged
             self.onCurrencyChanged = onCurrencyChanged
             super.init(kind: .price, validator: PriceValidator())
         }
     }
     
-    class ButtonState {
+    public class ButtonState {
         var isEnabled: Bool = false
         let label: String
         let action: () -> Void
         
-        init(label: String, isEnabled: Bool, action: @escaping () -> Void) {
+        public init(label: String, isEnabled: Bool, action: @escaping () -> Void) {
             self.label = label
             self.isEnabled = isEnabled
             self.action = action
@@ -56,43 +56,43 @@ final class AddNewItemStateMachine {
         )
     }()
     
-    var didRequestShowAlert: ((String) -> Void)?
+    public var didRequestShowAlert: ((String) -> Void)?
     
-    init(crossIcon: IconState) {
+    public init(crossIcon: IconState) {
         self.nameField = .init(kind: .name, validator: NameValidator())
         self.urlField = .init(kind: .url, validator: UrlValidator())
         self.crossIcon = crossIcon
     }
     
-    func setNameText(_ text: String) {
+    public func setNameText(_ text: String) {
         nameField.text = text
         nameField.validateIfNeeded()
         setButtonEnabled()
     }
     
-    func setUrlText(_ text: String) {
+    public func setUrlText(_ text: String) {
         urlField.text = text
         urlField.validateIfNeeded()
         setButtonEnabled()
     }
     
-    func setPriceText(_ text: String) {
+    public func setPriceText(_ text: String) {
         priceField.text = text
         priceField.validateIfNeeded()
         setButtonEnabled()
     }
     
-    func setCurrencyText(_ text: String) {
+    public func setCurrencyText(_ text: String) {
         priceField.currency = text
     }
     
-    func setDidLoseFocus(_ kind: TextFieldKind) {
+    public func setDidLoseFocus(_ kind: TextFieldKind) {
         field(for: kind)?.wasFocused = true
         field(for: kind)?.validateIfNeeded()
         setButtonEnabled()
     }
     
-    func didTapAddButton() {
+    public func didTapAddButton() {
         validateAllFields()
         
         guard addButton.isEnabled else {
@@ -135,13 +135,13 @@ final class AddNewItemStateMachine {
     }
 }
 
-extension AddNewItemStateMachine {
+public extension AddNewItemStateMachine {
     enum TextFieldKind: TextFieldKindRepresentable {
         case name, url, price
     }
 }
 
-extension AddNewItemStateMachine {
+public extension AddNewItemStateMachine {
     struct State {
         let nameField: TextFieldState<TextFieldKind>
         let urlField: TextFieldState<TextFieldKind>

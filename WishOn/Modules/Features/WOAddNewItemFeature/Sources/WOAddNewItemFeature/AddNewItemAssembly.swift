@@ -9,8 +9,11 @@ import Swinject
 import WOResources
 import WODesign
 
-final class AddNewItemAssembly: Assembly {
-    func assemble(container: Swinject.Container) {
+public final class AddNewItemAssembly: Assembly {
+    
+    public init() {}
+    
+    public func assemble(container: Swinject.Container) {
         container.register(AddNewItemStateMachine.self) { resolver in
             guard let closeIcon = resolver.resolve(IconRepresentable.self, name: "closeIcon") else {
                 fatalError("Could not resolve dependencies for AddNewItemModule")
