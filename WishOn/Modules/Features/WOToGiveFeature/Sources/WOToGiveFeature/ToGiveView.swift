@@ -9,7 +9,7 @@ import SwiftUI
 import WOResources
 import WODesign
 
-struct ToGiveView: View {
+public struct ToGiveView: View {
     @Environment(\.presentationMode) var presentationMode
     let columns: [GridItem] = {
         let width = UIScreen.main.bounds.width-32
@@ -17,7 +17,9 @@ struct ToGiveView: View {
         return Array(repeating: GridItem(.flexible()), count: itemsPerRow)
     }()
     
-    var body: some View {
+    public init() {}
+    
+    public var body: some View {
         VStack {
             ZStack {
                 Button(action: {
