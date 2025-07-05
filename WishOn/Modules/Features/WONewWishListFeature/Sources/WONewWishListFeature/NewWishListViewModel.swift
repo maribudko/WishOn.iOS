@@ -8,7 +8,7 @@
 import Foundation
 import WOCore
 
-final class NewWishListViewModel: ObservableObject {
+public final class NewWishListViewModel: ObservableObject {
     @Published private(set) var viewState: NewWishListState
     //CR: чи може лист бути тут або десь у іншому місті?
     @Published var wishes: [Wish] = []
@@ -16,28 +16,28 @@ final class NewWishListViewModel: ObservableObject {
     private let stateMachine: NewWishListStateMachine
     private let stateFactory: NewWishListStateFactory
     
-    init(stateMachine: NewWishListStateMachine, stateFactory: NewWishListStateFactory) {
+    public init(stateMachine: NewWishListStateMachine, stateFactory: NewWishListStateFactory) {
         self.stateMachine = stateMachine
         self.stateFactory = stateFactory
         self.viewState = stateFactory.make(from: stateMachine.state)
     }
     
-    func onNameChanged(_ name: String) {
+    public func onNameChanged(_ name: String) {
         stateMachine.setNameText(name)
         updateViewState()
     }
     
-    func onDescriptionChanged(_ description: String) {
+    public func onDescriptionChanged(_ description: String) {
         stateMachine.setDescriptionText(description)
         updateViewState()
     }
     
-    func onFieldLostFocus(_ kind: NewWishListStateMachine.TextFieldKind) {
+    public func onFieldLostFocus(_ kind: NewWishListStateMachine.TextFieldKind) {
         stateMachine.setDidLoseFocus(kind)
         updateViewState()
     }
     
-    func setDatePickerVisibility(_ isVisible: Bool) {
+    public func setDatePickerVisibility(_ isVisible: Bool) {
         stateMachine.setDatePickerVisibility(isVisible)
         updateViewState()
     }

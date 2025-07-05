@@ -9,8 +9,9 @@ import Swinject
 import WOResources
 import WODesign
 
-final class NewWishListAssembly: Assembly {
-    func assemble(container: Swinject.Container) {        
+public final class NewWishListAssembly: Assembly {
+    public init() {}
+    public func assemble(container: Swinject.Container) {
         container.register(NewWishListStateMachine.self) { resolver in
             guard
                 let backIcon = resolver.resolve(IconRepresentable.self, name: IconNames.backIcon),

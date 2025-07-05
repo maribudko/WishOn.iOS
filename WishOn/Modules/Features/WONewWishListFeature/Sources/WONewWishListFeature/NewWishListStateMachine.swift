@@ -9,15 +9,15 @@ import Foundation
 import WODesign
 import WOCore
 
-final class NewWishListStateMachine {
+public final class NewWishListStateMachine {
     
-    class DatePickerState {
+    public class DatePickerState {
         var date: Date = Date.now
         var isVisible: Bool = false
         var onDateSelected: (Date) -> Void
         var onDismiss: () -> Void
         
-        init(isVisible: Bool, onDateSelected: @escaping (Date) -> Void, onDismiss: @escaping () -> Void) {
+        public init(isVisible: Bool, onDateSelected: @escaping (Date) -> Void, onDismiss: @escaping () -> Void) {
             self.isVisible = isVisible
             self.onDateSelected = onDateSelected
             self.onDismiss = onDismiss
@@ -36,7 +36,7 @@ final class NewWishListStateMachine {
     private let plusIcon: IconState
     
     
-    init(backIcon: IconState, dropDownIcon: IconState, saveIcon: IconState, plusIcon: IconState) {
+    public init(backIcon: IconState, dropDownIcon: IconState, saveIcon: IconState, plusIcon: IconState) {
         self.name = .init(kind: TextFieldKind.name, validator: NameValidator())
         self.description = .init(kind: TextFieldKind.description, validator: PlainTextValidator())
         self.backButtonIcon = backIcon
@@ -45,30 +45,30 @@ final class NewWishListStateMachine {
         self.plusIcon = plusIcon
     }
     
-    func onDateSelected(_ date: Date) {
+    public func onDateSelected(_ date: Date) {
         datePicker.date = date
     }
     
-    func onDismiss() {
+    public func onDismiss() {
         datePicker.isVisible = false
     }
     
-    func setNameText(_ text: String) {
+    public func setNameText(_ text: String) {
         name.text = text
         name.validateIfNeeded()
     }
     
-    func setDescriptionText(_ text: String) {
+    public func setDescriptionText(_ text: String) {
         description.text = text
         description.validateIfNeeded()
     }
     
-    func setDidLoseFocus(_ kind: TextFieldKind) {
+    public func setDidLoseFocus(_ kind: TextFieldKind) {
         field(for: kind)?.wasFocused = true
         field(for: kind)?.validateIfNeeded()
     }
     
-    func setDatePickerVisibility(_ isVisible: Bool) {
+    public func setDatePickerVisibility(_ isVisible: Bool) {
         datePicker.isVisible = isVisible
     }
     
@@ -95,13 +95,13 @@ final class NewWishListStateMachine {
     }
 }
 
-extension NewWishListStateMachine {
+public extension NewWishListStateMachine {
     enum TextFieldKind: TextFieldKindRepresentable {
         case name, description
     }
 }
 
-extension NewWishListStateMachine {
+public extension NewWishListStateMachine {
     struct State {
         let nameField: TextFieldState<TextFieldKind>
         let descriptionField: TextFieldState<TextFieldKind>

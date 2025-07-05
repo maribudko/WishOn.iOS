@@ -9,8 +9,9 @@ import SwiftUI
 import WOResources
 import WODesign
 import DependencyInjection
+import WOCore
 
-struct NewWishListState {
+public struct NewWishListState {
     let name: TextFieldViewState
     let description: TextFieldViewState
     let datePicker: DatePickerViewState
@@ -20,14 +21,26 @@ struct NewWishListState {
     let plusIcon: IconViewState
     let date: String
     let isDatePickerVisible: Bool
+    
+    public init(name: TextFieldViewState, description: TextFieldViewState, datePicker: DatePickerViewState, backIcon: IconViewState, dropDownIcon: IconViewState, saveIcon: IconViewState, plusIcon: IconViewState, date: String, isDatePickerVisible: Bool) {
+        self.name = name
+        self.description = description
+        self.datePicker = datePicker
+        self.backIcon = backIcon
+        self.dropDownIcon = dropDownIcon
+        self.saveIcon = saveIcon
+        self.plusIcon = plusIcon
+        self.date = date
+        self.isDatePickerVisible = isDatePickerVisible
+    }
 }
 
-enum FocusedField: Hashable {
+public enum FocusedField: Hashable {
     case name
     case description
 }
 
-struct NewWishlistView: View {
+public struct NewWishlistView: View {
     @Environment(\.presentationMode) var presentationMode
     @FocusState private var focusedField: FocusedField?
     
@@ -35,7 +48,11 @@ struct NewWishlistView: View {
     @State var isNewItemDialogVisible: Bool = false
     @State var date = DateFormatter.shortDate.string(from: Date.now)
     
-    var body: some View {
+    public init( viewModel: NewWishListViewModel) {
+        self.viewModel = viewModel
+    }
+    
+    public var body: some View {
         VStack {
             ZStack {
                 Button(action: {
@@ -173,10 +190,11 @@ struct NewWishlistView: View {
                 DatePickerView(viewState: viewModel.viewState.datePicker)
             }
             if isNewItemDialogVisible {
-                let module = AppAssembler.shared
-                    .resolver
-                    .resolve(AddNewItemModule.self)
-                module.view(isShown: $isNewItemDialogVisible)
+                //TODO: extract AddNewItemFeature
+//                let module = AppAssembler.shared
+//                    .resolver
+//                    .resolve(AddNewItemModule.self)
+//                module.view(isShown: $isNewItemDialogVisible)
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)

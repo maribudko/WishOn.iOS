@@ -9,8 +9,9 @@ import Foundation
 import WOResources
 import WODesign
 
-final class NewWishListStateFactory {
-    func make(from state: NewWishListStateMachine.State) -> NewWishListState {
+public final class NewWishListStateFactory {
+    public init() {}
+    public func make(from state: NewWishListStateMachine.State) -> NewWishListState {
         
         let datePicker = DatePickerViewState(
             selectedDate: state.datePicker.date,

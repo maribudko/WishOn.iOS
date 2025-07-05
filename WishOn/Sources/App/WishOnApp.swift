@@ -10,6 +10,7 @@ import FirebaseCore
 import DependencyInjection
 import WOWishListsRootFeature
 import WOLoginFeature
+import WONewWishListFeature
 
 // schema 
 final class AppEnvironment {
