@@ -1,0 +1,49 @@
+.
+├── project-structure.txt
+├── swiftgen.yml
+├── swiftlint_report.txt
+├── WishOn
+│   ├── CoreData
+│   │   └── WishOn.xcdatamodeld
+│   ├── Data
+│   │   ├── Mappers
+│   │   └── Repositories
+│   ├── Domain
+│   │   ├── Models
+│   │   └── Protocols
+│   ├── GoogleService-Info.plist
+│   ├── Presentation
+│   │   └── Views
+│   ├── Preview Content
+│   │   └── Preview Assets.xcassets
+│   ├── Sources
+│   │   ├── App
+│   │   ├── Base
+│   │   ├── DesignSystem
+│   │   ├── Resources
+│   │   ├── Scenes
+│   │   └── Shared
+│   └── Utilitites
+│       ├── AccessibilityIdentifiers.swift
+│       └── Extensions
+├── WishOn.xcodeproj
+│   ├── project.pbxproj
+│   ├── project.xcworkspace
+│   │   ├── contents.xcworkspacedata
+│   │   ├── xcshareddata
+│   │   └── xcuserdata
+│   ├── xcshareddata
+│   │   └── xcschemes
+│   └── xcuserdata
+│       └── maribudko.xcuserdatad
+└── WishOnTests
+    ├── WishOnTests
+    │   └── WishListViewModelTests.swift
+    └── WishOnUITests
+        ├── MainViewUITests.swift
+        ├── Mock
+        ├── NewWishListViewUITests.swift
+        ├── UnitTestsCaseConstants.swift
+        └── WishOnUITestsLaunchTests.swift
+
+35 directories, 12 files

@@ -1,0 +1,33 @@
+//
+//  ToGiveCardDetails.swift
+//  WishOn
+//
+//  Created by Mari Budko on 30.11.2024.
+//
+
+import SwiftUI
+import WODesign
+
+public struct ToGiveCardDetails: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    public init() {}
+    
+    public var body: some View {
+        NavigationView {
+            VStack {
+                Text("To Give Card Details here")
+            }
+        }
+        .navigationBarHidden(true)
+        .gesture(DragGesture().onChanged { value in
+            if value.translation.width > AppDimensions.minimumGestureSize {
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        })
+    }
+}
+
+#Preview {
+    ToGiveCardDetails()
+}
