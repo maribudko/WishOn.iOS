@@ -14,6 +14,8 @@
 		EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60052E186BC9007E162E /* WOLoginFeature */; };
 		EA5A600B2E18EC7A007E162E /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A600A2E18EC7A007E162E /* WONewWishListFeature */; };
 		EA5A60C92E1903B7007E162E /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60C82E1903B7007E162E /* WOAddNewItemFeature */; };
+		EA5A613A2E1A84CE007E162E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A61392E1A84CE007E162E /* GoogleSignIn */; };
+		EA5A613C2E1A84CE007E162E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A613B2E1A84CE007E162E /* GoogleSignInSwift */; };
 		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
@@ -49,6 +51,7 @@
 		EA59CB782E0C0A8400F78E22 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Info.plist,
 				Modules/Core/DependencyInjection,
 				Modules/Core/WOCore,
 				Modules/Core/WODesign,
@@ -93,6 +96,8 @@
 				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
 				EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */,
 				EA59CB702E06A48800F78E22 /* WOResources in Frameworks */,
+				EA5A613C2E1A84CE007E162E /* GoogleSignInSwift in Frameworks */,
+				EA5A613A2E1A84CE007E162E /* GoogleSignIn in Frameworks */,
 				EA5A60C92E1903B7007E162E /* WOAddNewItemFeature in Frameworks */,
 				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
 				EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */,
@@ -179,6 +184,8 @@
 				EA5A60052E186BC9007E162E /* WOLoginFeature */,
 				EA5A600A2E18EC7A007E162E /* WONewWishListFeature */,
 				EA5A60C82E1903B7007E162E /* WOAddNewItemFeature */,
+				EA5A61392E1A84CE007E162E /* GoogleSignIn */,
+				EA5A613B2E1A84CE007E162E /* GoogleSignInSwift */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -261,6 +268,7 @@
 			packageReferences = (
 				EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */,
+				EA5A61382E1A84CE007E162E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EAD48AF22CF59C5100C0A29D /* Products */;
@@ -491,6 +499,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WishOn/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WishOn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -519,6 +528,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WishOn/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WishOn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -647,6 +657,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EA5A61382E1A84CE007E162E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -693,6 +711,16 @@
 		EA5A60C82E1903B7007E162E /* WOAddNewItemFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WOAddNewItemFeature;
+		};
+		EA5A61392E1A84CE007E162E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA5A61382E1A84CE007E162E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		EA5A613B2E1A84CE007E162E /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA5A61382E1A84CE007E162E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 		EA984EB62DF4646A00D6179C /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;
