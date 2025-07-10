@@ -105,10 +105,10 @@ public struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
-//                        AppAssembler.shared
-//                            .resolver
-//                            .resolve(NewWishListModule.self)
-//                            .view()
+                        AppAssembler.shared
+                            .resolver
+                            .resolve(NewWishListModule.self)
+                            .view()
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
@@ -187,7 +187,7 @@ struct MainView_Previews: PreviewProvider {
             emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart))
         )
         let stateFactory = WishListsStateFactory()
-        let repository = FakeWishListRepository()
+        let repository = WishListRepository()
         let useCase = WishListsInteractor(repository: repository)
         let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory, useCase: useCase)
         

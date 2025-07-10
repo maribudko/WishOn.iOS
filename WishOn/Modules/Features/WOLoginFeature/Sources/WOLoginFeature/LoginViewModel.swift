@@ -19,4 +19,13 @@ public final class LoginViewModel: ObservableObject {
         self.stateFactory = stateFactory
         self.viewState = stateFactory.make(from: stateMachine.state)
     }
+    
+    public func onGoogleLoginButtonTapped() {
+        isShowinWishListsView = true
+        stateMachine.didTapGoogleLoginButton()
+    }
+    
+    public func onAppleLoginButtonTapped() {
+        stateMachine.didTapAppleLoginButton()
+    }
 }

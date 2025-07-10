@@ -10,7 +10,6 @@ import WOResources
 import WODesign
 import DependencyInjection
 import WOCore
-import WOAddNewItemFeature
 
 public struct NewWishListState {
     let name: TextFieldViewState
@@ -191,10 +190,11 @@ public struct NewWishlistView: View {
                 DatePickerView(viewState: viewModel.viewState.datePicker)
             }
             if isNewItemDialogVisible {
-                AppAssembler.shared
-                    .resolver
-                    .resolve(AddNewItemModule.self)
-                    .view(isShown: $isNewItemDialogVisible)
+                //TODO: extract AddNewItemFeature
+//                let module = AppAssembler.shared
+//                    .resolver
+//                    .resolve(AddNewItemModule.self)
+//                module.view(isShown: $isNewItemDialogVisible)
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)

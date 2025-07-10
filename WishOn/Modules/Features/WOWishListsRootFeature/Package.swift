@@ -19,8 +19,8 @@ let package = Package(
         .package(path: "../../Core/WODesign"),
         .package(path: "../../Core/WOCore"),
         .package(path: "../../Core/WOResources"),
-        .package(path: "../WONewWishListFeature"),
-        .package(path: "../WOToGiveFeature"),
+        .package(path: "../../Core/WONewWishListFeature"),
+        .package(path: "../../Core/WOToGiveFeature"),
         .package(path: "../../Core/DependencyInjection")
     ],
     targets: [
