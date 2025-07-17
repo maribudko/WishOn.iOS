@@ -21,7 +21,7 @@ struct ToGiveView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }, label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: SFSymbols.back.name)
                         .font(.title)
                         .foregroundColor(Color(Asset.primaryColor.color))
                 })

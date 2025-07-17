@@ -19,12 +19,14 @@ struct Wish: Codable, Identifiable {
 
 extension Wish {
     func with(isTaken: Bool) -> Wish {
-        return Wish(id: self.id,
-                    name: self.name,
-                    image: self.image,
-                    price: self.price,
-                    currency: self.currency,
-                    link: self.link,
-                    isTaken: isTaken)
+        return Wish(
+            id: self.id,
+            name: self.name,
+            image: self.image,
+            price: self.price,
+            currency: self.currency,
+            link: self.link,
+            isTaken: isTaken
+        )
     }
 }
