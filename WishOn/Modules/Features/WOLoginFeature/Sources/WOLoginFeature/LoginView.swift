@@ -47,22 +47,22 @@ public struct LoginView: View {
     }
 }
 
-//#Preview {
-//    let stateMachine = LoginStateMachine()
-//    let stateFactory = LoginStateFactory()
-//    let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
-//    
-//    LoginView(viewModel: viewModel)
-//}
-
-#if DEBUG
-struct MyView_Previews: PreviewProvider {
-    static var previews: some View {
-        let stateMachine = LoginStateMachine()
-        let stateFactory = LoginStateFactory()
-        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
-        
-        LoginView(viewModel: viewModel)
-    }
+#Preview {
+    let stateMachine = LoginStateMachine()
+    let stateFactory = LoginStateFactory()
+    let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
+    
+    return LoginView(viewModel: viewModel)
 }
-#endif
+
+//#if DEBUG
+//struct MyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let stateMachine = LoginStateMachine()
+//        let stateFactory = LoginStateFactory()
+//        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
+//        
+//        LoginView(viewModel: viewModel)
+//    }
+//}
+//#endif

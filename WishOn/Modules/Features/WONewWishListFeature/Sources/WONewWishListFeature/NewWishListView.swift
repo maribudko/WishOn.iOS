@@ -210,5 +210,5 @@ public struct NewWishlistView: View {
     )
     let viewStateFactory = NewWishListStateFactory()
     
-    NewWishlistView(viewModel: NewWishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory))
+    return NewWishlistView(viewModel: NewWishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory))
 }

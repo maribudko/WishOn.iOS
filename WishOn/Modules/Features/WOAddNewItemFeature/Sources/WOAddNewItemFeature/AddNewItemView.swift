@@ -129,5 +129,5 @@ public struct AddNewItemView: View {
     let stateFactory = AddNewItemStateFactory()
     let viewModel = AddNewItemViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
     
-    AddNewItemView(isShown: .constant(true), viewModel: viewModel)
+    return AddNewItemView(isShown: .constant(true), viewModel: viewModel)
 }
