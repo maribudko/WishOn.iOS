@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA5433BE2E29171E0086A8E1 /* WOWishListsRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5433BD2E29171E0086A8E1 /* WOWishListsRootFeature */; };
-		EA5433C02E29183D0086A8E1 /* WODesign in Frameworks */ = {isa = PBXBuildFile; productRef = EA5433BF2E29183D0086A8E1 /* WODesign */; };
-		EA5433C22E29187C0086A8E1 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA5433C12E29187C0086A8E1 /* WOResources */; };
-		EA5433C42E2918810086A8E1 /* WOCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA5433C32E2918810086A8E1 /* WOCore */; };
 		EA59CB702E06A48800F78E22 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB6F2E06A48800F78E22 /* WOResources */; };
 		EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB732E06ABC800F78E22 /* WODesign */; };
 		EA5A5E4B2E17EA0D007E162E /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A5E4A2E17EA0D007E162E /* DependencyInjection */; };
@@ -46,20 +42,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA5433AB2E2916350086A8E1 /* WOWishListRootPreviewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WOWishListRootPreviewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48AF12CF59C5100C0A29D /* WishOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WishOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishOnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		EA5434392E2923050086A8E1 /* Exceptions for "WishOn" folder in "WOWishListRootPreviewApp" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Modules/PreviewApps/WOWishListRootPreviewApp/WOWishListRootPreviewApp.swift,
-			);
-			target = EA5433AA2E2916350086A8E1 /* WOWishListRootPreviewApp */;
-		};
 		EA59CB782E0C0A8400F78E22 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -73,7 +61,6 @@
 				Modules/Features/WONewWishListFeature,
 				Modules/Features/WOToGiveFeature,
 				Modules/Features/WOWishListsRootFeature,
-				Modules/PreviewApps/WOWishListRootPreviewApp/WOWishListRootPreviewApp.swift,
 				Modules/WONetwork,
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
@@ -93,7 +80,6 @@
 			exceptions = (
 				EA59CB782E0C0A8400F78E22 /* Exceptions for "WishOn" folder in "WishOn" target */,
 				EAF559122D4EB56D009E4AEC /* Exceptions for "WishOn" folder in "WishOnUITests" target */,
-				EA5434392E2923050086A8E1 /* Exceptions for "WishOn" folder in "WOWishListRootPreviewApp" target */,
 			);
 			path = WishOn;
 			sourceTree = "<group>";
@@ -101,17 +87,6 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA5433A82E2916350086A8E1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA5433C02E29183D0086A8E1 /* WODesign in Frameworks */,
-				EA5433C42E2918810086A8E1 /* WOCore in Frameworks */,
-				EA5433BE2E29171E0086A8E1 /* WOWishListsRootFeature in Frameworks */,
-				EA5433C22E29187C0086A8E1 /* WOResources in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EAD48AEE2CF59C5000C0A29D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,7 +148,6 @@
 				EAD48AF12CF59C5100C0A29D /* WishOn.app */,
 				EAD48B062CF59C5300C0A29D /* WishOnTests.xctest */,
 				EAD48B102CF59C5300C0A29D /* WishOnUITests.xctest */,
-				EA5433AB2E2916350086A8E1 /* WOWishListRootPreviewApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,29 +155,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA5433AA2E2916350086A8E1 /* WOWishListRootPreviewApp */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA5433B32E2916360086A8E1 /* Build configuration list for PBXNativeTarget "WOWishListRootPreviewApp" */;
-			buildPhases = (
-				EA5433A72E2916350086A8E1 /* Sources */,
-				EA5433A82E2916350086A8E1 /* Frameworks */,
-				EA5433A92E2916350086A8E1 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = WOWishListRootPreviewApp;
-			packageProductDependencies = (
-				EA5433BD2E29171E0086A8E1 /* WOWishListsRootFeature */,
-				EA5433BF2E29183D0086A8E1 /* WODesign */,
-				EA5433C12E29187C0086A8E1 /* WOResources */,
-				EA5433C32E2918810086A8E1 /* WOCore */,
-			);
-			productName = WOWishListRootPreviewApp;
-			productReference = EA5433AB2E2916350086A8E1 /* WOWishListRootPreviewApp.app */;
-			productType = "com.apple.product-type.application";
-		};
 		EAD48AF02CF59C5000C0A29D /* WishOn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EAD48B1A2CF59C5300C0A29D /* Build configuration list for PBXNativeTarget "WishOn" */;
@@ -292,9 +243,6 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					EA5433AA2E2916350086A8E1 = {
-						CreatedOnToolsVersion = 16.4;
-					};
 					EAD48AF02CF59C5000C0A29D = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -330,19 +278,11 @@
 				EAD48AF02CF59C5000C0A29D /* WishOn */,
 				EAD48B052CF59C5300C0A29D /* WishOnTests */,
 				EAD48B0F2CF59C5300C0A29D /* WishOnUITests */,
-				EA5433AA2E2916350086A8E1 /* WOWishListRootPreviewApp */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EA5433A92E2916350086A8E1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EAD48AEF2CF59C5000C0A29D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -389,13 +329,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA5433A72E2916350086A8E1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EAD48AED2CF59C5000C0A29D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -433,64 +366,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		EA5433B42E2916360086A8E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.4paws.maribudko.WOWishListRootPreviewApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		EA5433B52E2916360086A8E1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 93377Y9PF9;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.4paws.maribudko.WOWishListRootPreviewApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		EAD48B182CF59C5300C0A29D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -743,15 +618,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA5433B32E2916360086A8E1 /* Build configuration list for PBXNativeTarget "WOWishListRootPreviewApp" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA5433B42E2916360086A8E1 /* Debug */,
-				EA5433B52E2916360086A8E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		EAD48AEC2CF59C5000C0A29D /* Build configuration list for PBXProject "WishOn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -818,22 +684,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EA5433BD2E29171E0086A8E1 /* WOWishListsRootFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WOWishListsRootFeature;
-		};
-		EA5433BF2E29183D0086A8E1 /* WODesign */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WODesign;
-		};
-		EA5433C12E29187C0086A8E1 /* WOResources */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WOResources;
-		};
-		EA5433C32E2918810086A8E1 /* WOCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WOCore;
-		};
 		EA59CB6F2E06A48800F78E22 /* WOResources */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WOResources;
