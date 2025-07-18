@@ -53,6 +53,34 @@ import Foundation
     #expect(stateMachine.state.wishLists.first?.title == "To Keep")
 }
 
+@Test func emptyWishList() {
+    let stateMachine = makeStateMachine()
+    stateMachine.setWishLists([])
+    #expect(stateMachine.state.wishLists.isEmpty)
+}
+
+@Test func removeNotExistingItem() {
+    let stateMachine = makeStateMachine()
+    let list = WishList(id: UUID(), name: "Keep", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    stateMachine.setWishLists([list])
+    
+    stateMachine.removeWishList(by: UUID().uuidString)
+    #expect(stateMachine.state.wishLists.count == 1)
+    #expect(stateMachine.state.wishLists.first?.title == "Keep")
+}
+
+@Test func duplicateWishList() {
+    let id = UUID()
+    let list1 = WishList(id: id, name: "List 1", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    let list2 = WishList(id: id, name: "List 2", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    
+    let stateMachine = makeStateMachine()
+    stateMachine.setWishLists([list1])
+    stateMachine.addWishList(list2)
+    
+    #expect(stateMachine.state.wishLists.count == 1)
+}
+
 private func makeStateMachine() -> WishListsStateMachine {
     return .init(
         calendarIcon: .init(icon: SFSymbolsIcon(symbol: .calendar)),
