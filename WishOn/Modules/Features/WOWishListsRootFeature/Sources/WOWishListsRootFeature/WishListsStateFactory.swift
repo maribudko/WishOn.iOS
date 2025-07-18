@@ -10,6 +10,9 @@ import WODesign
 import WOCore
 
 public final class WishListsStateFactory {
+    
+    public init() {}
+    
     public func make(from state: WishListsStateMachine.State) -> WishListsState {
         
         let list: [WishList] = state.wishLists.map({ wishList in

@@ -179,18 +179,17 @@ public struct WishListRootView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
         let stateMachine = WishListsStateMachine(
-            calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar)),
-            profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person)),
-            emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart))
+            calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar), isResizable: true),
+            profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person), isResizable: true),
+            emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart), isResizable: true)
         )
         let stateFactory = WishListsStateFactory()
         let repository = WishListRepository()
         let useCase = WishListsInteractor(repository: repository)
         let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory, useCase: useCase)
         
-        WishListRootView(viewModel: viewModel)
-    }
+        return WishListRootView(viewModel: viewModel)
 }
+

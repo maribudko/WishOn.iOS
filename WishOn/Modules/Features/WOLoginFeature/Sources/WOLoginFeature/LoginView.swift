@@ -52,5 +52,17 @@ public struct LoginView: View {
     let stateFactory = LoginStateFactory()
     let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
     
-    LoginView(viewModel: viewModel)
+    return LoginView(viewModel: viewModel)
 }
+
+//#if DEBUG
+//struct MyView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let stateMachine = LoginStateMachine()
+//        let stateFactory = LoginStateFactory()
+//        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
+//        
+//        LoginView(viewModel: viewModel)
+//    }
+//}
+//#endif
