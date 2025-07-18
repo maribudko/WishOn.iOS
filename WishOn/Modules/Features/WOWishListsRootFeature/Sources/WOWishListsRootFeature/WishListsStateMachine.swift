@@ -63,6 +63,9 @@ public final class WishListsStateMachine {
     }
     
     public func addWishList(_ wishList: WishList) {
+        guard !wishLists.contains(where: {$0.id == wishList.id}) else {
+            return
+        }
         self.wishLists.append(wishList)
     }
     

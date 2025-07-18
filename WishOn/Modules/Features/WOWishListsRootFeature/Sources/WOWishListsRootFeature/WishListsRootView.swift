@@ -105,10 +105,10 @@ public struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
-//                        AppAssembler.shared
-//                            .resolver
-//                            .resolve(NewWishListModule.self)
-//                            .view()
+                        AppAssembler.shared
+                            .resolver
+                            .resolve(NewWishListModule.self)
+                            .view()
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
