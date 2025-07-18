@@ -37,19 +37,10 @@
          contextName = "closure #1 in closure #1 in closure #1 in closure #4 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
+         contextName = "closure #1 in closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
       </ContextState>
       <ContextState
          contextName = "MainViewUITests.testNonEmptyWishlist():MainViewUITests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "MainViewUITests.testEmptyWishlist():MainViewUITests.swift">
-      </ContextState>
-      <ContextState
-         contextName = "closure #3 in closure #1 in MainView.body.getter:MainView.swift">
-      </ContextState>
-      <ContextState
-         contextName = "WishListRepository.fetchWishLists():WishListRepository.swift">
       </ContextState>
       <ContextState
          contextName = "closure #4 in closure #1 in AddWishlistView.body.getter:NewWishListView.swift">
@@ -63,10 +54,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
+         contextName = "MainViewUITests.testEmptyWishlist():MainViewUITests.swift">
+      </ContextState>
+      <ContextState
+         contextName = "WishListRepository.fetchWishLists():WishListRepository.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #3 in closure #1 in MainView.body.getter:MainView.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in WishListRepository.fetchWishLists():WishListRepository.swift">
       </ContextState>
       <ContextState
          contextName = "closure #1 in WishOnApp.body.getter:WishOnApp.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Auth.auth().currentUser">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "NewWishListViewUITests.testTextFieldsInput():NewWishListViewUITests.swift">
@@ -89,6 +94,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #1 in closure #1 in LoginStateMachine.didTapGoogleLoginButton():LoginStateMachine.swift">
+      </ContextState>
+      <ContextState
          contextName = "closure #5 in closure #1 in closure #1 in MainView.body.getter:MainView.swift">
       </ContextState>
       <ContextState
@@ -106,6 +114,9 @@
                value = "wishes.count">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in LoginStateMachine.didTapGoogleLoginButton():LoginStateMachine.swift">
       </ContextState>
       <ContextState
          contextName = "MockWishListRepository.fetchWishList():MockWishListRepository.swift">

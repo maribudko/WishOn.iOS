@@ -7,6 +7,14 @@
 
 import SwiftUI
 import FirebaseCore
+import FirebaseAuth
+import GoogleSignIn
+import DependencyInjection
+import WOWishListsRootFeature
+import WOLoginFeature
+import WONewWishListFeature
+import WOAddNewItemFeature
+import WOCore
 
 // schema 
 final class AppEnvironment {
@@ -23,53 +31,52 @@ final class AppEnvironment {
 @main
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State private var isLoggedIn = false
-    private let loginModule = LoginModule()
+    @StateObject var session = CurrentUserManager.shared
+    //@State private var isLoggedIn = false
     
-    let persistenceController = PersistenceController.shared
     
     init() {
+        registerAssemblies()
         // CR: створити для unit tests окремий таргет +
         // CR: менеджер який буде повертати актуальне значення в якому ми режимі
-        
-        
-#if DEBUG
-        WishOnApp.unitTestConfig()
-#else
-        DIRepositoriesContainer.shared.register(repository: WishListRepository() as WishListRepositoryProtocol)
-#endif
     }
     
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
-                WishListsModule()
+            if session.isLoggedIn {
+                AppAssembler.shared
+                    .resolver
+                    .resolve(WishListsModule.self)
                     .view()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
             } else {
-                LoginModule(onLoginSuccess: {
-                    isLoggedIn = true
-                })
-                .view()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                AppAssembler.shared
+                    .resolver
+                    .resolve(LoginModule.self, argument: {
+                        //isLoggedIn = true
+                    })
+                    .view()
             }
         }
     }
     
-#if DEBUG
-    static func unitTestConfig() {
-        if CommandLine.arguments.contains(UnitTestsCaseConstants.emptyList) {
-            DIRepositoriesContainer.shared.register(repository: MockWishListEmptyRepository() as WishListRepositoryProtocol)
-        } else {
-            DIRepositoriesContainer.shared.register(repository: MockWishListRepository() as WishListRepositoryProtocol)
-        }
+    func registerAssemblies() {
+        AppAssembler.shared.addAssemblies(assemblies:         [
+            LoginAssembly(),
+            WishListsAssembly(),
+            AddNewItemAssembly(),
+            NewWishListAssembly(),
+            IconAssembly(),
+        ])
     }
-#endif
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance.handle(url)
     }
 }
