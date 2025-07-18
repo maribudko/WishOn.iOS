@@ -22,6 +22,10 @@ final class NewWishListStateFactory {
             name: makeField(from: state.nameField),
             description: makeField(from: state.descriptionField),
             datePicker: datePicker,
+            backIcon: makeIcon(from: state.backButtonIcon),
+            dropDownIcon: makeIcon(from: state.dropDownIcon),
+            saveIcon: makeIcon(from: state.saveIcon),
+            plusIcon: makeIcon(from: state.plusIcon),
             date: dateString,
             isDatePickerVisible: state.datePicker.isVisible)
     }
@@ -44,5 +48,9 @@ private extension NewWishListStateFactory {
             inputType = .plain
         }
         return .init(title: title, text: state.text, errorMessage: errorMessage, inputType: inputType)
+    }
+    
+    func makeIcon(from state: IconState) -> IconViewState {
+        return .init(icon: state.icon, isResizable: state.isResizable)
     }
 }

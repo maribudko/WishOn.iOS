@@ -36,6 +36,7 @@ final class AddNewItemStateMachine {
     
     private let nameField: TextFieldState<TextFieldKind>
     private let urlField: TextFieldState<TextFieldKind>
+    private let crossIcon: IconState
     private lazy var priceField: PriceInputState = PriceInputState {text in
         self.setPriceText(text)
     } onCurrencyChanged: {text in
@@ -54,9 +55,10 @@ final class AddNewItemStateMachine {
     
     var didRequestShowAlert: ((String) -> Void)?
     
-    init() {
+    init(crossIcon: IconState) {
         self.nameField = .init(kind: .name, validator: NameValidator())
         self.urlField = .init(kind: .url, validator: UrlValidator())
+        self.crossIcon = crossIcon
     }
     
     func setNameText(_ text: String) {
@@ -142,12 +144,15 @@ extension AddNewItemStateMachine {
         let urlField: TextFieldState<TextFieldKind>
         let priceField: PriceInputState
         let addButton: ButtonState
+        let crossIcon: IconState
     }
     
     var state: State {
         .init(nameField: nameField,
               urlField: urlField,
               priceField: priceField,
-              addButton: addButton)
+              addButton: addButton,
+              crossIcon: crossIcon
+        )
     }
 }

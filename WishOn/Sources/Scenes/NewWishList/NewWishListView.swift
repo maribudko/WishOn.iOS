@@ -11,6 +11,10 @@ struct NewWishListState {
     let name: TextFieldViewState
     let description: TextFieldViewState
     let datePicker: DatePickerViewState
+    let backIcon: IconViewState
+    let dropDownIcon: IconViewState
+    let saveIcon: IconViewState
+    let plusIcon: IconViewState
     let date: String
     let isDatePickerVisible: Bool
 }
@@ -34,7 +38,7 @@ struct NewWishlistView: View {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Image(systemName: SFSymbols.back.name)
+                    IconView(viewState: viewModel.viewState.backIcon)
                         .font(.title)
                         .foregroundColor(Color(Asset.primaryColor.color))
                 }
@@ -50,7 +54,7 @@ struct NewWishlistView: View {
                 Button {
                     // TODO: save wishlist
                 } label: {
-                    Image(systemName: SFSymbols.arrowDown.name)
+                    IconView(viewState: viewModel.viewState.saveIcon)
                         .font(.title)
                         .foregroundColor(Color(Asset.primaryColor.color))
                 }
@@ -59,7 +63,7 @@ struct NewWishlistView: View {
             }
             
             HStack {
-                Image(asset: Asset.filofax)
+                Image(asset: Asset.blankImage)
                     .resizable()
                     .scaledToFill()
                     .frame(width: AppDimensions.newItemImageSize, height: AppDimensions.newItemImageSize)
@@ -82,7 +86,7 @@ struct NewWishlistView: View {
                 Button {
                     viewModel.setDatePickerVisibility(true)
                 } label: {
-                    Image(systemName: SFSymbols.down.name)
+                    IconView(viewState: viewModel.viewState.dropDownIcon)
                         .foregroundColor(Color(Asset.primaryTextColor.color))
                         .frame(alignment: .trailing)
                         .background(Color.clear)
@@ -143,8 +147,7 @@ struct NewWishlistView: View {
                 Button {
                     isNewItemDialogVisible = true
                 } label: {
-                    Image(systemName: SFSymbols.plusCircle.name)
-                        .resizable()
+                    IconView(viewState: viewModel.viewState.plusIcon)
                         .frame(width: AppDimensions.fabSize, height: AppDimensions.fabSize)
                         .foregroundColor(Color(Asset.primaryColor.color))
                 }
@@ -167,8 +170,10 @@ struct NewWishlistView: View {
                 DatePickerView(viewState: viewModel.viewState.datePicker)
             }
             if isNewItemDialogVisible {
-                let module = AddNewItemModule(isShown: $isNewItemDialogVisible)
-                module.view()
+                let module = AppAssembler.shared
+                    .resolver
+                    .resolve(AddNewItemModule.self)
+                module.view(isShown: $isNewItemDialogVisible)
             }
         })
         .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
@@ -176,8 +181,13 @@ struct NewWishlistView: View {
 }
 
 #Preview {
-    let stateMachine = NewWishListStateMachine()
+    let stateMachine = NewWishListStateMachine(
+        backIcon: IconState(icon: SFSymbolsIcon(symbol: .back)),
+        dropDownIcon: IconState(icon: SFSymbolsIcon(symbol: .down)),
+        saveIcon: IconState(icon: SFSymbolsIcon(symbol: .arrowDown)),
+        plusIcon: IconState(icon: SFSymbolsIcon(symbol: .plusCircle), isResizable: true)
+    )
     let viewStateFactory = NewWishListStateFactory()
-   
+    
     NewWishlistView(viewModel: NewWishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory))
 }

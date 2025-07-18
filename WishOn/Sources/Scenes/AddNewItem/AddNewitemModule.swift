@@ -7,20 +7,17 @@
 
 import SwiftUI
 
-struct AddNewItemModule: BaseSwiftUIModule {
-    @Binding var isShown: Bool
+struct AddNewItemModule {
+    let stateMachine: AddNewItemStateMachine
+    let stateFactory: AddNewItemStateFactory
     
-    func view() -> some View {
-        let stateMachine = AddNewItemStateMachine() // new
-        let viewStateFactory = AddNewItemStateFactory() // reused
-        // AppAssembler.shared.resolve(AddNewItemViewModel.self)
-        let viewModel = AddNewItemViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory)
+    func view(isShown: Binding<Bool>) -> some View {
+        let viewModel = AddNewItemViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
         viewModel.onSuccess = {
             withAnimation {
-                isShown = false
+                isShown.wrappedValue = false
             }
         }
-        
-        return AddNewItemView(isShown: $isShown, viewModel: viewModel)
+        return AddNewItemView(isShown: isShown, viewModel: viewModel)
     }
 }

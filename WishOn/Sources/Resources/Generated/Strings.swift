@@ -33,8 +33,6 @@ internal enum L10n {
   internal static let descriptionHint = L10n.tr("Localizable", "description_hint", fallback: "Description")
   /// Done
   internal static let doneLabel = L10n.tr("Localizable", "done_label", fallback: "Done")
-  ///  
-  internal static let emptyText = L10n.tr("Localizable", "empty_text", fallback: " ")
   /// EUR
   internal static let eur = L10n.tr("Localizable", "EUR", fallback: "EUR")
   /// Please, fill all fields correctly.
@@ -77,6 +75,8 @@ internal enum L10n {
   internal static let priceIsIncorrect = L10n.tr("Localizable", "price_is_incorrect", fallback: "Price value is incorrect.")
   /// Select a Date
   internal static let selectDateHint = L10n.tr("Localizable", "select_date_hint", fallback: "Select a Date")
+  ///  
+  internal static let spaceText = L10n.tr("Localizable", "space_text", fallback: " ")
   /// Done!
   internal static let successMessage = L10n.tr("Localizable", "success_message", fallback: "Done!")
   /// To Give

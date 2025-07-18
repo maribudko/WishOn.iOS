@@ -9,18 +9,15 @@
 enum FieldKind {
     case name
     case city
-    
 }
 
 import SwiftUI
 
 enum InputFieldType {
-    case email // +
+    case email
     case url
     case name
-    case plain // +
-    // case numbers // +
-    // case secure // +
+    case plain
     
     var keyboardType: UIKeyboardType {
         switch self {

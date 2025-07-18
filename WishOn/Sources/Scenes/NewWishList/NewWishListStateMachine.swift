@@ -22,17 +22,25 @@ final class NewWishListStateMachine {
         }
     }
     
-    
     private let name: TextFieldState<TextFieldKind>
     private let description: TextFieldState<TextFieldKind>
     private lazy var datePicker: DatePickerState = {
         DatePickerState(isVisible: false, onDateSelected: onDateSelected,
-        onDismiss: onDismiss)
+                        onDismiss: onDismiss)
     }()
+    private let backButtonIcon: IconState
+    private let dropDownIcon: IconState
+    private let saveIcon: IconState
+    private let plusIcon: IconState
     
-    init() {
+    
+    init(backIcon: IconState, dropDownIcon: IconState, saveIcon: IconState, plusIcon: IconState) {
         self.name = .init(kind: TextFieldKind.name, validator: NameValidator())
         self.description = .init(kind: TextFieldKind.description, validator: PlainTextValidator())
+        self.backButtonIcon = backIcon
+        self.dropDownIcon = dropDownIcon
+        self.saveIcon = saveIcon
+        self.plusIcon = plusIcon
     }
     
     func onDateSelected(_ date: Date) {
@@ -96,11 +104,21 @@ extension NewWishListStateMachine {
         let nameField: TextFieldState<TextFieldKind>
         let descriptionField: TextFieldState<TextFieldKind>
         let datePicker: DatePickerState
+        let backButtonIcon: IconState
+        let dropDownIcon: IconState
+        let saveIcon: IconState
+        let plusIcon: IconState
     }
     
     var state: State {
-        .init(nameField: name,
-              descriptionField: description,
-              datePicker: datePicker)
+        .init(
+            nameField: name,
+            descriptionField: description,
+            datePicker: datePicker,
+            backButtonIcon: backButtonIcon,
+            dropDownIcon: dropDownIcon,
+            saveIcon: saveIcon,
+            plusIcon: plusIcon
+        )
     }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
 		EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */; };
@@ -52,24 +53,23 @@
 				Domain/Models/Wish.swift,
 				Domain/Models/WishList.swift,
 				Domain/Protocols/WishListRepositoryProtocol.swift,
-				Presentation/Views/ToGiveCardDetails.swift,
-				Presentation/Views/ToGiveCardView.swift,
-				Presentation/Views/ToGiveView.swift,
-				Presentation/Views/WishListDetailsView.swift,
-				Sources/App/DIRepositoriesContainer.swift,
 				Sources/Base/Views/DatePickerView.swift,
 				Sources/Base/Views/WishListCardView.swift,
+				Sources/Base/Views/WishListDetailsView.swift,
 				Sources/Scenes/AddNewItem/AddNewitemModule.swift,
 				Sources/Scenes/AddNewItem/AddNewItemStateFactory.swift,
 				Sources/Scenes/AddNewItem/AddNewItemStateMachine.swift,
 				Sources/Scenes/AddNewItem/AddNewItemView.swift,
 				Sources/Scenes/AddNewItem/AddNewItemViewModel.swift,
 				Sources/Scenes/AddNewItem/Validator.swift,
-				Sources/Scenes/NewWishList/NewWishLIstModule.swift,
+				Sources/Scenes/NewWishList/NewWishListModule.swift,
 				Sources/Scenes/NewWishList/NewWishListStateFactory.swift,
 				Sources/Scenes/NewWishList/NewWishListStateMachine.swift,
 				Sources/Scenes/NewWishList/NewWishListView.swift,
 				Sources/Scenes/NewWishList/NewWishListViewModel.swift,
+				Sources/Scenes/ToGive/ToGiveCardDetails.swift,
+				Sources/Scenes/ToGive/ToGiveCardView.swift,
+				Sources/Scenes/ToGive/ToGiveView.swift,
 				Sources/Scenes/WishListsRoot/WishListRootView.swift,
 				Sources/Scenes/WishListsRoot/WishListsInteractor.swift,
 				Sources/Scenes/WishListsRoot/WishListsModule.swift,
@@ -124,6 +124,7 @@
 				EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */,
 				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
 				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
+				EA984EB72DF4646A00D6179C /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +199,7 @@
 				EAF55A702D53C316009E4AEC /* FirebaseAuth */,
 				EAF55A722D53C316009E4AEC /* FirebaseFirestore */,
 				EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */,
+				EA984EB62DF4646A00D6179C /* Swinject */,
 			);
 			productName = WishOn;
 			productReference = EAD48AF12CF59C5100C0A29D /* WishOn.app */;
@@ -691,6 +693,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EA984EB62DF4646A00D6179C /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
 		EAF55A702D53C316009E4AEC /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

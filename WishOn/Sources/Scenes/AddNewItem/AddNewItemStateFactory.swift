@@ -25,7 +25,8 @@ final class AddNewItemStateFactory {
             name: makeField(from: state.nameField),
             link: makeField(from: state.urlField),
             price: price,
-            button: buttonViewState
+            button: buttonViewState,
+            crossIcon: .init(icon: state.crossIcon.icon)
         )
     }
 }

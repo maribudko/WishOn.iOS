@@ -8,12 +8,14 @@
 import SwiftUICore
 
 struct LoginModule: BaseSwiftUIModule {
+    
+    let stateMachine: LoginStateMachine
+    let stateFactory: LoginStateFactory
+    
     var onLoginSuccess: (() -> Void)?
     
     func view() -> some View {
-        let stateMachine = LoginStateMachine()
-        let viewStateFactory = LoginStateFactory()
-        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory)
+        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
         
         stateMachine.onLoginSuccess = {
             onLoginSuccess?()

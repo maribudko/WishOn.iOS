@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct WishListsModule: BaseSwiftUIModule {
+    let stateMachine: WishListsStateMachine
+    let stateFactory: WishListsStateFactory
+    let useCase: WishListUseCase
     
     func view() -> some View {
-        let stateMachine = WishListsStateMachine()
-        let viewStateFactory = WishListsStateFactory()
-        let repository = WishListRepository()
-        let useCase = WishListsInteractor(repository: repository)
-        let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: viewStateFactory, useCase: useCase)
-        return WishListRootView(viewModel: viewModel)
-        
+        let viewModel = WishListViewModel(
+            stateMachine: stateMachine,
+            stateFactory: stateFactory,
+            useCase: useCase
+        )
+        return WishListRootView(viewModel: viewModel)   
     }
 }

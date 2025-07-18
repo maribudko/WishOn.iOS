@@ -23,7 +23,7 @@
 "link_hint" = "Link";
 "price_hint" = "Price";
 "done_label" = "Done";
-"empty_text" = " ";
+"space_text" = " ";
 "ok_label" = "Ok";
 "select_date_hint" = "Select a Date";
 "create_label" = "Create";
