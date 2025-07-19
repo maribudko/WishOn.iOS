@@ -106,6 +106,8 @@ public struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
+                        
+                        //MARK: MENTOR: чи нормально так вирішувати проблему з відсутністю залежностей під час прев'ю для Canvas Preview?
                         #if DEBUG
                         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
                             EmptyView()
@@ -192,10 +194,6 @@ public struct WishListRootView: View {
 }
 
 #Preview {
-    let previewAssembler = Assembler([
-        NewWishListAssembly(),
-        IconAssembly(),
-    ])
     let stateMachine = WishListsStateMachine(
         calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar), isResizable: true),
         profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person), isResizable: true),
