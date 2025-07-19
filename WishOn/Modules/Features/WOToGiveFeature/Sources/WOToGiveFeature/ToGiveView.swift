@@ -8,6 +8,7 @@
 import SwiftUI
 import WOResources
 import WODesign
+import WOCore
 
 public struct ToGiveView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -32,10 +33,11 @@ public struct ToGiveView: View {
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
-                Text("To Give")
+                Text(L10n.toGive)
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Color(Asset.primaryTitleColor.color))
+                    .accessibilityIdentifier(AccessibilityIdentifiers.toGiveLabel)
             }
             
             ScrollView {

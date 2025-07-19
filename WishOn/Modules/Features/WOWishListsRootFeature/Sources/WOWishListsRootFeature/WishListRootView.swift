@@ -5,6 +5,7 @@ import WOCore
 import WONewWishListFeature
 import DependencyInjection
 import WOToGiveFeature
+import Swinject
 
 public struct WishListsState {
     public let addNewWishlistButton: NavigationLinkButtonViewState
@@ -105,18 +106,29 @@ public struct WishListRootView: View {
                 
                 HStack {
                     NavigationLink {
+                        #if DEBUG
+                        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+                            EmptyView()
+                        } else {
+                            AppAssembler.shared
+                                .resolver
+                                .resolve(NewWishListModule.self)
+                                .view()
+                        }
+                        #else
                         AppAssembler.shared
                             .resolver
                             .resolve(NewWishListModule.self)
                             .view()
+                        #endif
                     } label: {
                         Text(L10n.addNewWishlist)
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Capsule().fill(Color(Asset.primaryColor.color)))
                             .foregroundColor(.white)
-                            .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
                     
                     NavigationLink {
                         ToGiveView()
@@ -130,9 +142,9 @@ public struct WishListRootView: View {
                             )
                             .foregroundColor(.black)
                     }
+                    .accessibilityIdentifier(AccessibilityIdentifiers.showToGiveViewButton)
                 }
                 .padding(.top)
-                .accessibilityIdentifier(AccessibilityIdentifiers.showToGiveViewButton)
                 
                 if !viewModel.viewState.wishLists.isEmpty {
                     ScrollView {
@@ -180,16 +192,19 @@ public struct WishListRootView: View {
 }
 
 #Preview {
-        let stateMachine = WishListsStateMachine(
-            calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar), isResizable: true),
-            profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person), isResizable: true),
-            emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart), isResizable: true)
-        )
-        let stateFactory = WishListsStateFactory()
-        let repository = WishListRepository()
-        let useCase = WishListsInteractor(repository: repository)
-        let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory, useCase: useCase)
-        
-        return WishListRootView(viewModel: viewModel)
+    let previewAssembler = Assembler([
+        NewWishListAssembly(),
+        IconAssembly(),
+    ])
+    let stateMachine = WishListsStateMachine(
+        calendarIcon: IconState(icon: SFSymbolsIcon(symbol: .calendar), isResizable: true),
+        profileIcon: IconState(icon: SFSymbolsIcon(symbol: .person), isResizable: true),
+        emptyListIcon: IconState(icon: SFSymbolsIcon(symbol: .heart), isResizable: true)
+    )
+    let stateFactory = WishListsStateFactory()
+    let repository = FakeWishListRepository()
+    let useCase = WishListsInteractor(repository: repository)
+    let viewModel = WishListViewModel(stateMachine: stateMachine, stateFactory: stateFactory, useCase: useCase)
+    
+    return WishListRootView(viewModel: viewModel)
 }
-

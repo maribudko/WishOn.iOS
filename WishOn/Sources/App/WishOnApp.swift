@@ -12,6 +12,7 @@ import WOWishListsRootFeature
 import WOLoginFeature
 import WONewWishListFeature
 import WOAddNewItemFeature
+import WOCore
 
 // schema 
 final class AppEnvironment {

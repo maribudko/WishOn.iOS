@@ -69,7 +69,7 @@ public struct NewWishlistView: View {
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Color(Asset.primaryColor.color))
-                    .accessibilityIdentifier(L10n.newWishlistLbl)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
                 
                 Button {
                     // TODO: save wishlist

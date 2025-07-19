@@ -18,4 +18,6 @@ public enum AccessibilityIdentifiers {
     
     public static let createWishlistButton = "createWishlistButton"
     public static let plusCircleFillButton = "plusCircleFillButton"
+    
+    public static let toGiveLabel = "toGiveLabel"
 }
