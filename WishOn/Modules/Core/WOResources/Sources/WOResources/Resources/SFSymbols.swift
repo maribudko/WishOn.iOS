@@ -10,6 +10,7 @@ import SwiftUI
 
 public protocol IconRepresentable {
     var image: Image { get }
+    var name: String { get }
 }
 
 public enum SFSymbols: String {
@@ -36,11 +37,16 @@ public enum SFSymbols: String {
 
 public struct SFSymbolsIcon: IconRepresentable {
     let symbol: SFSymbols
+    
     public init(symbol: SFSymbols) {
         self.symbol = symbol
     }
     
     public var image: Image {
         Image(systemName: symbol.rawValue)
+    }
+    
+    public var name: String {
+        symbol.rawValue
     }
 }
