@@ -7,13 +7,14 @@
 
 import XCTest
 
-final class PreviewHostUITests: XCTestCase {
+final class WishListsRootViewTests: XCTestCase {
     
     private var app: XCUIApplication!
     
     override func setUpWithError() throws {
         continueAfterFailure = false
         app = XCUIApplication()
+        app.launchArguments.append(Constants.wishListRootScreen)
         app.launch()
     }
     

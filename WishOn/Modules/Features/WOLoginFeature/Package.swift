@@ -17,6 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
         .package(path: "../../Core/WODesign"),
+        .package(path: "../../Core/WOCore"),
         .package(path: "../../Core/WOResources"),
         .package(path: "../../Core/DependencyInjection"),
         .package(path: "../WOWishListsRootFeature"),
@@ -29,6 +30,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Swinject", package: "Swinject"),
                 .product(name: "WODesign", package: "WODesign"),
+                .product(name: "WOCore", package: "WOCore"),
                 .product(name: "WOResources", package: "WOResources"),
                 .product(name: "WOWishListsRootFeature", package: "WOWishListsRootFeature"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),

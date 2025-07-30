@@ -7,14 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA080C4E2E2A924100B83720 /* WOWishListsRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C4D2E2A924100B83720 /* WOWishListsRootFeature */; };
 		EA080C502E2A924700B83720 /* WOCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C4F2E2A924700B83720 /* WOCore */; };
 		EA080C522E2A924D00B83720 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C512E2A924D00B83720 /* WOResources */; };
 		EA080C542E2A927D00B83720 /* WODesign in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C532E2A927D00B83720 /* WODesign */; };
 		EA080C562E2A92FB00B83720 /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C552E2A92FB00B83720 /* DependencyInjection */; };
-		EA080C582E2A937900B83720 /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C572E2A937900B83720 /* WONewWishListFeature */; };
 		EA080C5A2E2A940100B83720 /* WOLoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C592E2A940100B83720 /* WOLoginFeature */; };
-		EA080C5C2E2A940F00B83720 /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA080C5B2E2A940F00B83720 /* WOAddNewItemFeature */; };
 		EA59CB702E06A48800F78E22 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB6F2E06A48800F78E22 /* WOResources */; };
 		EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */ = {isa = PBXBuildFile; productRef = EA59CB732E06ABC800F78E22 /* WODesign */; };
 		EA5A5E4B2E17EA0D007E162E /* DependencyInjection in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A5E4A2E17EA0D007E162E /* DependencyInjection */; };
@@ -22,6 +19,15 @@
 		EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60052E186BC9007E162E /* WOLoginFeature */; };
 		EA5A600B2E18EC7A007E162E /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A600A2E18EC7A007E162E /* WONewWishListFeature */; };
 		EA5A60C92E1903B7007E162E /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5A60C82E1903B7007E162E /* WOAddNewItemFeature */; };
+		EA5F29582E3A21DC00A5B881 /* WOWishListsRootFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29572E3A21DC00A5B881 /* WOWishListsRootFeature */; };
+		EA5F295A2E3A288C00A5B881 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29592E3A288C00A5B881 /* FirebaseCore */; };
+		EA5F295C2E3A289500A5B881 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F295B2E3A289500A5B881 /* FirebaseFirestore */; };
+		EA5F299B2E3A2B8900A5B881 /* WOCore in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F299A2E3A2B8900A5B881 /* WOCore */; };
+		EA5F299D2E3A2E0400A5B881 /* WOResources in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F299C2E3A2E0400A5B881 /* WOResources */; };
+		EA5F299F2E3A3AA300A5B881 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F299E2E3A3AA300A5B881 /* Swinject */; };
+		EA5F29A92E3A590A00A5B881 /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29A82E3A590A00A5B881 /* WONewWishListFeature */; };
+		EA5F29AB2E3A590F00A5B881 /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29AA2E3A590F00A5B881 /* WOAddNewItemFeature */; };
+		EA5F29AD2E3A591900A5B881 /* WOToGiveFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29AC2E3A591900A5B881 /* WOToGiveFeature */; };
 		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
 		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
@@ -87,17 +93,22 @@
 			);
 			target = EAD48AF02CF59C5000C0A29D /* WishOn */;
 		};
+		EA5F29AF2E3A59EA00A5B881 /* Exceptions for "PreviewHost" folder in "PreviewHostUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Constants.swift,
+			);
+			target = EA080C3B2E2A91C200B83720 /* PreviewHostUITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EA080C272E2A91C000B83720 /* PreviewHost */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				EA5F29AF2E3A59EA00A5B881 /* Exceptions for "PreviewHost" folder in "PreviewHostUITests" target */,
+			);
 			path = PreviewHost;
-			sourceTree = "<group>";
-		};
-		EA080C352E2A91C200B83720 /* PreviewHostTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = PreviewHostTests;
 			sourceTree = "<group>";
 		};
 		EA080C3F2E2A91C200B83720 /* PreviewHostUITests */ = {
@@ -120,14 +131,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5F29A92E3A590A00A5B881 /* WONewWishListFeature in Frameworks */,
 				EA080C542E2A927D00B83720 /* WODesign in Frameworks */,
 				EA080C562E2A92FB00B83720 /* DependencyInjection in Frameworks */,
-				EA080C4E2E2A924100B83720 /* WOWishListsRootFeature in Frameworks */,
-				EA080C582E2A937900B83720 /* WONewWishListFeature in Frameworks */,
+				EA5F29AD2E3A591900A5B881 /* WOToGiveFeature in Frameworks */,
 				EA080C5A2E2A940100B83720 /* WOLoginFeature in Frameworks */,
 				EA080C502E2A924700B83720 /* WOCore in Frameworks */,
+				EA5F29582E3A21DC00A5B881 /* WOWishListsRootFeature in Frameworks */,
 				EA080C522E2A924D00B83720 /* WOResources in Frameworks */,
-				EA080C5C2E2A940F00B83720 /* WOAddNewItemFeature in Frameworks */,
+				EA5F29AB2E3A590F00A5B881 /* WOAddNewItemFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +154,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5F299D2E3A2E0400A5B881 /* WOResources in Frameworks */,
+				EA5F299F2E3A3AA300A5B881 /* Swinject in Frameworks */,
+				EA5F295A2E3A288C00A5B881 /* FirebaseCore in Frameworks */,
+				EA5F299B2E3A2B8900A5B881 /* WOCore in Frameworks */,
+				EA5F295C2E3A289500A5B881 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,7 +211,6 @@
 			children = (
 				EAD48AF32CF59C5100C0A29D /* WishOn */,
 				EA080C272E2A91C000B83720 /* PreviewHost */,
-				EA080C352E2A91C200B83720 /* PreviewHostTests */,
 				EA080C3F2E2A91C200B83720 /* PreviewHostUITests */,
 				EA5A5E492E17EA0D007E162E /* Frameworks */,
 				EAD48AF22CF59C5100C0A29D /* Products */,
@@ -234,14 +250,15 @@
 			);
 			name = PreviewHost;
 			packageProductDependencies = (
-				EA080C4D2E2A924100B83720 /* WOWishListsRootFeature */,
 				EA080C4F2E2A924700B83720 /* WOCore */,
 				EA080C512E2A924D00B83720 /* WOResources */,
 				EA080C532E2A927D00B83720 /* WODesign */,
 				EA080C552E2A92FB00B83720 /* DependencyInjection */,
-				EA080C572E2A937900B83720 /* WONewWishListFeature */,
 				EA080C592E2A940100B83720 /* WOLoginFeature */,
-				EA080C5B2E2A940F00B83720 /* WOAddNewItemFeature */,
+				EA5F29572E3A21DC00A5B881 /* WOWishListsRootFeature */,
+				EA5F29A82E3A590A00A5B881 /* WONewWishListFeature */,
+				EA5F29AA2E3A590F00A5B881 /* WOAddNewItemFeature */,
+				EA5F29AC2E3A591900A5B881 /* WOToGiveFeature */,
 			);
 			productName = PreviewHost;
 			productReference = EA080C262E2A91C000B83720 /* PreviewHost.app */;
@@ -259,9 +276,6 @@
 			);
 			dependencies = (
 				EA080C342E2A91C200B83720 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				EA080C352E2A91C200B83720 /* PreviewHostTests */,
 			);
 			name = PreviewHostTests;
 			packageProductDependencies = (
@@ -288,6 +302,11 @@
 			);
 			name = PreviewHostUITests;
 			packageProductDependencies = (
+				EA5F29592E3A288C00A5B881 /* FirebaseCore */,
+				EA5F295B2E3A289500A5B881 /* FirebaseFirestore */,
+				EA5F299A2E3A2B8900A5B881 /* WOCore */,
+				EA5F299C2E3A2E0400A5B881 /* WOResources */,
+				EA5F299E2E3A3AA300A5B881 /* Swinject */,
 			);
 			productName = PreviewHostUITests;
 			productReference = EA080C3C2E2A91C200B83720 /* PreviewHostUITests.xctest */;
@@ -1034,10 +1053,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		EA080C4D2E2A924100B83720 /* WOWishListsRootFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WOWishListsRootFeature;
-		};
 		EA080C4F2E2A924700B83720 /* WOCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WOCore;
@@ -1054,17 +1069,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = DependencyInjection;
 		};
-		EA080C572E2A937900B83720 /* WONewWishListFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WONewWishListFeature;
-		};
 		EA080C592E2A940100B83720 /* WOLoginFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WOLoginFeature;
-		};
-		EA080C5B2E2A940F00B83720 /* WOAddNewItemFeature */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = WOAddNewItemFeature;
 		};
 		EA59CB6F2E06A48800F78E22 /* WOResources */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1093,6 +1100,45 @@
 		EA5A60C82E1903B7007E162E /* WOAddNewItemFeature */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WOAddNewItemFeature;
+		};
+		EA5F29572E3A21DC00A5B881 /* WOWishListsRootFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOWishListsRootFeature;
+		};
+		EA5F29592E3A288C00A5B881 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		EA5F295B2E3A289500A5B881 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EAF55A6F2D53C316009E4AEC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		EA5F299A2E3A2B8900A5B881 /* WOCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOCore;
+		};
+		EA5F299C2E3A2E0400A5B881 /* WOResources */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOResources;
+		};
+		EA5F299E2E3A3AA300A5B881 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA88DC582D649D9600F4FB03 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		EA5F29A82E3A590A00A5B881 /* WONewWishListFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WONewWishListFeature;
+		};
+		EA5F29AA2E3A590F00A5B881 /* WOAddNewItemFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOAddNewItemFeature;
+		};
+		EA5F29AC2E3A591900A5B881 /* WOToGiveFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WOToGiveFeature;
 		};
 		EA984EB62DF4646A00D6179C /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

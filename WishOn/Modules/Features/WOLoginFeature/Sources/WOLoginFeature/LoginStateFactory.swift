@@ -10,6 +10,7 @@ import WOResources
 import WODesign
 
 public final class LoginStateFactory {
+    public init() {}
     public func make(from state: LoginStateMachine.State) -> LoginState {
         return .init(
             loginGoogleButton: makeButton(from: state.googleLoginButton),

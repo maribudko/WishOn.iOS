@@ -9,9 +9,9 @@ import SwiftUI
 import DependencyInjection
 import WOLoginFeature
 import WOWishListsRootFeature
+import WOCore
 import WOAddNewItemFeature
 import WONewWishListFeature
-import WOCore
 import FirebaseCore
 
 @main
@@ -29,7 +29,8 @@ struct PreviewHostApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            let screen = UITestHelper.screenFromLunchArguments()
+            PreviewHost(screen: screen)
         }
     }
 }
