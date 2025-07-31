@@ -8,6 +8,7 @@
 import SwiftUI
 import WOResources
 import WODesign
+import WOCore
 
 public struct AddNewItemState {
     public let name: TextFieldViewState
@@ -74,12 +75,14 @@ public struct AddNewItemView: View {
                     onTextChanged: viewModel.onNameChanged(_:)
                 )
                 .focused($focusedField, equals: .name)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemName)
                 
                 TextFieldView(
                     viewState: viewModel.viewState.link,
                     onTextChanged: viewModel.onUrlChanged(_:)
                 )
                 .focused($focusedField, equals: .link)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemLink)
                 
                 PriceInputView(
                     viewState: viewModel.viewState.price,
@@ -91,6 +94,7 @@ public struct AddNewItemView: View {
                 ButtonView(buttonViewState: viewModel.viewState.button)
                     .disabled(!viewModel.isAddButtonEnabled)
                     .opacity(viewModel.isAddButtonEnabled ? 1 : 0.5)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemCreateButton)
             }
             .padding(AppPaddings.padding20)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)

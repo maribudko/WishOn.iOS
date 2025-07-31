@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import WOCore
 
 final class WishListsRootViewTests: XCTestCase {
     
@@ -19,52 +20,79 @@ final class WishListsRootViewTests: XCTestCase {
     }
     
     func testEmptyWishListVisible() throws {
-        let emptyLabel = app.staticTexts["emptyWishList"]
+        let emptyLabel = app.staticTexts[AccessibilityIdentifiers.emptyWishList]
         XCTAssertTrue(emptyLabel.waitForExistence(timeout: 2.0), "Empty list should be shown.")
     }
     
     func testCalendarButtonExists() throws {
-        let button = app.buttons["showCalendarButton"]
+        let button = app.buttons[AccessibilityIdentifiers.showCalendarButton]
         XCTAssertTrue(button.exists, "Calendar button should exist.")
     }
     
     func testProfileButtonExists() throws {
-        let button = app.buttons["showProfileButton"]
+        let button = app.buttons[AccessibilityIdentifiers.showProfileButton]
         XCTAssertTrue(button.exists, "Profile button should exist.")
     }
     
     func testAddButtonExists() throws {
-        let button = app.buttons["addWishlistButton"]
+        let button = app.buttons[AccessibilityIdentifiers.addWishlistButton]
         XCTAssertTrue(button.exists, "Add button should exist.")
     }
     
     func testToGiveButtonExists() throws {
-        let button = app.buttons["showToGiveViewButton"]
+        let button = app.buttons[AccessibilityIdentifiers.showToGiveViewButton]
         XCTAssertTrue(button.exists, "ToGive button should exist.")
     }
     
     func testAddWishListButtonNavigatesToWishListView() {
-        let button = app.buttons["addWishlistButton"]
+        let button = app.buttons[AccessibilityIdentifiers.addWishlistButton]
         XCTAssertTrue(button.exists, "Add button should exist.")
         
         button.tap()
         
-        let newWishListTextField = app.textFields["newWishListView"]
+        let newWishListTextField = app.staticTexts[AccessibilityIdentifiers.newWishListLabel]
         let exists = newWishListTextField.waitForExistence(timeout: 2.0)
+        
+        debugPrint(app.debugDescription)
         
         XCTAssertTrue(exists, "Should navigate to NewWishList screen.")
     }
     
     func testToGiveButtonNavigatesToToGiveView() {
-        let button = app.buttons["showToGiveViewButton"]
+        let button = app.buttons[AccessibilityIdentifiers.showToGiveViewButton]
         XCTAssertTrue(button.exists, "ToGive button should exist.")
         
         button.tap()
 
-        let toGiveLabel = app.staticTexts["toGiveLabel"]
+        let toGiveLabel = app.staticTexts[AccessibilityIdentifiers.toGiveLabel]
         let exists = toGiveLabel.waitForExistence(timeout: 2.0)
         
         XCTAssertTrue(exists, "Should navigate to ToGive screen.")
+    }
+    
+    func testNewWishListSaveButtonNavigatesBack() {
+        let button = app.buttons[AccessibilityIdentifiers.addWishlistButton]
+        XCTAssertTrue(button.exists, "Add button should exist.")
+        
+        button.tap()
+        
+        let newWishListTextField = app.staticTexts[AccessibilityIdentifiers.newWishListLabel]
+        let exists = newWishListTextField.waitForExistence(timeout: 2.0)
+        
+        XCTAssertTrue(exists, "Should navigate to NewWishList screen.")
+        
+        let saveButton = app.buttons[AccessibilityIdentifiers.newWishListSaveButton]
+        XCTAssertTrue(saveButton.waitForExistence(timeout: 2))
+        saveButton.tap()
+        
+        let rootViewLabel = app.staticTexts[AccessibilityIdentifiers.wishListsLabel]
+        if !rootViewLabel.waitForExistence(timeout: 5) {
+            let screenshot = XCUIScreen.main.screenshot()
+            let attachment = XCTAttachment(screenshot: screenshot)
+            attachment.lifetime = .keepAlways
+            add(attachment)
+            XCTFail("Expected rootViewLabel did not appear")
+        }
     }
     
     override func tearDownWithError() throws {

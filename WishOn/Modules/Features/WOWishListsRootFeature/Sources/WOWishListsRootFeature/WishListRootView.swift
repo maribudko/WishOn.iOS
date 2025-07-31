@@ -63,6 +63,7 @@ public struct WishListRootView: View {
                         .padding()
                         .foregroundColor(Color(Asset.primaryTitleColor.color))
                         .frame(maxWidth: .infinity)
+                        .accessibilityIdentifier(AccessibilityIdentifiers.wishListsLabel)
                     
                     Button {
                         // TODO: open user profile

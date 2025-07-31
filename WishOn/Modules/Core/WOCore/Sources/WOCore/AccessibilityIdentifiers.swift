@@ -16,8 +16,19 @@ public enum AccessibilityIdentifiers {
     public static let showProfileButton = "showProfileButton"
     
     public static let emptyWishList = "emptyWishList"
+    public static let wishListsLabel = "wishListsLabel"
     
     public static let newWishListView = "newWishListView"
+    public static let newWishListLabel = "newWishListLabel"
+    public static let newWishListName = "newWishListName"
+    public static let newWishListDescription = "newWishListDescription"
+    public static let newWishListSaveButton = "newWishListSaveButton"
+    public static let newWishListBackButton = "newWishListBackButton"
+    public static let newWishListImage = "newWishListImage"
+    
+    public static let addNewItemName = "addNewItemName"
+    public static let addNewItemLink = "addNewItemLink"
+    public static let addNewItemCreateButton = "addNewItemCreateButton"
     
     public static let createWishlistButton = "createWishlistButton"
     public static let plusCircleFillButton = "plusCircleFillButton"
