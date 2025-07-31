@@ -66,6 +66,7 @@ public struct WishListRootView: View {
                     
                     Button {
                         // TODO: open user profile
+                        CurrentUserManager.shared.logout()
                     } label: {
                         ZStack {
                             IconView(viewState: viewModel.viewState.profileIcon)

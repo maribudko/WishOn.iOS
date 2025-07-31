@@ -28,10 +28,10 @@
 		EA5F29A92E3A590A00A5B881 /* WONewWishListFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29A82E3A590A00A5B881 /* WONewWishListFeature */; };
 		EA5F29AB2E3A590F00A5B881 /* WOAddNewItemFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29AA2E3A590F00A5B881 /* WOAddNewItemFeature */; };
 		EA5F29AD2E3A591900A5B881 /* WOToGiveFeature in Frameworks */ = {isa = PBXBuildFile; productRef = EA5F29AC2E3A591900A5B881 /* WOToGiveFeature */; };
-		EA984EB72DF4646A00D6179C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
-		EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
-		EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
-		EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */; };
+		EA5F29B92E3B65A000A5B881 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A702D53C316009E4AEC /* FirebaseAuth */; };
+		EA5F29BA2E3B65A000A5B881 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55A722D53C316009E4AEC /* FirebaseFirestore */; };
+		EA5F29BB2E3B65A000A5B881 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55AE32D54EE91009E4AEC /* FirebaseFirestoreCombine-Community */; };
+		EA5F29BC2E3B65A000A5B881 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = EA984EB62DF4646A00D6179C /* Swinject */; };
 		EAF55BAB2D633602009E4AEC /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55BAA2D633602009E4AEC /* FirebaseCore */; };
 		EAF55BAD2D633602009E4AEC /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = EAF55BAC2D633602009E4AEC /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
@@ -80,6 +80,7 @@
 		EA59CB782E0C0A8400F78E22 /* Exceptions for "WishOn" folder in "WishOn" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Info.plist,
 				Modules/Core/DependencyInjection,
 				Modules/Core/WOCore,
 				Modules/Core/WODesign,
@@ -166,15 +167,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAF55AE42D54EE91009E4AEC /* FirebaseFirestoreCombine-Community in Frameworks */,
+				EA5F29BC2E3B65A000A5B881 /* Swinject in Frameworks */,
+				EA5F29BB2E3B65A000A5B881 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				EA5F29BA2E3B65A000A5B881 /* FirebaseFirestore in Frameworks */,
+				EA5F29B92E3B65A000A5B881 /* FirebaseAuth in Frameworks */,
 				EA5A5E4B2E17EA0D007E162E /* DependencyInjection in Frameworks */,
-				EAF55A712D53C316009E4AEC /* FirebaseAuth in Frameworks */,
 				EA59CB742E06ABC800F78E22 /* WODesign in Frameworks */,
 				EA59CB702E06A48800F78E22 /* WOResources in Frameworks */,
 				EA5A60C92E1903B7007E162E /* WOAddNewItemFeature in Frameworks */,
-				EAF55A732D53C316009E4AEC /* FirebaseFirestore in Frameworks */,
 				EA5A60042E186BA6007E162E /* WOWishListsRootFeature in Frameworks */,
-				EA984EB72DF4646A00D6179C /* Swinject in Frameworks */,
 				EA5A60062E186BC9007E162E /* WOLoginFeature in Frameworks */,
 				EA5A600B2E18EC7A007E162E /* WONewWishListFeature in Frameworks */,
 			);
@@ -851,6 +852,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WishOn/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WishOn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -879,6 +881,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"WishOn/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WishOn/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

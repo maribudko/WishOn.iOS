@@ -7,6 +7,8 @@
 
 import SwiftUI
 import FirebaseCore
+import GoogleSignIn
+import FirebaseAuth
 import DependencyInjection
 import WOWishListsRootFeature
 import WOLoginFeature
@@ -29,7 +31,7 @@ final class AppEnvironment {
 @main
 struct WishOnApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @State private var isLoggedIn = false
+    @StateObject var session = CurrentUserManager.shared
     
     init() {
         registerAssemblies()
@@ -39,7 +41,7 @@ struct WishOnApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
+            if session.isLoggedIn {
                 AppAssembler.shared
                     .resolver
                     .resolve(WishListsModule.self)
@@ -48,7 +50,7 @@ struct WishOnApp: App {
                 AppAssembler.shared
                     .resolver
                     .resolve(LoginModule.self, argument: {
-                        isLoggedIn = true
+                        //isLoggedIn = true
                     })
                     .view()
             }
@@ -70,5 +72,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+            return GIDSignIn.sharedInstance.handle(url)
     }
 }
