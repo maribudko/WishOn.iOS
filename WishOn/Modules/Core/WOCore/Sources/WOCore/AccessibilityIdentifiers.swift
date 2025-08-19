@@ -29,6 +29,9 @@ public enum AccessibilityIdentifiers {
     public static let addNewItemName = "addNewItemName"
     public static let addNewItemLink = "addNewItemLink"
     public static let addNewItemCreateButton = "addNewItemCreateButton"
+    public static let addNewItemCloseButton = "addNewItemCloseButton"
+    public static let addNewItemImage = "addNewItemImage"
+    public static let addNewItemPrice = "addNewItemPrice"
     
     public static let createWishlistButton = "createWishlistButton"
     public static let plusCircleFillButton = "plusCircleFillButton"

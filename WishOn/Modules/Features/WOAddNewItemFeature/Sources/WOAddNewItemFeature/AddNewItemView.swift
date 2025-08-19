@@ -60,6 +60,7 @@ public struct AddNewItemView: View {
                     }
                     .frame(width: AppDimensions.iconSize,
                            height: AppDimensions.iconSize)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemCloseButton)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
@@ -69,6 +70,7 @@ public struct AddNewItemView: View {
                     .frame(width: AppDimensions.newItemImageSize,
                            height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemImage)
                 
                 TextFieldView(
                     viewState: viewModel.viewState.name,
@@ -90,6 +92,7 @@ public struct AddNewItemView: View {
                     onPriceChanged: viewModel.onPriceChanged(_:)
                 )
                 .focused($focusedField, equals: .price)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemPrice)
                 
                 ButtonView(buttonViewState: viewModel.viewState.button)
                     .disabled(!viewModel.isAddButtonEnabled)
