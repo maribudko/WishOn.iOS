@@ -40,6 +40,7 @@ public final class AddNewItemStateMachine {
     private let nameField: TextFieldState<TextFieldKind>
     private let urlField: TextFieldState<TextFieldKind>
     private let crossIcon: IconState
+    
     private lazy var priceField: PriceInputState = PriceInputState {text in
         self.setPriceText(text)
     } onCurrencyChanged: {text in
@@ -49,7 +50,7 @@ public final class AddNewItemStateMachine {
     private lazy var addButton: ButtonState = {
         ButtonState(
             label: L10n.createLabel,
-            isEnabled: true,
+            isEnabled: false,
             action: { [weak self] in
                 self?.didTapAddButton()
             }
