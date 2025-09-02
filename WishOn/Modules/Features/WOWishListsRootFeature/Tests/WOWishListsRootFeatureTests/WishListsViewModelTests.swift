@@ -8,9 +8,9 @@
 import Foundation
 import Testing
 import Combine
+import WOCore
+import WOResources
 @testable import WOWishListsRootFeature
-@testable import WOCore
-@testable import WOResources
 
 @Test func viewModelFetchWishLists() async throws {
     let viewModel = makeViewModel()

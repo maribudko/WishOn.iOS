@@ -36,7 +36,7 @@ public enum SFSymbols: String {
 }
 
 public struct SFSymbolsIcon: IconRepresentable {
-    let symbol: SFSymbols
+    public let symbol: SFSymbols
     
     public init(symbol: SFSymbols) {
         self.symbol = symbol
