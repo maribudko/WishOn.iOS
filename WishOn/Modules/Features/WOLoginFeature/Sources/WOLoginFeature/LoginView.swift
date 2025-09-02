@@ -10,6 +10,7 @@ import WOResources
 import WODesign
 import DependencyInjection
 import WOWishListsRootFeature
+import WOCore
 
 public struct LoginState {
     public let loginGoogleButton: ButtonViewState
@@ -32,8 +33,10 @@ public struct LoginView: View {
     public var body: some View {
         VStack {
             ButtonView(buttonViewState: viewModel.viewState.loginGoogleButton)
+                .accessibilityIdentifier(AccessibilityIdentifiers.googleAuthButton)
             
             ButtonView(buttonViewState: viewModel.viewState.loginAppleButton)
+                .accessibilityIdentifier(AccessibilityIdentifiers.appleAuthButton)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal, AppPaddings.padding20)
@@ -55,14 +58,3 @@ public struct LoginView: View {
     return LoginView(viewModel: viewModel)
 }
 
-//#if DEBUG
-//struct MyView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        let stateMachine = LoginStateMachine()
-//        let stateFactory = LoginStateFactory()
-//        let viewModel = LoginViewModel(stateMachine: stateMachine, stateFactory: stateFactory)
-//        
-//        LoginView(viewModel: viewModel)
-//    }
-//}
-//#endif

@@ -8,14 +8,33 @@
 import Foundation
 
 public enum AccessibilityIdentifiers {
+    public static let googleAuthButton = "googleAuhtButtonId"
+    public static let appleAuthButton = "appleAuthButtonId"
     public static let addWishlistButton = "addWishlistButton"
     public static let showToGiveViewButton = "showToGiveViewButton"
     public static let showCalendarButton = "showCalendarButton"
     public static let showProfileButton = "showProfileButton"
+    
     public static let emptyWishList = "emptyWishList"
+    public static let wishListsLabel = "wishListsLabel"
     
     public static let newWishListView = "newWishListView"
+    public static let newWishListLabel = "newWishListLabel"
+    public static let newWishListName = "newWishListName"
+    public static let newWishListDescription = "newWishListDescription"
+    public static let newWishListSaveButton = "newWishListSaveButton"
+    public static let newWishListBackButton = "newWishListBackButton"
+    public static let newWishListImage = "newWishListImage"
+    
+    public static let addNewItemName = "addNewItemName"
+    public static let addNewItemLink = "addNewItemLink"
+    public static let addNewItemCreateButton = "addNewItemCreateButton"
+    public static let addNewItemCloseButton = "addNewItemCloseButton"
+    public static let addNewItemImage = "addNewItemImage"
+    public static let addNewItemPrice = "addNewItemPrice"
     
     public static let createWishlistButton = "createWishlistButton"
     public static let plusCircleFillButton = "plusCircleFillButton"
+    
+    public static let toGiveLabel = "toGiveLabel"
 }

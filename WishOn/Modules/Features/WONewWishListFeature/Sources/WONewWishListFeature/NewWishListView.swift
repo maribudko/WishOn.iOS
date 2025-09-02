@@ -10,6 +10,7 @@ import WOResources
 import WODesign
 import DependencyInjection
 import WOCore
+import WOAddNewItemFeature
 
 public struct NewWishListState {
     let name: TextFieldViewState
@@ -64,15 +65,17 @@ public struct NewWishlistView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityIdentifier(AccessibilityIdentifiers.newWishListBackButton)
                 
                 Text(L10n.newWishlistLbl)
                     .font(.largeTitle)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(Color(Asset.primaryColor.color))
-                    .accessibilityIdentifier(L10n.newWishlistLbl)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.newWishListLabel)
                 
                 Button {
                     // TODO: save wishlist
+                    self.presentationMode.wrappedValue.dismiss()
                 } label: {
                     IconView(viewState: viewModel.viewState.saveIcon)
                         .font(.title)
@@ -80,6 +83,7 @@ public struct NewWishlistView: View {
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .trailing)
+                .accessibilityIdentifier(AccessibilityIdentifiers.newWishListSaveButton)
             }
             
             HStack {
@@ -88,16 +92,19 @@ public struct NewWishlistView: View {
                     .scaledToFill()
                     .frame(width: AppDimensions.newItemImageSize, height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.newWishListImage)
             }
             .frame(maxWidth: .infinity, alignment: .center)
             
             TextFieldView(viewState: viewModel.viewState.name, onTextChanged: viewModel.onNameChanged(_:))
                 .focused($focusedField, equals: .name)
                 .padding(.horizontal, AppPaddings.padding16)
+                .accessibilityIdentifier(AccessibilityIdentifiers.newWishListName)
             
             TextFieldView(viewState: viewModel.viewState.description, onTextChanged: viewModel.onDescriptionChanged(_:))
                 .focused($focusedField, equals: .description)
                 .padding(.horizontal, AppPaddings.padding16)
+                .accessibilityIdentifier(AccessibilityIdentifiers.newWishListDescription)
             
             HStack {
                 TextField(L10n.dateHint, text: $date)
@@ -190,14 +197,12 @@ public struct NewWishlistView: View {
                 DatePickerView(viewState: viewModel.viewState.datePicker)
             }
             if isNewItemDialogVisible {
-                //TODO: extract AddNewItemFeature
-//                let module = AppAssembler.shared
-//                    .resolver
-//                    .resolve(AddNewItemModule.self)
-//                module.view(isShown: $isNewItemDialogVisible)
+                AppAssembler.shared
+                    .resolver
+                    .resolve(AddNewItemModule.self)
+                    .view(isShown: $isNewItemDialogVisible)
             }
         })
-        .accessibilityIdentifier(AccessibilityIdentifiers.newWishListView)
     }
 }
 

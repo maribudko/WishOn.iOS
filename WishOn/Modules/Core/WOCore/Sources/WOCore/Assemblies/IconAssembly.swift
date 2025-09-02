@@ -8,8 +8,9 @@
 import Swinject
 import WOResources
 
-final class IconAssembly: Assembly {
-    func assemble(container: Swinject.Container) {
+public final class IconAssembly: Assembly {
+    public init() {}
+    public func assemble(container: Swinject.Container) {
         container.register(IconRepresentable.self, name: IconNames.closeIcon) { _ in SFSymbolsIcon(symbol: .close) }
             .inObjectScope(.container)
         container.register(IconRepresentable.self, name: IconNames.backIcon) { _ in SFSymbolsIcon(symbol: .back) }

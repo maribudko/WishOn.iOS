@@ -8,6 +8,7 @@
 import SwiftUI
 import WOResources
 import WODesign
+import WOCore
 
 public struct AddNewItemState {
     public let name: TextFieldViewState
@@ -59,6 +60,7 @@ public struct AddNewItemView: View {
                     }
                     .frame(width: AppDimensions.iconSize,
                            height: AppDimensions.iconSize)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemCloseButton)
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
@@ -68,18 +70,21 @@ public struct AddNewItemView: View {
                     .frame(width: AppDimensions.newItemImageSize,
                            height: AppDimensions.newItemImageSize)
                     .clipShape(.circle)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemImage)
                 
                 TextFieldView(
                     viewState: viewModel.viewState.name,
                     onTextChanged: viewModel.onNameChanged(_:)
                 )
                 .focused($focusedField, equals: .name)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemName)
                 
                 TextFieldView(
                     viewState: viewModel.viewState.link,
                     onTextChanged: viewModel.onUrlChanged(_:)
                 )
                 .focused($focusedField, equals: .link)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemLink)
                 
                 PriceInputView(
                     viewState: viewModel.viewState.price,
@@ -87,10 +92,12 @@ public struct AddNewItemView: View {
                     onPriceChanged: viewModel.onPriceChanged(_:)
                 )
                 .focused($focusedField, equals: .price)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemPrice)
                 
                 ButtonView(buttonViewState: viewModel.viewState.button)
                     .disabled(!viewModel.isAddButtonEnabled)
                     .opacity(viewModel.isAddButtonEnabled ? 1 : 0.5)
+                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemCreateButton)
             }
             .padding(AppPaddings.padding20)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)

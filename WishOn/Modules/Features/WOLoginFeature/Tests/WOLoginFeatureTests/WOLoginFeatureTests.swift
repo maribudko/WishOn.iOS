@@ -1,22 +1,16 @@
 import Testing
+import WOResources
 @testable import WOLoginFeature
 
-@Test func googleLoginButtonActionCallsOnLoginSuccess() {
-    var didCallSuccess = false
-    let stateMachine = LoginStateMachine(onLoginSuccess: {
-        didCallSuccess = true
-    })
-    
-    stateMachine.state.googleLoginButton.action()
-    
-    #expect(didCallSuccess == true)
+@Test func testGoogleLoginButtonLabelAndKind() {
+    let googleButton = LoginStateMachine().state.googleLoginButton
+    #expect(googleButton.label == L10n.googleLoginLabel)
+    #expect(googleButton.kind == .googleLogin)
 }
 
-@Test func appleLoginButtonActionDoesNothingYet() {
-    let stateMachine = LoginStateMachine()
-    
-    // Just check it doesn’t crash (smoke test)
-    stateMachine.state.appleLoginButton.action()
-    
-    #expect(true) // Always passes — no crash
+@Test func testAppleLoginButtonLabelAndKind() {
+    let appleButton = LoginStateMachine().state.appleLoginButton
+    #expect(appleButton.label == L10n.appleLoginLabel)
+    #expect(appleButton.kind == .appleLogin)
 }
+
