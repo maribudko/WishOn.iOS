@@ -15,8 +15,19 @@ public struct WishList: Identifiable, Codable {
     public let wishes: [Wish]
     public let description: String?
     public let createdAt: Date?
+    /// Firebase Auth uid of the document owner. Written by `WishListRepository` on create.
+    public let ownerUid: String?
     
-    public init(id: UUID, name: String, image: String?, eventDate: Date?, wishes: [Wish], description: String?, createdAt: Date?) {
+    public init(
+        id: UUID,
+        name: String,
+        image: String?,
+        eventDate: Date?,
+        wishes: [Wish],
+        description: String?,
+        createdAt: Date?,
+        ownerUid: String? = nil
+    ) {
         self.id = id
         self.name = name
         self.image = image
@@ -24,5 +35,6 @@ public struct WishList: Identifiable, Codable {
         self.wishes = wishes
         self.description = description
         self.createdAt = createdAt
+        self.ownerUid = ownerUid
     }
 }
