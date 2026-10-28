@@ -5,7 +5,7 @@
 //  Created by Mari Budko on 16.05.2025.
 //
 
-import SwiftUICore
+import SwiftUI
 import WODesign
 
 public struct LoginModule: BaseSwiftUIModule {
