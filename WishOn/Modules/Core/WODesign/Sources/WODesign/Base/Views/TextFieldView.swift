@@ -67,31 +67,81 @@ public struct TextFieldViewState {
 public struct TextFieldView: View {
     public let viewState: TextFieldViewState
     public let onTextChanged: (String) -> Void
-    
-    public init(viewState: TextFieldViewState, onTextChanged: @escaping (String) -> Void) {
+    public let textColor: Color?
+    public let fieldBackground: Color?
+    public let borderColor: Color?
+    public let placeholderColor: Color?
+    public let accent: Color?
+
+    public init(
+        viewState: TextFieldViewState,
+        textColor: Color? = nil,
+        fieldBackground: Color? = nil,
+        borderColor: Color? = nil,
+        placeholderColor: Color? = nil,
+        accent: Color? = nil,
+        onTextChanged: @escaping (String) -> Void
+    ) {
         self.viewState = viewState
         self.onTextChanged = onTextChanged
+        self.textColor = textColor
+        self.fieldBackground = fieldBackground
+        self.borderColor = borderColor
+        self.placeholderColor = placeholderColor
+        self.accent = accent
     }
-    
+
     public var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            TextField(
-                viewState.title,
-                text: Binding(
-                    get: { viewState.text },
-                    set: { onTextChanged($0) }
-                )
-            )
-            .keyboardType(viewState.inputType.keyboardType)
-            .textInputAutocapitalization(viewState.inputType.autocapitalization)
-            .disableAutocorrection(viewState.inputType.disableAutocorrection)
-            .textFieldStyle(.roundedBorder)
-            
+            field
             if let error = viewState.errorMessage {
                 Text(error)
                     .font(.caption)
                     .foregroundColor(.red)
                     .padding(.leading, 5)
+            }
+        }
+    }
+
+    private var field: some View {
+        let textField = TextField(
+            "",
+            text: Binding(
+                get: { viewState.text },
+                set: { onTextChanged($0) }
+            ),
+            prompt: Text(viewState.title).foregroundColor(placeholderColor ?? .secondary)
+        )
+        .keyboardType(viewState.inputType.keyboardType)
+        .textInputAutocapitalization(viewState.inputType.autocapitalization)
+        .disableAutocorrection(viewState.inputType.disableAutocorrection)
+
+        return Group {
+            if let fieldBackground {
+                textField
+                    .foregroundStyle(textColor ?? .primary)
+                    .tint(accent ?? .accentColor)
+                    .textFieldStyle(.plain)
+                    .padding(.horizontal, AppPaddings.padding8)
+                    .padding(.vertical, AppPaddings.padding8)
+                    .background(fieldBackground)
+                    .cornerRadius(AppRadiuses.roundedRectangleRadius)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: AppRadiuses.roundedRectangleRadius)
+                            .stroke(borderColor ?? .clear, lineWidth: AppDimensions.borderThin)
+                    )
+            } else {
+                TextField(
+                    viewState.title,
+                    text: Binding(
+                        get: { viewState.text },
+                        set: { onTextChanged($0) }
+                    )
+                )
+                .keyboardType(viewState.inputType.keyboardType)
+                .textInputAutocapitalization(viewState.inputType.autocapitalization)
+                .disableAutocorrection(viewState.inputType.disableAutocorrection)
+                .textFieldStyle(.roundedBorder)
             }
         }
     }
