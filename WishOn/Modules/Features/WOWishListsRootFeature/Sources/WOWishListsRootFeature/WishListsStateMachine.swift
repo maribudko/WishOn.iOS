@@ -94,7 +94,8 @@ public final class WishListsStateMachine {
 
 public extension WishListsStateMachine {
     struct State {
-        let wishLists: [WishListItemState]
+        /// Full models so the home grid can show cover, date, and wish count.
+        let wishLists: [WishList]
         let addNewWishlistButton: NavLinkButtonState
         let toGiveButton: NavLinkButtonState
         let calendarIcon: IconState
@@ -104,7 +105,7 @@ public extension WishListsStateMachine {
     
     var state: State {
         .init(
-            wishLists: wishListItems,
+            wishLists: wishLists,
             addNewWishlistButton: addNewWishlistButton,
             toGiveButton: toGiveButton,
             calendarIcon: calendarIcon,
