@@ -52,6 +52,10 @@ public struct NewWishlistView: View {
     public init( viewModel: NewWishListViewModel) {
         self.viewModel = viewModel
     }
+
+    private var fieldBorder: Color {
+        HomeGridPalette.subtitle.opacity(AppOpacityLevels.homeGridTabDivider)
+    }
     
     public var body: some View {
         VStack {
@@ -61,7 +65,7 @@ public struct NewWishlistView: View {
                 }) {
                     IconView(viewState: viewModel.viewState.backIcon)
                         .font(.title)
-                        .foregroundColor(Color(Asset.primaryColor.color))
+                        .foregroundColor(HomeGridPalette.icon)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -69,8 +73,9 @@ public struct NewWishlistView: View {
                 
                 Text(L10n.newWishlistLbl)
                     .font(.largeTitle)
+                    .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
-                    .foregroundColor(Color(Asset.primaryColor.color))
+                    .foregroundColor(HomeGridPalette.title)
                     .accessibilityIdentifier(AccessibilityIdentifiers.newWishListLabel)
                 
                 Button {
@@ -79,7 +84,7 @@ public struct NewWishlistView: View {
                 } label: {
                     IconView(viewState: viewModel.viewState.saveIcon)
                         .font(.title)
-                        .foregroundColor(Color(Asset.primaryColor.color))
+                        .foregroundColor(HomeGridPalette.icon)
                 }
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .trailing)
@@ -89,64 +94,90 @@ public struct NewWishlistView: View {
             HStack {
                 Image(asset: Asset.blankImage)
                     .resizable()
+                    .renderingMode(.template)
                     .scaledToFill()
                     .frame(width: AppDimensions.newItemImageSize, height: AppDimensions.newItemImageSize)
+                    .foregroundColor(HomeGridPalette.accent)
+                    .background(HomeGridPalette.coverPlaceholder)
                     .clipShape(.circle)
                     .accessibilityIdentifier(AccessibilityIdentifiers.newWishListImage)
             }
             .frame(maxWidth: .infinity, alignment: .center)
             
-            TextFieldView(viewState: viewModel.viewState.name, onTextChanged: viewModel.onNameChanged(_:))
+            TextFieldView(
+                viewState: viewModel.viewState.name,
+                textColor: HomeGridPalette.title,
+                fieldBackground: HomeGridPalette.card,
+                borderColor: fieldBorder,
+                placeholderColor: HomeGridPalette.subtitle,
+                accent: HomeGridPalette.accent,
+                onTextChanged: viewModel.onNameChanged(_:)
+            )
                 .focused($focusedField, equals: .name)
                 .padding(.horizontal, AppPaddings.padding16)
                 .accessibilityIdentifier(AccessibilityIdentifiers.newWishListName)
             
-            TextFieldView(viewState: viewModel.viewState.description, onTextChanged: viewModel.onDescriptionChanged(_:))
+            TextFieldView(
+                viewState: viewModel.viewState.description,
+                textColor: HomeGridPalette.title,
+                fieldBackground: HomeGridPalette.card,
+                borderColor: fieldBorder,
+                placeholderColor: HomeGridPalette.subtitle,
+                accent: HomeGridPalette.accent,
+                onTextChanged: viewModel.onDescriptionChanged(_:)
+            )
                 .focused($focusedField, equals: .description)
                 .padding(.horizontal, AppPaddings.padding16)
                 .accessibilityIdentifier(AccessibilityIdentifiers.newWishListDescription)
             
             HStack {
-                TextField(L10n.dateHint, text: $date)
+                TextField(
+                    "",
+                    text: $date,
+                    prompt: Text(L10n.dateHint).foregroundColor(HomeGridPalette.subtitle)
+                )
+                    .foregroundColor(HomeGridPalette.title)
+                    .tint(HomeGridPalette.accent)
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, AppPaddings.padding8)
                 Button {
                     viewModel.setDatePickerVisibility(true)
                 } label: {
                     IconView(viewState: viewModel.viewState.dropDownIcon)
-                        .foregroundColor(Color(Asset.primaryTextColor.color))
+                        .foregroundColor(HomeGridPalette.icon)
                         .frame(alignment: .trailing)
                         .background(Color.clear)
                 }
             }
             .padding(AppPaddings.padding8)
-            .background(Color(.systemGray6))
+            .background(HomeGridPalette.card)
             .cornerRadius(AppPaddings.padding5)
             .overlay(
                 RoundedRectangle(cornerRadius: AppRadiuses.roundedRectangleRadius)
-                    .stroke(Asset.textFieldBackground.swiftUIColor, lineWidth: AppDimensions.borderThin)
+                    .stroke(fieldBorder, lineWidth: AppDimensions.borderThin)
             )
-            .shadow(color: AppShadows.medium.color,
+            .shadow(color: AppShadows.homeGridCard.color,
                     radius: AppShadows.medium.radius,
                     x: AppShadows.medium.x,
                     y: AppShadows.small.y)
             .padding(.horizontal, AppPaddings.padding16)
             
             Form {
-                Section(header: Text(L10n.wishesCountLabel(viewModel.wishes.count))) {
+                Section(header: Text(L10n.wishesCountLabel(viewModel.wishes.count))
+                    .foregroundColor(HomeGridPalette.subtitle)) {
                     if viewModel.wishes.isEmpty {
                         Text(L10n.noWishesLabel)
-                            .foregroundColor(.gray)
-                            .background(Asset.textFieldBackground.swiftUIColor)
-                            .foregroundColor(Asset.primaryTextColor.swiftUIColor)
+                            .foregroundColor(HomeGridPalette.subtitle)
                     } else {
                         ForEach(viewModel.wishes) { wish in
                             HStack {
                                 Image(
                                     systemName: wish.isTaken == true ? SFSymbols.fillCircle.name : SFSymbols.circle.name
                                 )
+                                .foregroundColor(HomeGridPalette.accent)
                                 
                                 Text(wish.name)
+                                    .foregroundColor(HomeGridPalette.title)
                                     .frame(
                                         maxWidth: .infinity,
                                         alignment: .leading
@@ -155,16 +186,14 @@ public struct NewWishlistView: View {
                                 if !wish.link.isEmpty {
                                     Link(destination: URL(string: wish.link)!) {
                                         Image(systemName: SFSymbols.link.name)
-                                            .foregroundColor(
-                                                Color(Asset.primaryColor.color)
-                                            )
+                                            .foregroundColor(HomeGridPalette.accent)
                                     }
                                 }
                             }
                         }
                     }
                 }
-                .listRowBackground(Asset.textFieldBackground.swiftUIColor)
+                .listRowBackground(HomeGridPalette.card)
             }
             .padding(.top, AppPaddings.padding10)
             .scrollContentBackground(.hidden)
@@ -176,7 +205,7 @@ public struct NewWishlistView: View {
                 } label: {
                     IconView(viewState: viewModel.viewState.plusIcon)
                         .frame(width: AppDimensions.fabSize, height: AppDimensions.fabSize)
-                        .foregroundColor(Color(Asset.primaryColor.color))
+                        .foregroundColor(HomeGridPalette.accent)
                 }
                 .accessibilityIdentifier(AccessibilityIdentifiers.plusCircleFillButton)
             }
@@ -185,7 +214,8 @@ public struct NewWishlistView: View {
             
             Spacer()
         }
-        .background(Asset.backgroundColor.swiftUIColor.gradient)
+        .background(HomeGridPalette.background.ignoresSafeArea())
+        .preferredColorScheme(.light)
         .navigationBarHidden(true)
         .gesture(DragGesture().onChanged { value in
             if value.translation.width > AppDimensions.minimumGestureSize {

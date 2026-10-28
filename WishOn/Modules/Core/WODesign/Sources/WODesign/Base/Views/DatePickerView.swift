@@ -36,6 +36,7 @@ public struct DatePickerView: View {
             VStack {
                 Text(L10n.selectDateHint)
                     .font(.headline)
+                    .foregroundColor(HomeGridPalette.title)
                     .padding()
                 
                 DatePicker(
@@ -52,6 +53,7 @@ public struct DatePickerView: View {
                 .datePickerStyle(
                     GraphicalDatePickerStyle()
                 )
+                .tint(HomeGridPalette.accent)
                 .padding()
                 
                 Button(L10n.doneLabel) {
@@ -59,13 +61,13 @@ public struct DatePickerView: View {
                 }
                 .padding(.vertical)
                 .padding(.horizontal, AppPaddings.padding26)
-                .background(Capsule().fill(Color(Asset.primaryColor.color)))
-                .foregroundColor(.white)
+                .background(Capsule().fill(HomeGridPalette.accent))
+                .foregroundColor(HomeGridPalette.onAccent)
                 .padding(.bottom, AppPaddings.padding8)
             }
-            .background(Color(Asset.secondaryColor.color))
+            .background(HomeGridPalette.card)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)
-            .shadow(color: AppShadows.medium.color,
+            .shadow(color: AppShadows.homeGridCard.color,
                     radius: AppShadows.medium.radius,
                     x: AppShadows.medium.x,
                     y: AppShadows.medium.y)
