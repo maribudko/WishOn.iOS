@@ -81,6 +81,8 @@ public enum L10n {
   public static let successMessage = L10n.tr("Localizable", "success_message", fallback: "Done!")
   /// To Give
   public static let toGive = L10n.tr("Localizable", "toGive", fallback: "To Give")
+  /// WishLists
+  public static let homeTabWishlists = L10n.tr("Localizable", "home_tab_wishlists", fallback: "WishLists")
   /// UAH
   public static let uah = L10n.tr("Localizable", "UAH", fallback: "UAH")
   /// USD

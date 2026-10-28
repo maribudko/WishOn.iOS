@@ -14,15 +14,10 @@ public final class WishListsStateFactory {
     public init() {}
     
     public func make(from state: WishListsStateMachine.State) -> WishListsState {
-        
-        let list: [WishList] = state.wishLists.map({ wishList in
-            WishList(id: UUID(uuidString: wishList.id) ?? UUID(), name: wishList.title, image: "", eventDate: Date(), wishes: [], description: wishList.subtitle, createdAt: Date())
-        })
-        
         return .init(
             addNewWishlistButton: makeField(from: state.addNewWishlistButton),
             toGiveButton: makeField(from: state.toGiveButton),
-            wishLists: list,
+            wishLists: state.wishLists,
             calendarIcon: makeIcon(from: state.calendarIcon),
             profileIcon: makeIcon(from: state.profileIcon),
             emptyListIcon: makeIcon(from: state.emptyListIcon)

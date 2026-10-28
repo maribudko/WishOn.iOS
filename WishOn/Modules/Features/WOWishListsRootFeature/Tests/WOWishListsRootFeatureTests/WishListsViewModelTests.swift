@@ -22,9 +22,10 @@ import WOResources
     try await Task.sleep(nanoseconds: 100_000_000)
     
     let wishLists = viewModel.viewState.wishLists
-    #expect(wishLists.count == 2)
+    #expect(wishLists.count == 4)
     #expect(wishLists[0].name == "Birthday")
     #expect(wishLists[1].name == "New Year")
+    #expect(wishLists.map(\.name).contains("Housewarming"))
 }
 
 @Test func viewModelAddWishList() async throws {

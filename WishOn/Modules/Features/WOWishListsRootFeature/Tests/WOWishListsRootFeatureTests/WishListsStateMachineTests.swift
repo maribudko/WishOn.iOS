@@ -21,8 +21,8 @@ import Foundation
     let wishLists = stateMachine.state.wishLists
     
     #expect(wishLists.count == 1)
-    #expect(wishLists.first?.title == "New year")
-    #expect(wishLists.first?.subtitle == "Presents from Saint Claus")
+    #expect(wishLists.first?.name == "New year")
+    #expect(wishLists.first?.description == "Presents from Saint Claus")
 }
 
 @Test func appendItems() {
@@ -35,7 +35,7 @@ import Foundation
     stateMachine.addWishList(newList)
     
     #expect(stateMachine.state.wishLists.count == 1)
-    #expect(stateMachine.state.wishLists.first?.title == "New")
+    #expect(stateMachine.state.wishLists.first?.name == "New")
 }
 
 @Test func removeItems() {
@@ -50,7 +50,7 @@ import Foundation
     stateMachine.removeWishList(by: idToRemove.uuidString)
     
     #expect(stateMachine.state.wishLists.count == 1)
-    #expect(stateMachine.state.wishLists.first?.title == "To Keep")
+    #expect(stateMachine.state.wishLists.first?.name == "To Keep")
 }
 
 @Test func emptyWishList() {
@@ -66,7 +66,7 @@ import Foundation
     
     stateMachine.removeWishList(by: UUID().uuidString)
     #expect(stateMachine.state.wishLists.count == 1)
-    #expect(stateMachine.state.wishLists.first?.title == "Keep")
+    #expect(stateMachine.state.wishLists.first?.name == "Keep")
 }
 
 @Test func duplicateWishList() {

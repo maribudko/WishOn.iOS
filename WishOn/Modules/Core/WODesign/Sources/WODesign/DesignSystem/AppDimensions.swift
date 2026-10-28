@@ -20,9 +20,18 @@ public struct AppDimensions {
     public static let emptyListImageSize: CGFloat = 100
     public static let minimumGestureSize: CGFloat = 100
     
+    /// Legacy compact card sizes (e.g. To Give).
     public static let wishListCardWidth: CGFloat = 100
     public static let wishListCardWidthMax: CGFloat = 120
     public static let wishListCardHeight: CGFloat = 160
+
+    /// WishLists home grid: square cover + text below, flexible column width.
+    public static let wishListHomeGridCoverAspectRatio: CGFloat = 1.0
+    public static let wishListHomeGridSpacing: CGFloat = 12
+    /// Outline gift / SF Symbol size centered in home-grid tile covers.
+    public static let wishListHomeGridTileIconSize: CGFloat = 22
+    public static let homeGridTabUnderlineHeight: CGFloat = 3
+    public static let homeGridTabDividerHeight: CGFloat = 1
     
     public static let toGiveCardViewHeight: CGFloat = 140
     public static let toGiveCardViewWidth: CGFloat = 100
