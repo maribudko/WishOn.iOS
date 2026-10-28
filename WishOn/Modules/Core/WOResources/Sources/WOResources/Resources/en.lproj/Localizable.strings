@@ -10,6 +10,7 @@
 "appName" = "WishOn";
 "Filter" = "Filter";
 "toGive" = "To Give";
+"home_tab_wishlists" = "WishLists";
 "wishListEmptyView" = "Start your first WishList!\nAnd make your dreams come true!";
 "helloWisher" = "Hello, Wisher!";
 "aboutWisherPromt" = "Here you can provide some information about yourself, if you'd like to!";

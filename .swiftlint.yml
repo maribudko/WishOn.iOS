@@ -20,6 +20,9 @@ excluded: # Paths to exclude from linting (e.g. dependencies, build folders)
   - Carthage
   - fastlane
   - build
+  - "**/.build"
+  - "**/Package.resolved"
+  - "**/DerivedData"
 
 line_length: # Customize line length rule
   warning: 120

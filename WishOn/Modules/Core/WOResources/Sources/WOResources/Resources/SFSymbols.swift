@@ -25,7 +25,10 @@ public enum SFSymbols: String {
     case plusCircle = "plus.circle.fill"
     case calendar = "calendar.circle"
     case person = "person.circle"
+    case menu = "line.3.horizontal"
     case gift = "gift.fill"
+    case giftOutline = "gift"
+    case plus = "plus"
     case heart = "heart.text.square"
     
     public var name: String { rawValue }
