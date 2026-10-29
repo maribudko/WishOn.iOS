@@ -125,7 +125,8 @@ enum WishListFirestoreMapping {
             wishes: [],
             description: data[Field.description] as? String,
             createdAt: (data[Field.createdAt] as? Timestamp)?.dateValue(),
-            ownerUid: data[Field.ownerUid] as? String
+            ownerUid: data[Field.ownerUid] as? String,
+            kind: WishListKind(rawValue: data[Field.kind] as? String ?? "") ?? .wishlist
         )
     }
     
@@ -138,6 +139,7 @@ enum WishListFirestoreMapping {
         static let avatar = "avatar"
         static let eventDate = "eventDate"
         static let createdAt = "createdAt"
+        static let kind = "kind"
     }
     
     private static let encoder: Firestore.Encoder = {

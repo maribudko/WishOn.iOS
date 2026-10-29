@@ -288,12 +288,7 @@ public struct NewWishlistView: View {
                                     .frame(height: AppDimensions.homeGridTabDividerHeight)
                                     .padding(.horizontal, AppPaddings.padding16)
                             }
-                            Button {
-                                selectedWish = wish
-                            } label: {
-                                wishRow(wish)
-                            }
-                            .buttonStyle(.plain)
+                            wishEntry(wish)
                         }
                     }
                     .padding(.bottom, viewModel.isEditable ? AppDimensions.fabSize : AppPaddings.padding16)
@@ -311,19 +306,56 @@ public struct NewWishlistView: View {
         )
     }
     
+    private func wishEntry(_ wish: Wish) -> some View {
+        HStack(alignment: .center, spacing: 0) {
+            if viewModel.listKind == .list {
+                completionToggle(wish)
+            }
+            Button {
+                selectedWish = wish
+            } label: {
+                wishRow(wish)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.vertical, AppPaddings.padding10)
+                    .padding(.trailing, AppPaddings.padding16)
+                    .padding(.leading, AppPaddings.padding16)
+            }
+            .buttonStyle(RowHitButtonStyle())
+        }
+    }
+    
+    private func completionToggle(_ wish: Wish) -> some View {
+        Button {
+            viewModel.toggleWishCompleted(wish.id)
+        } label: {
+            Image(systemName: (wish.isCompleted ? SFSymbols.fillCircle : SFSymbols.circle).name)
+                .font(.body)
+                .foregroundColor(wish.isCompleted ? HomeGridPalette.accent : HomeGridPalette.icon)
+                .frame(width: AppDimensions.iconLargeSize, height: AppDimensions.wishRowThumbnailSize)
+                .padding(.leading, AppPaddings.padding16)
+                .padding(.vertical, AppPaddings.padding10)
+        }
+        .buttonStyle(RowHitButtonStyle())
+        .allowsHitTesting(viewModel.isEditable)
+        .accessibilityIdentifier(AccessibilityIdentifiers.wishCompletedToggle)
+    }
+    
     private func wishRow(_ wish: Wish) -> some View {
-        HStack(alignment: .center, spacing: AppPaddings.padding16) {
+        let isDone = viewModel.listKind == .list && wish.isCompleted
+        return HStack(alignment: .center, spacing: AppPaddings.padding16) {
             wishThumbnail(wish)
             VStack(alignment: .leading, spacing: AppPaddings.padding5) {
                 Text(wish.name)
                     .font(.body)
-                    .foregroundColor(HomeGridPalette.title)
+                    .foregroundColor(isDone ? HomeGridPalette.subtitle : HomeGridPalette.title)
+                    .strikethrough(isDone, color: HomeGridPalette.subtitle)
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
                 if let price = WishDisplay.price(for: wish) {
                     Text(price)
                         .font(.body.weight(.semibold))
-                        .foregroundColor(HomeGridPalette.title)
+                        .foregroundColor(isDone ? HomeGridPalette.subtitle : HomeGridPalette.title)
+                        .strikethrough(isDone, color: HomeGridPalette.subtitle)
                         .lineLimit(1)
                 }
             }
@@ -335,8 +367,6 @@ public struct NewWishlistView: View {
                     .foregroundColor(HomeGridPalette.accent)
             }
         }
-        .padding(.horizontal, AppPaddings.padding16)
-        .padding(.vertical, AppPaddings.padding10)
     }
     
     private func wishThumbnail(_ wish: Wish) -> some View {
@@ -440,6 +470,13 @@ public struct NewWishlistView: View {
             .renderingMode(.template)
             .scaledToFill()
             .foregroundColor(HomeGridPalette.accent)
+    }
+}
+
+private struct RowHitButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .contentShape(Rectangle())
     }
 }
 

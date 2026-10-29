@@ -45,6 +45,8 @@ import Testing
     #expect(decoded?.wishes.first?.link == "https://shop.example/mug")
     #expect(decoded?.wishes.first?.image == "https://shop.example/mug.jpg")
     #expect(decoded?.wishes.first?.isTaken == false)
+    #expect(decoded?.wishes.first?.isCompleted == false)
+    #expect(decoded?.kind == .wishlist)
     #expect(datesMatch(decoded?.eventDate, eventDate))
     #expect(datesMatch(decoded?.createdAt, createdAt))
 }
@@ -66,6 +68,38 @@ import Testing
     #expect(decoded?.wishes.isEmpty == true)
     #expect(decoded?.eventDate == nil)
     #expect(decoded?.avatar == nil)
+    #expect(decoded?.kind == .wishlist)
+}
+
+@Test func plainListRoundTripsKindAndCompletedItems() throws {
+    let id = UUID()
+    let wish = Wish(
+        id: UUID(),
+        name: "Milk",
+        image: "",
+        price: nil,
+        currency: "",
+        link: "",
+        isTaken: false,
+        isCompleted: true
+    )
+    let wishList = WishList(
+        id: id,
+        name: "Groceries",
+        image: nil,
+        eventDate: nil,
+        wishes: [wish],
+        description: nil,
+        createdAt: nil,
+        kind: .list
+    )
+    
+    let data = try WishListFirestoreMapping.encode(wishList, ownerUid: "signed-in-user")
+    let decoded = WishListFirestoreMapping.decode(data, documentID: id.uuidString)
+    
+    #expect(data["kind"] as? String == "list")
+    #expect(decoded?.kind == .list)
+    #expect(decoded?.wishes.first?.isCompleted == true)
 }
 
 private func datesMatch(_ lhs: Date?, _ rhs: Date) -> Bool {

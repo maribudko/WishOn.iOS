@@ -19,6 +19,8 @@
 "Wishlists name" = "Wishlists name";
 "WishOn" = "WishOn";
 "new_wishlist_lbl" = "New wishlist";
+"list_type_wishlist" = "WishList";
+"plain_list_title" = "List";
 "wishlist_details" = "WishList Details";
 "name_hint" = "Name";
 "link_hint" = "Link";

@@ -87,7 +87,14 @@ public final class NewWishListStateMachine {
         }
     }
     
-    public func makeWishList(id: UUID, wishes: [Wish], image: String?, avatar: String?, createdAt: Date? = nil) -> WishList? {
+    public func makeWishList(
+        id: UUID,
+        wishes: [Wish],
+        image: String?,
+        avatar: String?,
+        createdAt: Date? = nil,
+        kind: WishListKind = .wishlist
+    ) -> WishList? {
         let trimmedName = name.text.trimmingCharacters(in: .whitespacesAndNewlines)
         name.text = trimmedName
         name.wasFocused = true
@@ -106,7 +113,8 @@ public final class NewWishListStateMachine {
             wishes: wishes,
             description: trimmedDescription.isEmpty ? nil : trimmedDescription,
             createdAt: createdAt ?? Date(),
-            ownerUid: nil
+            ownerUid: nil,
+            kind: kind
         )
     }
     

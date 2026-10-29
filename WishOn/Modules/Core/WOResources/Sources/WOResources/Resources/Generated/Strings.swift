@@ -73,6 +73,10 @@ public enum L10n {
   public static let newWishlist = L10n.tr("Localizable", "New wishlist", fallback: "New wishlist")
   /// New wishlist
   public static let newWishlistLbl = L10n.tr("Localizable", "new_wishlist_lbl", fallback: "New wishlist")
+  /// WishList
+  public static let listTypeWishlist = L10n.tr("Localizable", "list_type_wishlist", fallback: "WishList")
+  /// List
+  public static let plainListTitle = L10n.tr("Localizable", "plain_list_title", fallback: "List")
   /// No wishes yet. Tap the button below to add one!
   public static let noWishesLabel = L10n.tr("Localizable", "no_wishes_label", fallback: "No wishes yet. Tap the button below to add one!")
   /// Ok

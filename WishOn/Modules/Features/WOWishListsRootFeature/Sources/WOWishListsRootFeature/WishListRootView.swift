@@ -262,8 +262,16 @@ public struct WishListRootView: View {
             .frame(width: 0, height: 0)
             .opacity(0)
 
-            Button {
-                openNewWishList()
+            Menu {
+                Button(L10n.listTypeWishlist) {
+                    openNewWishList(kind: .wishlist)
+                }
+                .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistTypeButton)
+                
+                Button(L10n.plainListTitle) {
+                    openNewWishList(kind: .list)
+                }
+                .accessibilityIdentifier(AccessibilityIdentifiers.addPlainListTypeButton)
             } label: {
                 Image(systemName: SFSymbols.plus.name)
                     .font(.title2.weight(.semibold))
@@ -295,7 +303,7 @@ public struct WishListRootView: View {
         isShowingWishList = true
     }
 
-    private func openNewWishList() {
+    private func openNewWishList(kind: WishListKind) {
         #if DEBUG
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
             return
@@ -304,7 +312,7 @@ public struct WishListRootView: View {
         newWishListViewModel = AppAssembler.shared
             .resolver
             .resolve(NewWishListModule.self, argument: saveHandler())
-            .makeViewModel()
+            .makeViewModel(kind: kind)
         isCreatingWishList = true
     }
     

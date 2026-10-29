@@ -72,6 +72,7 @@ import WOResources
     #expect(saved?.ownerUid == nil)
     #expect(saved?.image == nil)
     #expect(saved?.avatar == nil)
+    #expect(saved?.kind == .wishlist)
     #expect(viewModel.didSave == true)
     #expect(viewModel.isSaving == false)
 }
@@ -215,9 +216,59 @@ private let sampleWish = Wish(
     #expect(viewModel.didSave == false)
 }
 
+@Test func newPlainListUsesTheListTitleAndSavesCompletion() async {
+    var saved: WishList?
+    let viewModel = makeViewModel(kind: .list) { wishList, completion in
+        saved = wishList
+        completion(nil)
+    }
+    viewModel.onNameChanged("Groceries")
+    viewModel.addWish(sampleWish)
+    viewModel.toggleWishCompleted(sampleWish.id)
+    
+    #expect(viewModel.screenTitle == L10n.plainListTitle)
+    #expect(viewModel.listKind == .list)
+    #expect(viewModel.wishes.first?.isCompleted == true)
+    
+    viewModel.onSaveTapped()
+    await waitUntil { viewModel.didSave }
+    
+    #expect(saved?.kind == .list)
+    #expect(saved?.wishes.first?.isCompleted == true)
+}
+
+@Test func wishlistIgnoresCompletionToggle() {
+    let viewModel = makeViewModel()
+    viewModel.addWish(sampleWish)
+    viewModel.toggleWishCompleted(sampleWish.id)
+    
+    #expect(viewModel.listKind == .wishlist)
+    #expect(viewModel.screenTitle == L10n.newWishlistLbl)
+    #expect(viewModel.wishes.first?.isCompleted == false)
+}
+
+@Test func openingAPlainListKeepsTheListTitle() {
+    let list = WishList(
+        id: UUID(),
+        name: "Groceries",
+        image: nil,
+        eventDate: nil,
+        wishes: [sampleWish],
+        description: nil,
+        createdAt: nil,
+        kind: .list
+    )
+    let viewModel = makeViewModel(existing: list)
+    
+    #expect(viewModel.screenTitle == L10n.plainListTitle)
+    #expect(viewModel.listKind == .list)
+    #expect(viewModel.wishes.first?.name == "Book")
+}
+
 private func makeViewModel(
     existing: WishList? = nil,
     isEditable: Bool = true,
+    kind: WishListKind = .wishlist,
     onSave: @escaping WishListSaveHandler = { _, completion in completion(nil) }
 ) -> NewWishListViewModel {
     let stateMachine = NewWishListStateMachine(backIcon: .init(icon: SFSymbolsIcon(symbol: .back)),
@@ -230,6 +281,7 @@ private func makeViewModel(
         stateFactory: stateFactory,
         onSave: onSave,
         existing: existing,
-        isEditable: isEditable
+        isEditable: isEditable,
+        kind: kind
     )
 }

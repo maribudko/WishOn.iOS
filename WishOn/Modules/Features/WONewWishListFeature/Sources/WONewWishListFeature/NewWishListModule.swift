@@ -24,13 +24,18 @@ public struct NewWishListModule: BaseSwiftUIModule {
         self.onSave = onSave
     }
     
-    public func makeViewModel(existing: WishList? = nil, isEditable: Bool = true) -> NewWishListViewModel {
+    public func makeViewModel(
+        existing: WishList? = nil,
+        isEditable: Bool = true,
+        kind: WishListKind = .wishlist
+    ) -> NewWishListViewModel {
         NewWishListViewModel(
             stateMachine: stateMachine,
             stateFactory: stateFactory,
             onSave: onSave,
             existing: existing,
-            isEditable: isEditable
+            isEditable: isEditable,
+            kind: kind
         )
     }
     

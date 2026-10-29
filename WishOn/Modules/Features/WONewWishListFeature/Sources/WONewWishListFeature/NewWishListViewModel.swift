@@ -22,6 +22,7 @@ public final class NewWishListViewModel: ObservableObject {
     @Published var saveErrorMessage: String?
     let isEditable: Bool
     let screenTitle: String
+    let listKind: WishListKind
     
     private let stateMachine: NewWishListStateMachine
     private let stateFactory: NewWishListStateFactory
@@ -37,7 +38,8 @@ public final class NewWishListViewModel: ObservableObject {
         stateFactory: NewWishListStateFactory,
         onSave: @escaping WishListSaveHandler = { _, completion in completion(nil) },
         existing: WishList? = nil,
-        isEditable: Bool = true
+        isEditable: Bool = true,
+        kind: WishListKind = .wishlist
     ) {
         self.stateMachine = stateMachine
         self.stateFactory = stateFactory
@@ -46,7 +48,8 @@ public final class NewWishListViewModel: ObservableObject {
         self.createdAt = existing?.createdAt
         let ownerCanEdit = existing.map(Self.canEdit) ?? true
         self.isEditable = isEditable && ownerCanEdit
-        self.screenTitle = existing == nil ? L10n.newWishlistLbl : L10n.wishlistDetails
+        self.listKind = existing?.kind ?? kind
+        self.screenTitle = Self.screenTitle(for: listKind, isNew: existing == nil)
         if let existing {
             stateMachine.apply(existing)
             wishes = existing.wishes
@@ -96,6 +99,22 @@ public final class NewWishListViewModel: ObservableObject {
         wishes.append(wish)
     }
     
+    public func toggleWishCompleted(_ id: UUID) {
+        guard listKind == .list, isEditable else { return }
+        wishes = wishes.map { wish in
+            wish.id == id ? wish.with(isCompleted: !wish.isCompleted) : wish
+        }
+    }
+    
+    private static func screenTitle(for kind: WishListKind, isNew: Bool) -> String {
+        switch kind {
+        case .wishlist:
+            return isNew ? L10n.newWishlistLbl : L10n.wishlistDetails
+        case .list:
+            return L10n.plainListTitle
+        }
+    }
+    
     public func onCoverImagePicked(_ image: UIImage) {
         do {
             let saved = try WishListImageStore.save(image, id: listId, directory: coverImageDirectory)
@@ -120,7 +139,8 @@ public final class NewWishListViewModel: ObservableObject {
             wishes: wishes,
             image: coverImageKey,
             avatar: avatar,
-            createdAt: createdAt
+            createdAt: createdAt,
+            kind: listKind
         ) else {
             updateViewState()
             return
