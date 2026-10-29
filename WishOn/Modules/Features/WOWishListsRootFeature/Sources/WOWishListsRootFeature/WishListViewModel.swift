@@ -50,18 +50,19 @@ public class WishListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    public func addNewWishList(wishList: WishList) {
+    public func addNewWishList(wishList: WishList, completion: ((Error?) -> Void)? = nil) {
         useCase.addWishList(wishList)
-            .sink { completion in
-                if case .failure(let error) = completion {
-                    debugPrint("Load error: \(error)")
+            .sink { result in
+                if case .failure(let error) = result {
+                    debugPrint("Save error: \(error)")
+                    completion?(error)
                 }
-            } receiveValue: { _ in
-                self.stateMachine.addWishList(wishList)
-                self.updateViewState()
+            } receiveValue: { [weak self] _ in
+                self?.stateMachine.replaceWishList(wishList)
+                self?.updateViewState()
+                completion?(nil)
             }
             .store(in: &cancellables)
-
     }
     
     func removeWishList(id: String) {

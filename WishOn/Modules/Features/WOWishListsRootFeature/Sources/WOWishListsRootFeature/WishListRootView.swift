@@ -32,8 +32,12 @@ private enum HomeTab: Hashable {
 
 public struct WishListRootView: View {
     private var isAuthorized = false
-    private var viewModel: WishListViewModel
+    @ObservedObject private var viewModel: WishListViewModel
     @State private var selectedTab: HomeTab = .wishlists
+    @State private var isCreatingWishList = false
+    @State private var newWishListViewModel: NewWishListViewModel?
+    @State private var isShowingWishList = false
+    @State private var openedWishListViewModel: NewWishListViewModel?
 
     private let columns = [
         GridItem(.flexible(), spacing: AppDimensions.wishListHomeGridSpacing),
@@ -169,12 +173,15 @@ public struct WishListRootView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: AppDimensions.wishListHomeGridSpacing) {
                 ForEach(viewModel.viewState.wishLists) { wishList in
-                    NavigationLink(destination: WishListDetailsView()) {
+                    Button {
+                        openWishList(wishList)
+                    } label: {
                         WishListCardView(
                             viewState: WishListCardViewState(
                                 imageName: wishList.image ?? "",
                                 name: wishList.name,
-                                subtitle: subtitle(for: wishList)
+                                subtitle: subtitle(for: wishList),
+                                avatar: wishList.avatar
                             )
                         )
                     }
@@ -234,38 +241,77 @@ public struct WishListRootView: View {
     }
 
     private var addWishlistFAB: some View {
-        NavigationLink {
-            //MARK: MENTOR: чи нормально так вирішувати проблему з відсутністю залежностей під час прев'ю для Canvas Preview?
-            #if DEBUG
-            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+        ZStack {
+            NavigationLink(isActive: $isCreatingWishList) {
+                if let newWishListViewModel {
+                    NewWishlistView(viewModel: newWishListViewModel)
+                }
+            } label: {
                 EmptyView()
-            } else {
-                AppAssembler.shared
-                    .resolver
-                    .resolve(NewWishListModule.self)
-                    .view()
             }
-            #else
-            AppAssembler.shared
-                .resolver
-                .resolve(NewWishListModule.self)
-                .view()
-            #endif
-        } label: {
-            Image(systemName: SFSymbols.plus.name)
-                .font(.title2.weight(.semibold))
-                .foregroundColor(HomeGridPalette.onAccent)
-                .frame(width: AppDimensions.fabSize, height: AppDimensions.fabSize)
-                .background(Circle().fill(HomeGridPalette.accent))
-                .shadow(
-                    color: fabShadow.color,
-                    radius: fabShadow.radius,
-                    x: fabShadow.x,
-                    y: fabShadow.y
-                )
+            .frame(width: 0, height: 0)
+            .opacity(0)
+
+            NavigationLink(isActive: $isShowingWishList) {
+                if let openedWishListViewModel {
+                    NewWishlistView(viewModel: openedWishListViewModel)
+                }
+            } label: {
+                EmptyView()
+            }
+            .frame(width: 0, height: 0)
+            .opacity(0)
+
+            Button {
+                openNewWishList()
+            } label: {
+                Image(systemName: SFSymbols.plus.name)
+                    .font(.title2.weight(.semibold))
+                    .foregroundColor(HomeGridPalette.onAccent)
+                    .frame(width: AppDimensions.fabSize, height: AppDimensions.fabSize)
+                    .background(Circle().fill(HomeGridPalette.accent))
+                    .shadow(
+                        color: fabShadow.color,
+                        radius: fabShadow.radius,
+                        x: fabShadow.x,
+                        y: fabShadow.y
+                    )
+            }
+            .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
+            .accessibilityLabel(L10n.addNewWishlist)
         }
-        .accessibilityIdentifier(AccessibilityIdentifiers.addWishlistButton)
-        .accessibilityLabel(L10n.addNewWishlist)
+    }
+
+    private func openWishList(_ wishList: WishList) {
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            return
+        }
+        #endif
+        openedWishListViewModel = AppAssembler.shared
+            .resolver
+            .resolve(NewWishListModule.self, argument: saveHandler())
+            .makeViewModel(existing: wishList, isEditable: NewWishListViewModel.canEdit(wishList))
+        isShowingWishList = true
+    }
+
+    private func openNewWishList() {
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1" {
+            return
+        }
+        #endif
+        newWishListViewModel = AppAssembler.shared
+            .resolver
+            .resolve(NewWishListModule.self, argument: saveHandler())
+            .makeViewModel()
+        isCreatingWishList = true
+    }
+    
+    private func saveHandler() -> WishListSaveHandler {
+        return { [viewModel] wishList, completion in
+            viewModel.addNewWishList(wishList: wishList, completion: completion)
+        }
     }
 
     private func subtitle(for wishList: WishList) -> String {

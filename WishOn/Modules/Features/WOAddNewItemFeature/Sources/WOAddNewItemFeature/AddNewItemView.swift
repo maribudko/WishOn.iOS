@@ -5,7 +5,9 @@
 //  Created by Mari Budko on 01.12.2024.
 //
 
+import PhotosUI
 import SwiftUI
+import UIKit
 import WOResources
 import WODesign
 import WOCore
@@ -38,12 +40,50 @@ public struct AddNewItemView: View {
 
     
     @Binding var isShown: Bool
+    @State private var showPhotoSourceDialog = false
+    @State private var showCamera = false
+    @State private var showPhotoLibrary = false
+    @State private var photoItem: PhotosPickerItem?
     
     @ObservedObject var viewModel: AddNewItemViewModel
     
     public init(isShown: Binding<Bool>, viewModel: AddNewItemViewModel) {
         self._isShown = isShown
         self.viewModel = viewModel
+    }
+
+    private var fieldBorder: Color {
+        HomeGridPalette.subtitle.opacity(AppOpacityLevels.homeGridTabDivider)
+    }
+
+    @ViewBuilder
+    private var itemImage: some View {
+        if let pickedImage = viewModel.pickedImage {
+            Image(uiImage: pickedImage)
+                .resizable()
+                .scaledToFill()
+        } else if let url = viewModel.previewImageURL {
+            AsyncImage(url: url) { phase in
+                switch phase {
+                case .success(let image):
+                    image
+                        .resizable()
+                        .scaledToFill()
+                default:
+                    placeholderImage
+                }
+            }
+        } else {
+            placeholderImage
+        }
+    }
+
+    private var placeholderImage: some View {
+        Image(asset: Asset.blankImage)
+            .resizable()
+            .renderingMode(.template)
+            .scaledToFill()
+            .foregroundColor(HomeGridPalette.accent)
     }
     
     public var body: some View {
@@ -56,7 +96,7 @@ public struct AddNewItemView: View {
                         isShown = false
                     } label: {
                         IconView(viewState: viewModel.viewState.crossIcon)
-                            .foregroundColor(Color(Asset.primaryColor.color))
+                            .foregroundColor(HomeGridPalette.icon)
                     }
                     .frame(width: AppDimensions.iconSize,
                            height: AppDimensions.iconSize)
@@ -64,16 +104,26 @@ public struct AddNewItemView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
-                Image(asset: Asset.blankImage)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: AppDimensions.newItemImageSize,
-                           height: AppDimensions.newItemImageSize)
-                    .clipShape(.circle)
-                    .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemImage)
+                Button {
+                    showPhotoSourceDialog = true
+                } label: {
+                    itemImage
+                        .frame(width: AppDimensions.newItemImageSize,
+                               height: AppDimensions.newItemImageSize)
+                        .background(HomeGridPalette.coverPlaceholder)
+                        .clipShape(.circle)
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemImage)
+                .accessibilityLabel(L10n.chooseWishlistPhoto)
                 
                 TextFieldView(
                     viewState: viewModel.viewState.name,
+                    textColor: HomeGridPalette.title,
+                    fieldBackground: HomeGridPalette.card,
+                    borderColor: fieldBorder,
+                    placeholderColor: HomeGridPalette.subtitle,
+                    accent: HomeGridPalette.accent,
                     onTextChanged: viewModel.onNameChanged(_:)
                 )
                 .focused($focusedField, equals: .name)
@@ -81,6 +131,11 @@ public struct AddNewItemView: View {
                 
                 TextFieldView(
                     viewState: viewModel.viewState.link,
+                    textColor: HomeGridPalette.title,
+                    fieldBackground: HomeGridPalette.card,
+                    borderColor: fieldBorder,
+                    placeholderColor: HomeGridPalette.subtitle,
+                    accent: HomeGridPalette.accent,
                     onTextChanged: viewModel.onUrlChanged(_:)
                 )
                 .focused($focusedField, equals: .link)
@@ -94,25 +149,79 @@ public struct AddNewItemView: View {
                 .focused($focusedField, equals: .price)
                 .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemPrice)
                 
-                ButtonView(buttonViewState: viewModel.viewState.button)
+                ButtonView(
+                    buttonViewState: viewModel.viewState.button,
+                    fill: HomeGridPalette.accent,
+                    titleColor: HomeGridPalette.onAccent
+                )
                     .disabled(!viewModel.isAddButtonEnabled)
                     .opacity(viewModel.isAddButtonEnabled ? 1 : 0.5)
                     .accessibilityIdentifier(AccessibilityIdentifiers.addNewItemCreateButton)
             }
             .padding(AppPaddings.padding20)
+            .background(HomeGridPalette.background)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)
-            .background(Color(Asset.backgroundColor.color))
-            .shadow(color: AppShadows.small.color,
+            .shadow(color: AppShadows.homeGridCard.color,
                     radius: AppShadows.small.radius,
                     x: AppShadows.small.x,
                     y: AppShadows.small.y)
             .padding(.horizontal, AppPaddings.padding16)
+            .background(DismissKeyboardOnOutsideTap { focusedField = nil })
+            .preferredColorScheme(.light)
             .alert(isPresented: $viewModel.showAlert) {
-                Alert(title: Text(L10n.attention),
-                      message: Text(viewModel.alertMessage ?? ""),
-                      dismissButton: .default(Text(L10n.okLabel)){
-                    viewModel.onSuccess?()
-                })
+                Alert(
+                    title: Text(L10n.attention),
+                    message: Text(viewModel.alertMessage ?? ""),
+                    dismissButton: .default(Text(L10n.okLabel))
+                )
+            }
+            .confirmationDialog(L10n.chooseWishlistPhoto, isPresented: $showPhotoSourceDialog, titleVisibility: .visible) {
+                if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                    Button(L10n.camera) {
+                        showCamera = true
+                    }
+                }
+                Button(L10n.photoLibrary) {
+                    showPhotoLibrary = true
+                }
+                Button(L10n.cancelLabel, role: .cancel) {}
+            }
+            .photosPicker(isPresented: $showPhotoLibrary, selection: $photoItem, matching: .images)
+            .onChange(of: photoItem) { item in
+                guard let item else { return }
+                Task {
+                    if let data = try? await item.loadTransferable(type: Data.self),
+                       let image = UIImage(data: data) {
+                        await MainActor.run {
+                            viewModel.onPhotoPicked(image)
+                            photoItem = nil
+                        }
+                    }
+                }
+            }
+            .fullScreenCover(isPresented: $showCamera) {
+                CameraImagePicker(
+                    onImage: { viewModel.onPhotoPicked($0) },
+                    onDismiss: { showCamera = false }
+                )
+                .ignoresSafeArea()
+            }
+            .alert(
+                L10n.attention,
+                isPresented: Binding(
+                    get: { viewModel.photoErrorMessage != nil },
+                    set: { isPresented in
+                        if !isPresented {
+                            viewModel.photoErrorMessage = nil
+                        }
+                    }
+                )
+            ) {
+                Button(L10n.okLabel, role: .cancel) {
+                    viewModel.photoErrorMessage = nil
+                }
+            } message: {
+                Text(viewModel.photoErrorMessage ?? "")
             }
             .onChange(of: focusedField) { newFocus in
                 if let lostFocus = previousFocusedField, lostFocus != newFocus {

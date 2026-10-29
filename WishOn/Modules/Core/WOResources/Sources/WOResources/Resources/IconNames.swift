@@ -11,6 +11,7 @@ public struct IconNames {
     public static let closeIcon = "closeIcon"
     public static let backIcon = "backIcon"
     public static let arrowDownIcon = "arrowDownIcon"
+    public static let checkmarkIcon = "checkmarkIcon"
     public static let downIcon = "downIcon"
     public static let plusCircleIcon = "plusCircleIcon"
     public static let heartListIcon = "heartListIcon"

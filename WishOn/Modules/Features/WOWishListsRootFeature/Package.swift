@@ -40,7 +40,10 @@ let package = Package(
         ),
         .testTarget(
             name: "WOWishListsRootFeatureTests",
-            dependencies: ["WOWishListsRootFeature"]
+            dependencies: [
+                "WOWishListsRootFeature",
+                .product(name: "WOCore", package: "WOCore"),
+            ]
         ),
     ]
 )

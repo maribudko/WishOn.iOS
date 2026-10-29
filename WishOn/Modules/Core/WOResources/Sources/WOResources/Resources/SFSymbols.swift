@@ -18,6 +18,7 @@ public enum SFSymbols: String {
     case close = "xmark"
     case back = "chevron.left"
     case arrowDown = "square.and.arrow.down"
+    case checkmark = "checkmark"
     case down = "chevron.down"
     case fillCircle = "largecircle.fill.circle"
     case circle = "circle"

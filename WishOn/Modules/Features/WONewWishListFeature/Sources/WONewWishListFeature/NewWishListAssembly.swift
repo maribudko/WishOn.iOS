@@ -8,6 +8,7 @@
 import Swinject
 import WOResources
 import WODesign
+import WOCore
 
 public final class NewWishListAssembly: Assembly {
     public init() {}
@@ -16,7 +17,7 @@ public final class NewWishListAssembly: Assembly {
             guard
                 let backIcon = resolver.resolve(IconRepresentable.self, name: IconNames.backIcon),
                 let dropDownIcon = resolver.resolve(IconRepresentable.self, name: IconNames.downIcon),
-                let saveIcon = resolver.resolve(IconRepresentable.self, name: IconNames.arrowDownIcon),
+                let saveIcon = resolver.resolve(IconRepresentable.self, name: IconNames.checkmarkIcon),
                 let plusIcon = resolver.resolve(IconRepresentable.self, name: IconNames.plusCircleIcon)
             else {
                 fatalError("Could not resolve dependencies for NewWishListStateMachine")
@@ -32,7 +33,7 @@ public final class NewWishListAssembly: Assembly {
         container.register(NewWishListStateFactory.self) { _ in NewWishListStateFactory() }
             .inObjectScope(.container)
         
-        container.register(NewWishListModule.self) { resolver in
+        container.register(NewWishListModule.self) { (resolver, onSave: @escaping WishListSaveHandler) in
             guard
                 let stateMachine = resolver.resolve(NewWishListStateMachine.self),
                 let stateFactory = resolver.resolve(NewWishListStateFactory.self)
@@ -41,7 +42,8 @@ public final class NewWishListAssembly: Assembly {
             }
             return NewWishListModule(
                 stateMachine: stateMachine,
-                stateFactory: stateFactory
+                stateFactory: stateFactory,
+                onSave: onSave
             )
         }
     }

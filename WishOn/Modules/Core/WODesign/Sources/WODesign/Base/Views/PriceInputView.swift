@@ -36,11 +36,18 @@ public struct PriceInputView: View {
     public var body: some View {
         VStack(alignment: .leading){
             HStack {
-                TextField(L10n.priceHint, text: Binding(
-                    get: { viewState.price },
-                    set: { price in
-                        onPriceChanged(price)
-                    }))
+                TextField(
+                    "",
+                    text: Binding(
+                        get: { viewState.price },
+                        set: { price in
+                            onPriceChanged(price)
+                        }
+                    ),
+                    prompt: Text(L10n.priceHint).foregroundColor(HomeGridPalette.subtitle)
+                )
+                .foregroundColor(HomeGridPalette.title)
+                .tint(HomeGridPalette.accent)
                 .keyboardType(.decimalPad)
                 .frame(maxWidth: .infinity)
                 
@@ -55,16 +62,19 @@ public struct PriceInputView: View {
                             Text($0)
                         }
                     }
-                    .accentColor(Color(Asset.primaryColor.color))
+                    .accentColor(HomeGridPalette.accent)
             }
             .padding(AppPaddings.padding8)
-            .background(Color(.systemGray6))
+            .background(HomeGridPalette.card)
             .cornerRadius(AppRadiuses.roundedRectangleRadius)
             .overlay(
                 RoundedRectangle(cornerRadius: AppRadiuses.roundedRectangleRadius)
-                    .stroke(Color(.systemGray5), lineWidth: AppDimensions.borderThin)
+                    .stroke(
+                        HomeGridPalette.subtitle.opacity(AppOpacityLevels.homeGridTabDivider),
+                        lineWidth: AppDimensions.borderThin
+                    )
             )
-            .shadow(color: AppShadows.medium.color,
+            .shadow(color: AppShadows.homeGridCard.color,
                     radius: AppShadows.medium.radius,
                     x: AppShadows.medium.x,
                     y: AppShadows.medium.y)

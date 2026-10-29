@@ -6,18 +6,22 @@
 //
 
 import SwiftUI
+import UIKit
+import WOCore
 import WOResources
 
 public struct WishListCardViewState {
     public let imageName: String
+    public let avatar: String?
     public let name: String
     /// Event date or wish-count meta line shown under the title.
     public let subtitle: String
 
-    public init(imageName: String, name: String, subtitle: String) {
+    public init(imageName: String, name: String, subtitle: String, avatar: String? = nil) {
         self.imageName = imageName
         self.name = name
         self.subtitle = subtitle
+        self.avatar = avatar
     }
 
     /// Backward-compatible alias used by older call sites / previews.
@@ -87,7 +91,15 @@ public struct WishListCardView: View {
                         placeholderIcon
                     }
                 }
-            } else if !viewState.imageName.isEmpty {
+            } else if let localImage = localCoverImage {
+                Image(uiImage: localImage)
+                    .resizable()
+                    .scaledToFill()
+            } else if let avatarImage = WishListImageStore.image(fromAvatar: viewState.avatar) {
+                Image(uiImage: avatarImage)
+                    .resizable()
+                    .scaledToFill()
+            } else if !viewState.imageName.isEmpty, !viewState.imageName.hasPrefix(WishListImageStore.prefix) {
                 tileIcon(systemName: outlineSymbolName(viewState.imageName))
             } else {
                 placeholderIcon
@@ -119,6 +131,11 @@ public struct WishListCardView: View {
         return name
     }
 
+    private var localCoverImage: UIImage? {
+        guard let url = WishListImageStore.fileURL(for: viewState.imageName) else { return nil }
+        return UIImage(contentsOfFile: url.path)
+    }
+    
     private var coverURL: URL? {
         let raw = viewState.imageName.trimmingCharacters(in: .whitespacesAndNewlines)
         guard raw.hasPrefix("http://") || raw.hasPrefix("https://") else { return nil }

@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>WishOn uses the camera to add a photo to your wishlist.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>WishOn uses your photos to add a picture to your wishlist.</string>
 	<key>GIDClientID</key>
 <string>261776217221-dnprpmst6jjaqtrd7eblo6ht2n7jv2rv.apps.googleusercontent.com</string>
 <key>CFBundleURLTypes</key>

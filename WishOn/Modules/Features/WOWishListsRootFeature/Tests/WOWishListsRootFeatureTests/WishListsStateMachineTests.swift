@@ -69,6 +69,20 @@ import Foundation
     #expect(stateMachine.state.wishLists.first?.name == "Keep")
 }
 
+@Test func replaceWishListUpdatesTheExistingOne() {
+    let id = UUID()
+    let list1 = WishList(id: id, name: "List 1", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)
+    let list2 = WishList(id: id, name: "List 2", image: nil, eventDate: nil, wishes: [], description: "Updated", createdAt: nil)
+    
+    let stateMachine = makeStateMachine()
+    stateMachine.setWishLists([list1])
+    stateMachine.replaceWishList(list2)
+    
+    #expect(stateMachine.state.wishLists.count == 1)
+    #expect(stateMachine.state.wishLists.first?.name == "List 2")
+    #expect(stateMachine.state.wishLists.first?.description == "Updated")
+}
+
 @Test func duplicateWishList() {
     let id = UUID()
     let list1 = WishList(id: id, name: "List 1", image: nil, eventDate: nil, wishes: [], description: nil, createdAt: nil)

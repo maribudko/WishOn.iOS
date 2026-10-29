@@ -7,9 +7,15 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseCore
 
 public final class CurrentUserManager: ObservableObject {
     public static let shared = CurrentUserManager()
+
+    public static func signedInUid() -> String? {
+        guard FirebaseApp.app() != nil else { return nil }
+        return shared.currentUser?.uid
+    }
     
     @Published public private(set) var currentUser: User?
     @Published public private(set) var isLoggedIn: Bool = false

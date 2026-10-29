@@ -20,9 +20,13 @@ public struct ButtonViewState {
 
 public struct ButtonView: View {
     public let buttonViewState: ButtonViewState
+    public let fill: Color?
+    public let titleColor: Color?
     
-    public init(buttonViewState: ButtonViewState) {
+    public init(buttonViewState: ButtonViewState, fill: Color? = nil, titleColor: Color? = nil) {
         self.buttonViewState = buttonViewState
+        self.fill = fill
+        self.titleColor = titleColor
     }
     
     public var body: some View {
@@ -31,11 +35,11 @@ public struct ButtonView: View {
         } label: {
             Text(buttonViewState.label)
                 .padding(.horizontal, AppPaddings.padding16)
-                .foregroundStyle(Color(Asset.greenButtonTextColor.color))
+                .foregroundStyle(titleColor ?? Color(Asset.greenButtonTextColor.color))
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color(Asset.primaryColor.color))
+        .background(fill ?? Color(Asset.primaryColor.color))
         .cornerRadius(AppRadiuses.buttonRadius)
         .padding(.top, AppPaddings.padding20)
     }

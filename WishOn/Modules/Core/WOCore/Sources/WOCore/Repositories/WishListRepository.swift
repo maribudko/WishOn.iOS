@@ -42,24 +42,8 @@ public class WishListRepository: WishListRepositoryProtocol, ObservableObject {
                     }
                     
                     let documents = snapshot?.documents ?? []
-                    let wishLists = documents.map { document -> WishList in
-                        debugPrint("\(document.documentID) => \(document.data())")
-                        let data = document.data()
-                        let id = UUID(uuidString: document.documentID) ?? UUID()
-                        let name = data[Constant.name] as? String ?? ""
-                        let description = data[Constant.description] as? String ?? ""
-                        let ownerUid = data[Constant.ownerUid] as? String
-                        // TODO: add remaining fields to firestore DB mapping
-                        return WishList(
-                            id: id,
-                            name: name,
-                            image: "",
-                            eventDate: Date(),
-                            wishes: [],
-                            description: description,
-                            createdAt: Date(),
-                            ownerUid: ownerUid
-                        )
+                    let wishLists = documents.compactMap { document -> WishList? in
+                        WishListFirestoreMapping.decode(document.data(), documentID: document.documentID)
                     }
                     promise(.success(wishLists))
                 }
@@ -76,9 +60,7 @@ public class WishListRepository: WishListRepositoryProtocol, ObservableObject {
         
         let ref = db.collection(Constant.wishListPath).document(wishList.id.uuidString)
         do {
-            var data = try Firestore.Encoder().encode(wishList)
-            // Always stamp ownership from the signed-in user (do not trust client-supplied ownerUid).
-            data[Constant.ownerUid] = uid
+            let data = try WishListFirestoreMapping.encode(wishList, ownerUid: uid)
             return Future<Void, Error> { promise in
                 ref.setData(data) { error in
                     if let error = error {
@@ -117,11 +99,63 @@ public class WishListRepository: WishListRepositoryProtocol, ObservableObject {
     }
 }
 
+enum WishListFirestoreMapping {
+    static func encode(_ wishList: WishList, ownerUid: String) throws -> [String: Any] {
+        var data = try encoder.encode(wishList)
+        data[Field.ownerUid] = ownerUid
+        return data
+    }
+    
+    static func decode(_ data: [String: Any], documentID: String) -> WishList? {
+        var payload = data
+        payload[Field.id] = documentID
+        if let wishList = try? decoder.decode(WishList.self, from: payload) {
+            return wishList
+        }
+        
+        guard let name = data[Field.name] as? String else {
+            return nil
+        }
+        return WishList(
+            id: UUID(uuidString: documentID) ?? UUID(),
+            name: name,
+            image: data[Field.image] as? String,
+            avatar: data[Field.avatar] as? String,
+            eventDate: (data[Field.eventDate] as? Timestamp)?.dateValue(),
+            wishes: [],
+            description: data[Field.description] as? String,
+            createdAt: (data[Field.createdAt] as? Timestamp)?.dateValue(),
+            ownerUid: data[Field.ownerUid] as? String
+        )
+    }
+    
+    private enum Field {
+        static let id = "id"
+        static let name = "name"
+        static let description = "description"
+        static let ownerUid = "ownerUid"
+        static let image = "image"
+        static let avatar = "avatar"
+        static let eventDate = "eventDate"
+        static let createdAt = "createdAt"
+    }
+    
+    private static let encoder: Firestore.Encoder = {
+        let encoder = Firestore.Encoder()
+        encoder.dateEncodingStrategy = .timestamp
+        return encoder
+    }()
+    
+    private static let decoder: Firestore.Decoder = {
+        let decoder = Firestore.Decoder()
+        decoder.dateDecodingStrategy = .timestamp
+        return decoder
+    }()
+}
+
 private extension WishListRepository {
     enum Constant {
         static let wishListPath = "wishList"
-        static let name = "name"
-        static let description = "description"
         static let ownerUid = "ownerUid"
     }
 }

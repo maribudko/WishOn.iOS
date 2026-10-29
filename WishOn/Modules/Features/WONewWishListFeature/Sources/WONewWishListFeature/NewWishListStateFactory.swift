@@ -16,10 +16,11 @@ public final class NewWishListStateFactory {
         let datePicker = DatePickerViewState(
             selectedDate: state.datePicker.date,
             onDateSelected: state.datePicker.onDateSelected,
-            onDismiss: state.datePicker.onDismiss
+            onDismiss: state.datePicker.onDismiss,
+            onConfirm: state.datePicker.onConfirm
         )
         
-        let dateString = DateFormatter.shortDate.string(from: state.datePicker.date)
+        let dateString = state.datePicker.committedDate.map { DateFormatter.shortDate.string(from: $0) } ?? ""
         
         return .init(
             name: makeField(from: state.nameField),

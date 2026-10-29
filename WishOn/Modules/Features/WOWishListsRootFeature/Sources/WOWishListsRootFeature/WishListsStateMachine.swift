@@ -69,6 +69,14 @@ public final class WishListsStateMachine {
         self.wishLists.append(wishList)
     }
     
+    public func replaceWishList(_ wishList: WishList) {
+        if let index = wishLists.firstIndex(where: { $0.id == wishList.id }) {
+            wishLists[index] = wishList
+        } else {
+            wishLists.append(wishList)
+        }
+    }
+    
     public func removeWishList(by id: String) {
         self.wishLists.removeAll { $0.id == UUID(uuidString: id) }
     }

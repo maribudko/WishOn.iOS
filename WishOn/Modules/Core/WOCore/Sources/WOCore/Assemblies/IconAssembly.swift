@@ -17,6 +17,8 @@ public final class IconAssembly: Assembly {
             .inObjectScope(.container)
         container.register(IconRepresentable.self, name: IconNames.arrowDownIcon) { _ in SFSymbolsIcon(symbol: .arrowDown) }
             .inObjectScope(.container)
+        container.register(IconRepresentable.self, name: IconNames.checkmarkIcon) { _ in SFSymbolsIcon(symbol: .checkmark) }
+            .inObjectScope(.container)
         container.register(IconRepresentable.self, name: IconNames.downIcon) { _ in SFSymbolsIcon(symbol: .down) }
             .inObjectScope(.container)
         container.register(IconRepresentable.self, name: IconNames.plusCircleIcon) { _ in SFSymbolsIcon(symbol: .plusCircle) }

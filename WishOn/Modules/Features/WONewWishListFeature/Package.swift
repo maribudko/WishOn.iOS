@@ -17,6 +17,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
         .package(path: "../WOAddNewItemFeature"),
+        .package(path: "../../Core/WOCore"),
         .package(path: "../../Core/WODesign"),
         .package(path: "../../Core/WOResources"),
         .package(path: "../../Core/DependencyInjection")
@@ -32,11 +33,15 @@ let package = Package(
                 .product(name: "WOResources", package: "WOResources"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
                 .product(name: "WOAddNewItemFeature", package: "WOAddNewItemFeature"),
+                .product(name: "WOCore", package: "WOCore"),
             ]
         ),
         .testTarget(
             name: "WONewWishListFeatureTests",
-            dependencies: ["WONewWishListFeature"]
+            dependencies: [
+                "WONewWishListFeature",
+                .product(name: "WOCore", package: "WOCore"),
+            ]
         ),
     ]
 )

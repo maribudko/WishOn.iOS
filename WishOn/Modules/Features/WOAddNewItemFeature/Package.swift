@@ -16,6 +16,8 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.7.0"),
+        .package(path: "../../Core/WOCore"),
         .package(path: "../../Core/WODesign"),
         .package(path: "../../Core/WOResources"),
         .package(path: "../../Core/DependencyInjection"),
@@ -27,14 +29,19 @@ let package = Package(
             name: "WOAddNewItemFeature",
             dependencies: [
                 .product(name: "Swinject", package: "Swinject"),
+                .product(name: "WOCore", package: "WOCore"),
                 .product(name: "WODesign", package: "WODesign"),
                 .product(name: "WOResources", package: "WOResources"),
                 .product(name: "DependencyInjection", package: "DependencyInjection"),
+                .product(name: "SwiftSoup", package: "SwiftSoup"),
             ]
         ),
         .testTarget(
             name: "WOAddNewItemFeatureTests",
-            dependencies: ["WOAddNewItemFeature"]
+            dependencies: [
+                "WOAddNewItemFeature",
+                .product(name: "WOCore", package: "WOCore"),
+            ]
         ),
     ]
 )

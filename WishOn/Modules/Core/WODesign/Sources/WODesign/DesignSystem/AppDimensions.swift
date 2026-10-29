@@ -14,6 +14,7 @@ public struct AppDimensions {
     public static let iconLargeSize: CGFloat = 32
     public static let wishCardImageSize: CGFloat = 40
     public static let userImageSize: CGFloat = 60
+    public static let wishRowThumbnailSize: CGFloat = 64
     public static let fabSize: CGFloat = 64
     public static let newItemImageSize: CGFloat = 140
     

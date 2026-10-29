@@ -12,29 +12,41 @@ import WOCore
 public final class NewWishListStateMachine {
     
     public class DatePickerState {
-        var date: Date = Date.now
+        var date: Date = Date()
+        var committedDate: Date?
         var isVisible: Bool = false
         var onDateSelected: (Date) -> Void
         var onDismiss: () -> Void
+        var onConfirm: () -> Void
         
-        public init(isVisible: Bool, onDateSelected: @escaping (Date) -> Void, onDismiss: @escaping () -> Void) {
+        public init(
+            isVisible: Bool,
+            onDateSelected: @escaping (Date) -> Void,
+            onDismiss: @escaping () -> Void,
+            onConfirm: @escaping () -> Void
+        ) {
             self.isVisible = isVisible
             self.onDateSelected = onDateSelected
             self.onDismiss = onDismiss
+            self.onConfirm = onConfirm
         }
     }
     
     private let name: TextFieldState<TextFieldKind>
     private let description: TextFieldState<TextFieldKind>
     private lazy var datePicker: DatePickerState = {
-        DatePickerState(isVisible: false, onDateSelected: onDateSelected,
-                        onDismiss: onDismiss)
+        DatePickerState(
+            isVisible: false,
+            onDateSelected: onDateSelected,
+            onDismiss: onDismiss,
+            onConfirm: confirmDate
+        )
     }()
     private let backButtonIcon: IconState
     private let dropDownIcon: IconState
     private let saveIcon: IconState
     private let plusIcon: IconState
-    
+    var onStateChanged: (() -> Void)?
     
     public init(backIcon: IconState, dropDownIcon: IconState, saveIcon: IconState, plusIcon: IconState) {
         self.name = .init(kind: TextFieldKind.name, validator: NameValidator())
@@ -47,10 +59,55 @@ public final class NewWishListStateMachine {
     
     public func onDateSelected(_ date: Date) {
         datePicker.date = date
+        onStateChanged?()
+    }
+    
+    public func confirmDate() {
+        datePicker.committedDate = datePicker.date
+        datePicker.isVisible = false
+        onStateChanged?()
+    }
+    
+    public func clearDate() {
+        datePicker.committedDate = nil
+        onStateChanged?()
     }
     
     public func onDismiss() {
         datePicker.isVisible = false
+        onStateChanged?()
+    }
+    
+    public func apply(_ wishList: WishList) {
+        name.text = wishList.name
+        description.text = wishList.description ?? ""
+        datePicker.committedDate = wishList.eventDate
+        if let eventDate = wishList.eventDate {
+            datePicker.date = eventDate
+        }
+    }
+    
+    public func makeWishList(id: UUID, wishes: [Wish], image: String?, avatar: String?, createdAt: Date? = nil) -> WishList? {
+        let trimmedName = name.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        name.text = trimmedName
+        name.wasFocused = true
+        name.validateIfNeeded()
+        guard !name.isError else {
+            return nil
+        }
+        
+        let trimmedDescription = description.text.trimmingCharacters(in: .whitespacesAndNewlines)
+        return WishList(
+            id: id,
+            name: trimmedName,
+            image: image,
+            avatar: avatar,
+            eventDate: datePicker.committedDate,
+            wishes: wishes,
+            description: trimmedDescription.isEmpty ? nil : trimmedDescription,
+            createdAt: createdAt ?? Date(),
+            ownerUid: nil
+        )
     }
     
     public func setNameText(_ text: String) {
@@ -69,7 +126,11 @@ public final class NewWishListStateMachine {
     }
     
     public func setDatePickerVisibility(_ isVisible: Bool) {
+        if isVisible {
+            datePicker.date = datePicker.committedDate ?? Date()
+        }
         datePicker.isVisible = isVisible
+        onStateChanged?()
     }
     
     private func getAllFields() -> [TextFieldState<TextFieldKind>] {

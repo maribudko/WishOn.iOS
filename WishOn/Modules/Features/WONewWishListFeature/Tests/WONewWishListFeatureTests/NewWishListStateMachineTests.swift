@@ -83,6 +83,27 @@ import WOResources
     #expect(stateMachine.state.descriptionField.isError == false)
 }
 
+@Test func dismissingTheCalendarKeepsTheDateEmpty() {
+    let stateMachine = makeStateMachine()
+    stateMachine.setDatePickerVisibility(true)
+    stateMachine.onDateSelected(Date(timeIntervalSince1970: 1_800_000_000))
+    stateMachine.onDismiss()
+    
+    #expect(stateMachine.state.datePicker.isVisible == false)
+    #expect(stateMachine.state.datePicker.committedDate == nil)
+}
+
+@Test func confirmingTheCalendarStoresTheDate() {
+    let stateMachine = makeStateMachine()
+    let date = Date(timeIntervalSince1970: 1_800_000_000)
+    stateMachine.setDatePickerVisibility(true)
+    stateMachine.onDateSelected(date)
+    stateMachine.confirmDate()
+    
+    #expect(stateMachine.state.datePicker.isVisible == false)
+    #expect(stateMachine.state.datePicker.committedDate == date)
+}
+
 @Test func testDatePickerDismiss() {
     let stateMachine = makeStateMachine()
     stateMachine.setDatePickerVisibility(true)

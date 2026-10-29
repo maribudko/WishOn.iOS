@@ -10,14 +10,20 @@ import WOResources
 
 public struct DatePickerViewState {
     public let selectedDate: Date
-    //let isVisible: Bool // ??? Саша - продебажити
     public let onDateSelected: (Date) -> Void
     public let onDismiss: () -> Void
+    public let onConfirm: () -> Void
     
-    public init(selectedDate: Date, onDateSelected: @escaping (Date) -> Void, onDismiss: @escaping () -> Void) {
+    public init(
+        selectedDate: Date,
+        onDateSelected: @escaping (Date) -> Void,
+        onDismiss: @escaping () -> Void,
+        onConfirm: @escaping () -> Void
+    ) {
         self.selectedDate = selectedDate
         self.onDateSelected = onDateSelected
         self.onDismiss = onDismiss
+        self.onConfirm = onConfirm
     }
 }
 
@@ -33,6 +39,9 @@ public struct DatePickerView: View {
         ZStack {
             Color.black.opacity(AppOpacityLevels.backgroundOpacity)
                 .ignoresSafeArea()
+                .onTapGesture {
+                    viewState.onDismiss()
+                }
             VStack {
                 Text(L10n.selectDateHint)
                     .font(.headline)
@@ -57,7 +66,7 @@ public struct DatePickerView: View {
                 .padding()
                 
                 Button(L10n.doneLabel) {
-                    viewState.onDismiss()
+                    viewState.onConfirm()
                 }
                 .padding(.vertical)
                 .padding(.horizontal, AppPaddings.padding26)

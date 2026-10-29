@@ -26,8 +26,10 @@
 "done_label" = "Done";
 "space_text" = " ";
 "ok_label" = "Ok";
+"open_site" = "Open site";
 "select_date_hint" = "Select a Date";
 "create_label" = "Create";
+"add_to_list" = "Add to list";
 "description_hint" = "Description";
 "date_hint" = "Date";
 "wishes_count_label" = "Your wishes (%d)";
@@ -53,4 +55,8 @@
 "name_cannot_be_empty" = "Name should contain at least 2 characters.";
 "link_is_incorrect" = "Link value is incorrect.";
 "price_is_incorrect" = "Price value is incorrect.";
+"choose_wishlist_photo" = "Add a photo";
+"camera" = "Camera";
+"photo_library" = "Photo Library";
+"cancel_label" = "Cancel";
 

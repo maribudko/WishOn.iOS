@@ -17,8 +17,16 @@ public enum L10n {
   /// 
   ///   Created by Mari Budko on 28.11.2024.
   public static let addNewWishlist = L10n.tr("Localizable", "Add New Wishlist", fallback: "Add New Wishlist")
+  /// Add to list
+  public static let addToList = L10n.tr("Localizable", "add_to_list", fallback: "Add to list")
   /// Login with Apple
   public static let appleLoginLabel = L10n.tr("Localizable", "apple_login_label", fallback: "Login with Apple")
+  /// Camera
+  public static let camera = L10n.tr("Localizable", "camera", fallback: "Camera")
+  /// Cancel
+  public static let cancelLabel = L10n.tr("Localizable", "cancel_label", fallback: "Cancel")
+  /// Add a photo
+  public static let chooseWishlistPhoto = L10n.tr("Localizable", "choose_wishlist_photo", fallback: "Add a photo")
   /// WishOn
   public static let appName = L10n.tr("Localizable", "appName", fallback: "WishOn")
   /// Attention!
@@ -69,6 +77,10 @@ public enum L10n {
   public static let noWishesLabel = L10n.tr("Localizable", "no_wishes_label", fallback: "No wishes yet. Tap the button below to add one!")
   /// Ok
   public static let okLabel = L10n.tr("Localizable", "ok_label", fallback: "Ok")
+  /// Open site
+  public static let openSite = L10n.tr("Localizable", "open_site", fallback: "Open site")
+  /// Photo Library
+  public static let photoLibrary = L10n.tr("Localizable", "photo_library", fallback: "Photo Library")
   /// Price
   public static let priceHint = L10n.tr("Localizable", "price_hint", fallback: "Price")
   /// Price value is incorrect.

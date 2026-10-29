@@ -26,6 +26,15 @@ public struct UrlValidator: Validator {
     }
 }
 
+public struct OptionalUrlValidator: Validator {
+    public init() {}
+    public func validate(_ text: String) -> Bool {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { return true }
+        return UrlValidator().validate(trimmed)
+    }
+}
+
 public struct PriceValidator: Validator {
     public init(){}
     public func validate(_ text: String) -> Bool {

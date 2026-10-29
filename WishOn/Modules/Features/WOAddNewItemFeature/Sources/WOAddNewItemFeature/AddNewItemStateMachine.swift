@@ -40,6 +40,7 @@ public final class AddNewItemStateMachine {
     private let nameField: TextFieldState<TextFieldKind>
     private let urlField: TextFieldState<TextFieldKind>
     private let crossIcon: IconState
+    private var imageURL = ""
     
     private lazy var priceField: PriceInputState = PriceInputState {text in
         self.setPriceText(text)
@@ -49,7 +50,7 @@ public final class AddNewItemStateMachine {
     
     private lazy var addButton: ButtonState = {
         ButtonState(
-            label: L10n.createLabel,
+            label: L10n.addToList,
             isEnabled: false,
             action: { [weak self] in
                 self?.didTapAddButton()
@@ -58,10 +59,11 @@ public final class AddNewItemStateMachine {
     }()
     
     public var didRequestShowAlert: ((String) -> Void)?
+    public var didCreateWish: ((Wish) -> Void)?
     
     public init(crossIcon: IconState) {
         self.nameField = .init(kind: .name, validator: NameValidator())
-        self.urlField = .init(kind: .url, validator: UrlValidator())
+        self.urlField = .init(kind: .url, validator: OptionalUrlValidator())
         self.crossIcon = crossIcon
     }
     
@@ -87,6 +89,10 @@ public final class AddNewItemStateMachine {
         priceField.currency = text
     }
     
+    public func setImageURL(_ url: String) {
+        imageURL = url
+    }
+    
     public func setDidLoseFocus(_ kind: TextFieldKind) {
         field(for: kind)?.wasFocused = true
         field(for: kind)?.validateIfNeeded()
@@ -101,8 +107,20 @@ public final class AddNewItemStateMachine {
             return
         }
         
-        didRequestShowAlert?(L10n.successMessage)
-        //TODO: add wish to list
+        didCreateWish?(makeWish())
+    }
+    
+    private func makeWish() -> Wish {
+        let normalizedPrice = priceField.text.replacingOccurrences(of: ",", with: ".")
+        return Wish(
+            id: UUID(),
+            name: nameField.text.trimmingCharacters(in: .whitespacesAndNewlines),
+            image: imageURL,
+            price: Double(normalizedPrice),
+            currency: priceField.currency,
+            link: urlField.text.trimmingCharacters(in: .whitespacesAndNewlines),
+            isTaken: false
+        )
     }
     
     private func getAllFields() -> [TextFieldState<TextFieldKind>] {
@@ -110,7 +128,13 @@ public final class AddNewItemStateMachine {
     }
     
     private func setButtonEnabled() {
-        addButton.isEnabled = getAllFields().allSatisfy { !$0.isError && !$0.text.isEmpty}
+        addButton.isEnabled = getAllFields().allSatisfy { field in
+            guard !field.isError else { return false }
+            if field.kind == .url {
+                return true
+            }
+            return !field.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        }
     }
     
     private func validateAllFields() {

@@ -16,7 +16,14 @@ import WOResources
     #expect(stateMachine.state.addButton.isEnabled == true)
     
     stateMachine.setUrlText("")
-    #expect(stateMachine.state.addButton.isEnabled == false)
+    #expect(stateMachine.state.addButton.isEnabled == true)
+}
+
+@Test func buttonEnabledWithoutLink() {
+    let stateMachine = makeStateMachine()
+    stateMachine.setNameText("Notebook")
+    stateMachine.setPriceText("40")
+    #expect(stateMachine.state.addButton.isEnabled == true)
 }
 
 @Test func buttonEnabledWhenValidFields() {
